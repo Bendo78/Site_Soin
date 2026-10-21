@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Clairière : séances de Reiki, soins énergétiques, ateliers en pleine nature et formations en développement personnel.">
+<title>Clairière Soins Énergétiques</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Caveat:wght@500;700&display=swap">
+<style>
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+/* Mise en page : un refuge lumineux — blanc chaud, blocs arrondis aux coins asymétriques, titres capitales + mots manuscrits, couleurs des chakras en tons de terre */
+:root{
+  color-scheme:light;
+  --bg:#FFFDF9;           /* blanc chaud */
+  --sand:#F6F0E7;         /* lin */
+  --sand-2:#EEE5D7;
+  --ink:#1F3A4A;          /* bleu pétrole : titres */
+  --text:#43525A;
+  --muted:#66737A;
+  --line:#E6DDD0;
+  --gold:#A0661A;         /* ocre : mots manuscrits, boutons */
+  --gold-soft:#F3C77A;
+  /* les 7 chakras, version terre et végétal */
+  --c1:#9C4434; --c2:#C07A26; --c3:#C9A227; --c4:#5E7A4C; --c5:#2E5E73; --c6:#3E4A82; --c7:#6B3358;
+  --leaf:#6E8B5A; --snow:#FBF8F0; --rose:#D88C9A; --sun:#E3A93B;
+  --font-sans:"Jost","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --font-script:"Caveat","Segoe Print","Bradley Hand",cursive;
+  --r-lg:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--font-sans);font-weight:500;text-transform:uppercase;color:var(--ink);line-height:1.1;letter-spacing:.01em;margin:0;text-wrap:balance}
+h2{font-size:clamp(1.7rem,3.4vw,2.5rem)}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:16px;padding-right:16px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.script{font-family:var(--font-script);font-weight:700;color:var(--gold);font-size:1.75rem;line-height:1.05}
+section{padding-block:clamp(56px,8vw,104px)}
+.head{display:grid;gap:8px;margin-bottom:40px}
+.head.center{text-align:center;justify-items:center}
+.lead{max-width:60ch;color:var(--text)}
+
+/* Boutons pilule */
+.btn{--b:var(--ink);display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:12px 24px;border-radius:999px;border:1.5px solid var(--b);background:var(--b);color:#fff;font:600 .875rem var(--font-sans);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px -10px var(--b)}
+.btn.line{background:transparent;color:var(--b)}
+.btn.big{min-height:56px;padding:14px 30px;font-size:.9375rem}
+
+/* En-tête */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:18px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);margin-right:auto}
+.logo svg{width:44px;height:44px;flex:none}
+.logo > span{display:grid;gap:4px;padding-left:12px;border-left:1px solid var(--line)}
+.logo b{display:block;font-weight:500;letter-spacing:.32em;font-size:1.0625rem;line-height:1}
+.logo small{display:block;font-family:var(--font-script);font-weight:700;font-size:1.05rem;letter-spacing:.01em;color:var(--gold);line-height:1}
+.menu{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.menu a{text-decoration:none;font-size:.875rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.menu a:hover{color:var(--gold)}
+.burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);align-items:center;justify-content:center;cursor:pointer}
+.burger svg{width:20px;height:20px}
+@media (max-width:960px){
+  .burger{display:inline-flex;order:-1}
+  .menu{display:none}
+  .top.open .menu{display:flex;flex-direction:column;gap:0;order:5;width:100%;border-top:1px solid var(--line);padding-top:6px}
+  .top.open .menu a{display:block;padding:12px 2px;font-size:1rem}
+  .top .wrap{flex-wrap:wrap}
+}
+@media (max-width:420px){.top .btn{padding:10px 16px}.logo small{display:none}}
+
+/* Accueil : texte à gauche, paysage dans une arche à droite (même fond que la page : aucune coupure) */
+.hero{background:var(--bg)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(32px,5vw,80px);align-items:center;padding-block:clamp(36px,5vw,72px) clamp(24px,4vw,48px)}
+.hero-text{max-width:520px;display:grid;gap:20px}
+.hero h1{font-size:clamp(2.3rem,4.8vw,3.75rem)}
+.hero h1 span{color:var(--c5)}
+.hero .ctas{display:grid;gap:14px;justify-items:start;margin-top:6px}
+.arch{position:relative;width:100%;max-width:520px;justify-self:end;aspect-ratio:4/5;border-radius:999px 999px 28px 28px;overflow:hidden;background:#F4E9DC;box-shadow:0 40px 70px -48px rgba(31,58,74,.55)}
+.arch canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.arch::after{content:"";position:absolute;inset:12px;border-radius:999px 999px 18px 18px;border:1px solid rgba(255,255,255,.55);pointer-events:none}
+.arch .pill{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;white-space:nowrap;font-size:.8125rem;font-weight:500;color:var(--ink);background:rgba(255,253,249,.92);padding:8px 16px;border-radius:999px;box-shadow:0 8px 20px -12px rgba(31,58,74,.5)}
+.arch .pill i{width:8px;height:8px;border-radius:50%;background:var(--c4)}
+@media (max-width:820px){
+  .hero .wrap{grid-template-columns:1fr}
+  .arch{justify-self:center;max-width:440px;aspect-ratio:5/6}
+}
+
+/* 4 piliers */
+/* 4 piliers : quatre arches décalées comme des troncs, reliées par une même racine */
+.blob{width:58px;height:58px;flex:none}
+.pillars-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:24px 56px;align-items:end;margin-bottom:44px}
+.pillars-head p{color:var(--text);max-width:46ch}
+.pillars{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch;padding-bottom:34px}
+.pillars::after{content:"";position:absolute;left:4%;right:4%;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--c5) 15%,var(--c2) 38%,var(--c1) 62%,var(--c7) 85%,transparent);opacity:.45}
+.pillar{position:relative;display:grid;justify-items:center;align-content:start;gap:12px;text-align:center;padding:40px 22px 30px;border-radius:999px 999px 20px 20px;background:linear-gradient(180deg,color-mix(in srgb,var(--pc) 15%,var(--bg)),color-mix(in srgb,var(--pc) 4%,var(--bg)) 75%);border:1px solid color-mix(in srgb,var(--pc) 22%,var(--line));transition:transform .4s,box-shadow .4s;min-width:0}
+.pillar:nth-child(even){margin-top:60px}
+.pillar::after{content:"";position:absolute;left:50%;bottom:-35px;width:2px;height:34px;background:linear-gradient(var(--pc),transparent);opacity:.5}
+.pillar:nth-child(even)::after{height:34px}
+.pillar:hover{transform:translateY(-6px);box-shadow:0 24px 40px -30px color-mix(in srgb,var(--pc) 70%,transparent)}
+.pillar .blob{width:64px;height:64px;color:var(--pc)}
+.pillar .kw{font-family:var(--font-script);font-weight:700;font-size:1.6rem;line-height:1;color:color-mix(in srgb,var(--pc) 75%,var(--ink))}
+.pillar h3{font-size:1rem;letter-spacing:.04em;line-height:1.3}
+.pillar p{font-size:.9375rem;color:var(--text)}
+@media (prefers-reduced-motion: reduce){.pillar{transition:none}.pillar:hover{transform:none}}
+@media (max-width:960px){.pillars{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:24px;padding-bottom:0}.pillars::after,.pillar::after{display:none}.pillars-head{grid-template-columns:1fr}}
+@media (max-width:540px){.pillars{grid-template-columns:1fr;padding-bottom:0}.pillars::after,.pillar::after{display:none}.pillar:nth-child(even){margin-top:0}.pillar{border-radius:160px 160px 20px 20px}}
+
+/* Grand paysage */
+.panorama{position:relative;overflow:hidden;border-radius:180px 18px 18px 18px;min-height:clamp(300px,42vw,500px);background:var(--sand-2);display:flex;align-items:flex-end}
+.panorama svg.land{position:absolute;inset:0;width:100%;height:100%}
+.panorama blockquote{position:relative;margin:0;padding:clamp(24px,5vw,56px);max-width:620px;color:#fff;font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:400;line-height:1.3;text-shadow:0 1px 18px rgba(31,58,74,.45)}
+.panorama blockquote cite{display:block;margin-top:10px;font-style:normal;font-family:var(--font-script);font-size:1.6rem;color:var(--gold-soft)}
+@media (max-width:640px){.panorama{border-radius:90px 14px 14px 14px}}
+
+/* Bloc « mon histoire » */
+.story{background:var(--c1);color:#FBEFEA;border-radius:var(--r-lg);padding:clamp(36px,6vw,72px) clamp(20px,5vw,64px);display:grid;justify-items:center;text-align:center;gap:16px;position:relative;overflow:hidden}
+.story h2{color:#fff}
+.story .script{color:var(--gold-soft)}
+.story p{max-width:62ch}
+.portrait{width:min(300px,70vw);aspect-ratio:1;position:relative;margin-bottom:8px}
+.portrait svg{position:absolute;inset:0;width:100%;height:100%}
+.creds{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:6px 0}
+.creds span{font-size:.875rem;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25)}
+.story .btns{display:grid;gap:12px;justify-items:center;margin-top:8px}
+
+/* Cartes en arche */
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.card{--b:var(--ink);position:relative;overflow:hidden;min-height:400px;border-radius:150px 150px 18px 18px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:22px;color:#fff;isolation:isolate;min-width:0}
+.card svg.art{position:absolute;inset:0;width:100%;height:100%;z-index:-2}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 35%,color-mix(in srgb,var(--b) 88%,#000) 92%)}
+.card .tag{position:absolute;top:26px;left:50%;transform:translateX(-50%);font-size:.8125rem;font-weight:500;padding:4px 12px;border-radius:999px;background:var(--b);color:#fff;white-space:nowrap}
+.card h3{color:#fff;font-size:1.3rem}
+.card p{font-size:.9375rem;color:rgba(255,255,255,.88)}
+.card .btn{align-self:flex-start;margin-top:8px;min-height:40px;padding:9px 18px;font-size:.8125rem;border-color:#fff;background:#fff;color:var(--b)}
+@media (max-width:1000px){.cards{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:minmax(250px,72%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}.card{scroll-snap-align:start}}
+
+/* Pour qui + déroulé */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,72px);align-items:center}
+.split > *{min-width:0}
+.forwho{display:grid;gap:18px}
+.lists{display:grid;grid-template-columns:auto 1fr;gap:10px 36px;margin:6px 0}
+.lists ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.icons li{display:flex;align-items:center;gap:10px;font-weight:500;text-transform:uppercase;font-size:.875rem;letter-spacing:.04em;color:var(--ink)}
+.icons svg{width:26px;height:26px;color:var(--gold);flex:none}
+.dots li{display:flex;align-items:center;gap:10px;font-size:.875rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+.dots li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c5)}
+.steps-card{background:var(--sand);border-radius:18px 140px 18px 18px;padding:clamp(28px,4vw,48px)}
+.steps-card h3{font-size:1.15rem;margin-bottom:18px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:14px;counter-increment:s}
+.steps li::before{content:counter(s);width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-script);font-weight:700;font-size:1.5rem;color:#fff;background:var(--sc)}
+.steps li:nth-child(1){--sc:var(--c1)} .steps li:nth-child(2){--sc:var(--gold)} .steps li:nth-child(3){--sc:var(--c4)} .steps li:nth-child(4){--sc:var(--c6)}
+.steps b{display:block;color:var(--ink);font-weight:600}
+.steps span{font-size:.9375rem}
+@media (max-width:860px){.split{grid-template-columns:1fr}.lists{grid-template-columns:1fr}}
+
+/* Chakras */
+.chakra-box{background:var(--sand);border-radius:var(--r-lg);padding:clamp(24px,5vw,56px);display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:clamp(24px,5vw,56px)}
+.ch-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column-reverse;gap:4px}
+.ch-btn{width:100%;display:flex;align-items:center;gap:14px;padding:7px 14px 7px 7px;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--ink);font:500 1rem var(--font-sans);cursor:pointer;text-align:left}
+.ch-btn .blob{width:34px;height:34px;color:var(--c)}
+.ch-btn small{display:block;font-family:var(--font-script);font-size:1.1rem;font-weight:500;color:var(--muted);line-height:1}
+.ch-btn:hover{background:rgba(255,255,255,.6)}
+.ch-btn[aria-pressed="true"]{background:#fff;border-color:var(--line);box-shadow:0 6px 18px -12px rgba(31,58,74,.4)}
+.ch-panel{background:#fff;border-radius:18px 120px 18px 18px;padding:clamp(24px,4vw,44px);display:grid;gap:14px;align-content:start;border-top:6px solid var(--c);min-width:0}
+.ch-panel .script{color:color-mix(in srgb,var(--c) 70%,var(--ink))}
+.ch-facts{display:flex;flex-wrap:wrap;gap:8px}
+.ch-facts span{font-size:.875rem;padding:5px 12px;border-radius:999px;background:var(--sand);color:var(--ink)}
+.ch-panel p strong{color:var(--ink);font-weight:600}
+@media (max-width:760px){.chakra-box{grid-template-columns:1fr}}
+
+/* Bandeau ateliers */
+.retreat{position:relative;overflow:hidden;border-radius:18px 180px 18px 18px;background:var(--ink);color:#E6EEF1;padding:clamp(36px,6vw,72px) clamp(20px,5vw,64px) clamp(150px,18vw,220px)}
+.retreat svg.land{position:absolute;left:0;right:0;bottom:0;width:100%;height:58%;opacity:.9}
+.retreat > *:not(svg){position:relative}
+.retreat h2{color:#fff;max-width:18ch}
+.retreat .script{color:var(--gold-soft)}
+.retreat .lead{color:#D5E0E5;margin-top:14px}
+.events{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0;max-width:760px}
+.events li{display:grid;grid-template-columns:86px minmax(0,1fr) auto;gap:18px;align-items:center;padding:16px 0;border-top:1px solid rgba(255,255,255,.18)}
+.events time{font-family:var(--font-script);font-weight:700;font-size:1.7rem;line-height:1;color:var(--gold-soft)}
+.events time small{display:block;font-family:var(--font-sans);font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#B9C9D0}
+.events b{display:block;color:#fff;font-weight:500}
+.events span{font-size:.9375rem;color:#C6D4DA}
+.events em{font-style:normal;font-size:.8125rem;padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.35);white-space:nowrap}
+.events em.low{background:var(--gold-soft);color:var(--ink);border-color:var(--gold-soft)}
+.retreat .btn{margin-top:26px;--b:var(--gold-soft);color:var(--ink)}
+@media (max-width:620px){.events li{grid-template-columns:64px minmax(0,1fr)}.events em{grid-column:2;justify-self:start}}
+
+/* Chiffres */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;text-align:center}
+.stat b{display:block;font-weight:300;font-size:clamp(3rem,7vw,4.75rem);line-height:1;color:var(--sc);font-variant-numeric:tabular-nums}
+.stat span{font-family:var(--font-script);font-weight:700;font-size:1.35rem;color:var(--ink)}
+.stat:nth-child(odd){--sc:var(--gold)} .stat:nth-child(even){--sc:var(--c1)}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Respiration */
+.breath{display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,6vw,64px);align-items:center;background:var(--sand);border-radius:180px 18px 18px 180px;padding:clamp(24px,4vw,40px) clamp(24px,5vw,64px) clamp(24px,4vw,40px) clamp(24px,4vw,40px)}
+.orb-wrap{width:200px;height:200px;display:grid;place-items:center;position:relative;border-radius:50%;background:#fff}
+.orb{--oc:var(--c4);width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 35% 35%,color-mix(in srgb,var(--oc) 30%,white),var(--oc));box-shadow:0 0 50px color-mix(in srgb,var(--oc) 50%,transparent);transition:transform 4s ease-in-out,background 1s,box-shadow 1s}
+.orb-label{position:absolute;bottom:-32px;left:-20px;right:-20px;text-align:center;font-family:var(--font-script);font-size:1.3rem;font-weight:700;color:var(--ink)}
+.breath .txt{display:grid;gap:12px;max-width:52ch}
+@media (max-width:720px){.breath{grid-template-columns:1fr;justify-items:center;text-align:center;border-radius:120px 120px 18px 18px;padding-top:36px}.orb-wrap{margin-bottom:28px}}
+
+/* Formations */
+.paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.path{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;display:grid;gap:12px;align-content:start;min-width:0}
+.path .blob{width:50px;height:50px;color:var(--pc)}
+.path h3{font-size:1.2rem}
+.path ul{margin:0;padding-left:18px;font-size:.9688rem;display:grid;gap:4px}
+.path .price{display:flex;justify-content:space-between;align-items:baseline;padding-top:14px;margin-top:6px;border-top:1px dashed var(--line);font-size:.9375rem}
+.path .price b{font-family:var(--font-script);font-size:1.7rem;color:var(--pc)}
+.path.feature{background:var(--c7);border-color:var(--c7);color:#F5E9F0;border-radius:18px 120px 18px 18px}
+.path.feature h3{color:#fff}
+.path.feature .script{color:var(--gold-soft)}
+.path.feature .price{border-color:rgba(255,255,255,.3)}
+.path.feature .price b{color:var(--gold-soft)}
+.path.feature .blob{color:var(--gold-soft)}
+@media (max-width:900px){.paths{grid-template-columns:1fr}}
+
+/* Tarifs */
+.rates-box{background:var(--sand);border-radius:18px;padding:clamp(24px,5vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px)}
+.rates-box h3{font-size:1.1rem;margin-bottom:10px}
+.rates{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.rates td{padding:14px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.rates td:last-child{text-align:right;white-space:nowrap;padding-left:16px;font-family:var(--font-script);font-weight:700;font-size:1.5rem;color:var(--c1);line-height:1.1}
+.rates small{display:block;color:var(--muted);font-size:.875rem}
+.note{grid-column:1/-1;font-size:.9375rem;padding:16px 20px;border-radius:14px;background:#fff;border-left:4px solid var(--c4)}
+@media (max-width:820px){.rates-box{grid-template-columns:1fr}}
+
+/* FAQ */
+/* FAQ : introduction fixe à gauche dans une arche de lin, questions en cartes à droite */
+.faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,56px);align-items:start}
+.faq-intro{position:sticky;top:110px;display:grid;gap:16px;background:var(--sand);border-radius:999px 999px 22px 22px;padding:clamp(70px,9vw,110px) clamp(24px,4vw,44px) clamp(28px,4vw,44px);text-align:center;justify-items:center}
+.faq-list{display:grid;gap:12px}
+.faq-list details{background:#fff;border:1px solid var(--line);border-radius:18px;transition:border-radius .35s,box-shadow .35s,border-color .35s}
+.faq-list details[open]{border-radius:18px 64px 18px 18px;border-color:color-mix(in srgb,var(--qc) 35%,var(--line));box-shadow:0 18px 40px -28px rgba(31,58,74,.5)}
+.faq-list summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:38px minmax(0,1fr) 34px;align-items:center;gap:16px;padding:16px 18px;font-weight:500;color:var(--ink)}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary .blob{width:38px;height:38px;color:var(--qc)}
+.faq-list summary i{position:relative;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);transition:background .3s,border-color .3s}
+.faq-list summary i::before,.faq-list summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.6px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .3s,background .3s}
+.faq-list summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq-list details[open] summary i{background:var(--qc);border-color:var(--qc)}
+.faq-list details[open] summary i::before,.faq-list details[open] summary i::after{background:#fff}
+.faq-list details[open] summary i::after{transform:translate(-50%,-50%) rotate(0deg)}
+.faq-list details p{padding:0 22px 22px 72px;max-width:62ch}
+@media (max-width:820px){.faq{grid-template-columns:1fr}.faq-intro{position:static;border-radius:160px 160px 22px 22px}.faq-list details p{padding-left:22px}}
+
+/* Contact */
+.contact-box{background:var(--sand);border-radius:var(--r-lg);padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,64px)}
+.contact-box > *{min-width:0}
+.contact-info{display:grid;gap:18px;align-content:start}
+.contact-info svg.spiral{width:64px;height:64px}
+.contact-info dl{margin:0;display:grid;gap:14px}
+.contact-info dt{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.contact-info dd{margin:2px 0 0;color:var(--ink);user-select:all}
+form{display:grid;gap:14px;background:#fff;border-radius:18px;padding:clamp(20px,4vw,32px)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:6px;font-size:.8125rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+input,select,textarea{font:400 1rem var(--font-sans);text-transform:none;letter-spacing:0;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--c5);outline-offset:1px}
+.form-msg{font-size:.9375rem;color:var(--c1)}
+.request{display:grid;gap:12px;padding:16px;border-radius:14px;background:var(--sand);border:1px solid var(--line)}
+.request pre{margin:0;white-space:pre-wrap;font:inherit;font-size:.9375rem;color:var(--ink);background:#fff;border-radius:10px;padding:12px 14px;user-select:all}
+.request .actions{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:860px){.contact-box{grid-template-columns:1fr}}
+@media (max-width:480px){.row{grid-template-columns:1fr}}
+
+footer{padding-block:48px 40px;text-align:center}
+footer .wrap{display:grid;justify-items:center;gap:14px}
+footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px}
+footer nav a{text-decoration:none;font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+footer p{font-size:.875rem;color:var(--muted);max-width:62ch}
+.flower-line{width:min(420px,80vw);height:auto}
+</style>
+</head>
+<body>
+
+<!-- Symboles partagés : le galet-feuille (pastilles de couleur) et l'emblème Clairière -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Galet-feuille : un galet plein, son ombre décalée, un contour légèrement décalé façon impression artisanale, une feuille gravée en blanc -->
+  <symbol id="blob" viewBox="0 0 100 100">
+    <path d="M47 11C69 5 92 21 90 46C88 71 70 91 46 89C22 87 9 70 11 46C13 25 27 16 47 11Z" fill="currentColor" opacity=".2" transform="translate(5 5)"/>
+    <path d="M47 11C69 5 92 21 90 46C88 71 70 91 46 89C22 87 9 70 11 46C13 25 27 16 47 11Z" fill="currentColor"/>
+    <path d="M47 11C69 5 92 21 90 46C88 71 70 91 46 89C22 87 9 70 11 46C13 25 27 16 47 11Z" fill="none" stroke="currentColor" stroke-width="1.6" transform="translate(-5 -4)"/>
+    <path d="M33 67C33 47 47 33 68 32C68 53 54 66 33 67Z" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" opacity=".9"/>
+    <path d="M33 67L58 42" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+  </symbol>
+  <!-- Emblème : une arche (la clairière), un soleil qui se lève, deux feuilles qui s'ouvrent -->
+  <symbol id="mark" viewBox="0 0 64 64">
+    <path d="M14 58V30a18 18 0 0 1 36 0v28" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="32" cy="27" r="6.5" fill="var(--sun)"/>
+    <path d="M32 57C32 47 26 41 18 40C18 49 24 56 32 57Z" fill="var(--c4)"/>
+    <path d="M32 57C32 46 38 39 47 37C47 47 41 55 32 57Z" fill="var(--leaf)"/>
+    <path d="M10 58h44" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+    </button>
+    <a class="logo" href="#accueil">
+      <svg style="color:var(--gold)" aria-hidden="true"><use href="#mark"/></svg>
+      <span><b>CLAIRIÈRE</b><small>Soins énergétiques</small></span>
+    </a>
+    <ul class="menu" id="menu">
+      <li><a href="#approche">Approche</a></li>
+      <li><a href="#soins">Soins</a></li>
+      <li><a href="#chakras">Chakras</a></li>
+      <li><a href="#ateliers">Ateliers</a></li>
+      <li><a href="#formations">Formations</a></li>
+      <li><a href="#tarifs">Tarifs</a></li>
+    </ul>
+    <a class="btn" href="#contact">Réserver</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="accueil">
+    <div class="wrap">
+      <div class="hero-text">
+        <p class="script">Ralentir · Ressentir · Refleurir</p>
+        <h1>Clairière, un refuge <span>pour votre énergie</span></h1>
+        <p class="lead">Séances de Reiki, soins énergétiques, ateliers en pleine nature et formations en développement personnel. Un lieu pour relâcher les tensions et revenir à l'essentiel, à votre rythme.</p>
+        <div class="ctas">
+          <a class="btn big" href="#contact">Première séance : 55 €</a>
+          <a class="btn line" href="#soins">Découvrir les soins</a>
+        </div>
+      </div>
+      <div class="arch">
+        <canvas id="meadow" aria-hidden="true"></canvas>
+        <span class="pill"><i></i>Au cabinet et à distance</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="piliers">
+    <div class="wrap">
+      <div class="pillars-head">
+        <h2>Clairière, 4 piliers pour un même soin</h2>
+        <p>Comme les arbres qui bordent une clairière, ces quatre piliers tiennent l'espace où vous pouvez enfin déposer, respirer et vous retrouver.</p>
+      </div>
+      <div class="pillars">
+        <article class="pillar" style="--pc:var(--c5)"><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span class="kw">Écouter</span><h3>Une écoute qui prend le temps</h3><p>Chaque séance commence par un vrai échange. Vous êtes accueilli·e tel·le que vous êtes, sans jugement.</p></article>
+        <article class="pillar" style="--pc:var(--c2)"><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span class="kw">Accueillir</span><h3>Un lieu au cœur de la nature</h3><p>Le cabinet ouvre sur la forêt. Le chant des oiseaux et la lumière des arbres font déjà partie du soin.</p></article>
+        <article class="pillar" style="--pc:var(--c1)"><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span class="kw">Soigner</span><h3>Des soins faits pour vous</h3><p>Reiki, harmonisation énergétique, ancrage : chaque soin s'adapte à ce que vous traversez aujourd'hui.</p></article>
+        <article class="pillar" style="--pc:var(--c7)"><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span class="kw">Accompagner</span><h3>Un chemin dans la durée</h3><p>Ateliers, cercles de saison et formations pour continuer à prendre soin de vous entre les séances.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <figure class="panorama" style="margin:0">
+      <svg class="land" id="land1" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+      <blockquote>« La nature ne se presse jamais, et pourtant tout s'y accomplit. »<cite>Lao Tseu</cite></blockquote>
+    </figure>
+  </div>
+
+  <section id="approche">
+    <div class="wrap">
+      <div class="story">
+        <div class="portrait">
+          <svg viewBox="0 0 300 300" aria-hidden="true">
+            <g transform="translate(150 150) scale(2.9) translate(-50 -50)">
+              <path d="M47 11C69 5 92 21 90 46C88 71 70 91 46 89C22 87 9 70 11 46C13 25 27 16 47 11Z" fill="#F6E7DF"/>
+              <path d="M47 11C69 5 92 21 90 46C88 71 70 91 46 89C22 87 9 70 11 46C13 25 27 16 47 11Z" fill="none" stroke="#fff" stroke-width=".7" opacity=".7" transform="translate(-3 -2.5)"/>
+            </g>
+            <g id="bouquet"></g>
+          </svg>
+        </div>
+        <h2>Camille, praticienne Reiki</h2>
+        <p class="script">Maître enseignante Reiki Usui</p>
+        <p>J'accompagne les personnes qui traversent une période de fatigue, de stress, de deuil ou de transition, et celles qui ont simplement besoin d'un temps pour elles. Le soin se fait allongé et habillé, par imposition des mains, dans le calme ou sur une musique douce.</p>
+        <div class="creds"><span>Usui Shiki Ryoho</span><span>9 ans de pratique</span><span>Formée aux soins énergétiques</span></div>
+        <div class="btns">
+          <a class="btn" style="--b:var(--gold)" href="#contact">Prendre rendez-vous</a>
+          <a class="btn line" style="--b:#fff" href="#seance">Comment se passe une séance →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="soins" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <p class="script">Des soins pour le corps, le cœur et l'esprit</p>
+        <h2>Mes soins</h2>
+      </div>
+      <div class="cards">
+        <article class="card" style="--b:var(--c7)"><svg class="art" data-art="aster" data-bg="#B88AA8" aria-hidden="true"></svg><span class="tag">1 h 15</span><h3>Séance de Reiki</h3><p>Imposition des mains pour une détente profonde et un rééquilibrage émotionnel.</p><a class="btn" href="#tarifs">Découvrir →</a></article>
+        <article class="card" style="--b:var(--c5)"><svg class="art" data-art="gentian" data-bg="#8FB3C2" aria-hidden="true"></svg><span class="tag">1 h 30</span><h3>Soin énergétique</h3><p>Harmonisation des centres d'énergie, travail sur les blocages et ancrage.</p><a class="btn" href="#tarifs">Découvrir →</a></article>
+        <article class="card" style="--b:var(--gold)"><svg class="art" data-art="arnica" data-bg="#E2BE7E" aria-hidden="true"></svg><span class="tag">2 h 30 · en groupe</span><h3>Ateliers énergétiques</h3><p>Méditation, auto-soins et marche consciente en forêt, en petit cercle.</p><a class="btn" href="#ateliers">Découvrir →</a></article>
+        <article class="card" style="--b:var(--c1)"><svg class="art" data-art="rhodo" data-bg="#D59A8A" aria-hidden="true"></svg><span class="tag">1 à 3 jours</span><h3>Formations</h3><p>Initiations Reiki et parcours de développement personnel avec suivi.</p><a class="btn" href="#formations">Découvrir →</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="seance" style="padding-top:0">
+    <div class="wrap split">
+      <div class="forwho">
+        <p class="script">Clairière vous accompagne dans tous les moments de vie</p>
+        <h2>Pour qui ?</h2>
+        <p>Le Reiki et les soins énergétiques s'adressent à toutes et à tous, quel que soit l'âge. Pas besoin de « croire » ni de préparer quoi que ce soit : venez simplement dans des vêtements confortables.</p>
+        <div class="lists">
+          <ul class="icons">
+            <li><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13 22c-5-3-9-7-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5-4 9-9 12Z"/></svg>Stress et émotions</li>
+            <li><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M17 5a8 8 0 1 0 4 12 7 7 0 0 1-4-12Z"/></svg>Sommeil et fatigue</li>
+            <li><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13 23V11"/><path d="M13 15c-4 0-7-3-7-7 4 0 7 3 7 7Zm0-3c3 0 6-2 6-6-3 0-6 2-6 6Z"/></svg>Transitions de vie</li>
+          </ul>
+          <ul class="dots">
+            <li>Deuil et séparation</li>
+            <li>Grossesse</li>
+            <li>Confiance en soi</li>
+            <li>Besoin d'ancrage</li>
+          </ul>
+        </div>
+        <div><a class="btn line" href="#contact">Poser une question →</a></div>
+      </div>
+      <div class="steps-card">
+        <h3>Le déroulé d'une séance</h3>
+        <ol class="steps">
+          <li><div><b>L'accueil · 10 min</b><span>Un échange sur ce que vous traversez et vos attentes.</span></div></li>
+          <li><div><b>L'ancrage · 5 min</b><span>Installation sur la table, respiration, retour dans le corps.</span></div></li>
+          <li><div><b>Le soin · 50 à 60 min</b><span>Imposition des mains et harmonisation, dans le calme.</span></div></li>
+          <li><div><b>Le retour · 10 min</b><span>Un verre d'eau, vos ressentis et quelques conseils pour la suite.</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="chakras" style="padding-top:0">
+    <div class="wrap">
+      <div class="head center">
+        <p class="script">De la racine à la couronne</p>
+        <h2>Les 7 chakras</h2>
+        <p class="lead">Pendant un soin, je porte attention à chacun de ces centres d'énergie. Choisissez un chakra pour découvrir ce qu'il représente.</p>
+      </div>
+      <div class="chakra-box">
+        <ul class="ch-list">
+          <li><button class="ch-btn" type="button" data-i="0" aria-pressed="false" style="--c:var(--c1)"><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Racine<small>Muladhara</small></span></button></li>
+          <li><button class="ch-btn" type="button" data-i="1" aria-pressed="false" style="--c:var(--c2)"><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Sacré<small>Svadhisthana</small></span></button></li>
+          <li><button class="ch-btn" type="button" data-i="2" aria-pressed="false" style="--c:var(--c3)"><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Plexus solaire<small>Manipura</small></span></button></li>
+          <li><button class="ch-btn" type="button" data-i="3" aria-pressed="true" style="--c:var(--c4)"><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Cœur<small>Anahata</small></span></button></li>
+          <li><button class="ch-btn" type="button" data-i="4" aria-pressed="false" style="--c:var(--c5)"><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Gorge<small>Vishuddha</small></span></button></li>
+          <li><button class="ch-btn" type="button" data-i="5" aria-pressed="false" style="--c:var(--c6)"><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Troisième œil<small>Ajna</small></span></button></li>
+          <li><button class="ch-btn" type="button" data-i="6" aria-pressed="false" style="--c:var(--c7)"><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Couronne<small>Sahasrara</small></span></button></li>
+        </ul>
+        <div class="ch-panel" id="chPanel" style="--c:var(--c4)" aria-live="polite">
+          <p class="script" id="chSk">4e chakra · Anahata</p>
+          <h3 id="chName">Le chakra du cœur</h3>
+          <div class="ch-facts"><span id="chPlace">Centre de la poitrine</span><span id="chEl">Élément : air</span><span id="chCol">Couleur : vert</span></div>
+          <p id="chTheme"><strong>Ce qu'il représente :</strong> l'amour, la compassion, le pardon et le lien aux autres.</p>
+          <p id="chSign"><strong>Quand il est déséquilibré :</strong> on se replie sur soi, on a du mal à recevoir ou à faire confiance.</p>
+          <p id="chCare"><strong>Pour en prendre soin :</strong> la gratitude, les respirations amples, le temps passé dans la nature et les liens qui nourrissent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ateliers" style="padding-top:0">
+    <div class="wrap">
+      <div class="retreat">
+        <svg class="land" id="land2" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+        <p class="script">En pleine nature</p>
+        <h2>Ateliers &amp; cercles de saison</h2>
+        <p class="lead">Méditation guidée, auto-soins Reiki, bains de forêt et rituels de saison. Les groupes restent petits, de 6 à 10 personnes.</p>
+        <ul class="events">
+          <li><time datetime="2026-11-08">8 nov.<small>dimanche</small></time><div><b>Cercle d'automne : lâcher ce qui doit tomber</b><span>Méditation, rituel des feuilles et auto-soin · 14 h à 16 h 30</span></div><em class="low">2 places</em></li>
+          <li><time datetime="2026-11-22">22 nov.<small>dimanche</small></time><div><b>Marche consciente et bain de forêt</b><span>Rendez-vous à l'orée du bois · 9 h 30 à 12 h</span></div><em>6 places</em></li>
+          <li><time datetime="2026-12-06">6 déc.<small>sam. et dim.</small></time><div><b>Initiation Reiki niveau 1</b><span>Formation sur deux jours, 6 et 7 décembre · 9 h 30 à 17 h 30</span></div><em>4 places</em></li>
+          <li><time datetime="2026-12-20">20 déc.<small>dimanche</small></time><div><b>Solstice d'hiver : poser ses intentions</b><span>Méditation, écriture intuitive et soin collectif · 14 h à 16 h 30</span></div><em>8 places</em></li>
+        </ul>
+        <a class="btn" href="#contact">Réserver un atelier</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="chiffres" style="padding-top:0">
+    <div class="wrap stats">
+      <div class="stat"><b>9</b><span>années de pratique</span></div>
+      <div class="stat"><b>700+</b><span>séances données</span></div>
+      <div class="stat"><b>3</b><span>degrés de Reiki transmis</span></div>
+      <div class="stat"><b>∞</b><span>chemins vers soi</span></div>
+    </div>
+  </section>
+
+  <section id="respiration" style="padding-top:0">
+    <div class="wrap">
+      <div class="breath">
+        <div class="orb-wrap"><div class="orb" id="orb"></div><span class="orb-label" id="orbLabel" aria-live="polite">Prêt·e ?</span></div>
+        <div class="txt">
+          <p class="script">Une minute pour vous</p>
+          <h2>Respirez avec moi</h2>
+          <p>Inspirez quand la sphère grandit, expirez quand elle se pose. Quatre secondes pour chaque mouvement, sept cycles : un pour chaque chakra, de la racine à la couronne.</p>
+          <div><button class="btn" id="breathBtn" type="button">Commencer la respiration</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formations" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <p class="script">Apprendre à prendre soin de soi, puis des autres</p>
+        <h2>Formations</h2>
+      </div>
+      <div class="paths">
+        <article class="path" style="--pc:var(--c4)">
+          <svg class="blob" aria-hidden="true"><use href="#blob"/></svg>
+          <p class="script" style="color:var(--c4)">Reiki · niveau 1</p>
+          <h3>Shoden, l'auto-soin</h3>
+          <p>Recevoir les initiations et apprendre à se traiter soi-même au quotidien.</p>
+          <ul><li>Histoire et principes du Reiki</li><li>Positions d'auto-traitement</li><li>21 jours d'intégration accompagnés</li></ul>
+          <div class="price"><span>2 jours</span><b>280 €</b></div>
+        </article>
+        <article class="path" style="--pc:var(--c4)">
+          <svg class="blob" aria-hidden="true"><use href="#blob"/></svg>
+          <p class="script" style="color:var(--c4)">Reiki · niveau 2</p>
+          <h3>Okuden, soigner les autres</h3>
+          <p>Approfondir la pratique, recevoir les symboles et pratiquer le soin à distance.</p>
+          <ul><li>Les trois symboles du 2e degré</li><li>Soin complet sur une autre personne</li><li>Soin à distance</li></ul>
+          <div class="price"><span>2 jours</span><b>380 €</b></div>
+        </article>
+        <article class="path" style="--pc:var(--c4)">
+          <svg class="blob" aria-hidden="true"><use href="#blob"/></svg>
+          <p class="script" style="color:var(--c4)">Développement personnel</p>
+          <h3>Habiter son énergie</h3>
+          <p>Trois journées pour mieux se connaître et vivre plus aligné·e.</p>
+          <ul><li>Émotions et corps énergétique</li><li>Poser ses limites avec douceur</li><li>Rituels pour le quotidien</li></ul>
+          <div class="price"><span>3 jours</span><b>420 €</b></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="tarifs" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <p class="script">Simples et transparents</p>
+        <h2>Tarifs</h2>
+      </div>
+      <div class="rates-box">
+        <div>
+          <h3>Séances individuelles</h3>
+          <table class="rates">
+            <tr><td>Séance de Reiki<small>1 h 15, au cabinet</small></td><td>65 €</td></tr>
+            <tr><td>Première séance<small>1 h 15, échange de découverte inclus</small></td><td>55 €</td></tr>
+            <tr><td>Reiki à distance<small>1 h, avec échange en visio</small></td><td>55 €</td></tr>
+            <tr><td>Soin énergétique complet<small>1 h 30, au cabinet</small></td><td>80 €</td></tr>
+          </table>
+        </div>
+        <div>
+          <h3>Ateliers et forfaits</h3>
+          <table class="rates">
+            <tr><td>Atelier énergétique<small>2 h 30, en petit groupe</small></td><td>35 €</td></tr>
+            <tr><td>Bain de forêt guidé<small>2 h 30, en extérieur</small></td><td>30 €</td></tr>
+            <tr><td>Forfait 3 séances<small>à utiliser sur 3 mois</small></td><td>180 €</td></tr>
+            <tr><td>Carte 5 ateliers<small>valable 1 an</small></td><td>150 €</td></tr>
+          </table>
+        </div>
+        <p class="note">Le Reiki et les soins énergétiques sont des pratiques de bien-être. Ils ne remplacent pas un diagnostic ni un traitement médical et ne se substituent pas à un suivi par un professionnel de santé.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="faq">
+        <div class="faq-intro">
+          <p class="script">Questions fréquentes</p>
+          <h2>On me le demande souvent</h2>
+          <p>Vous ne trouvez pas votre réponse ? Écrivez-moi, je réponds personnellement à chaque message.</p>
+          <div><a class="btn line" href="#contact">Poser ma question →</a></div>
+        </div>
+        <div class="faq-list">
+          <details open style="--qc:var(--c4)"><summary><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Le Reiki, qu'est-ce que c'est ?</span><i aria-hidden="true"></i></summary><p>Une méthode japonaise de relaxation par imposition des mains. Elle favorise une détente profonde et aide le corps et l'esprit à retrouver leur équilibre.</p></details>
+          <details style="--qc:var(--c2)"><summary><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Faut-il « y croire » pour que ça fonctionne ?</span><i aria-hidden="true"></i></summary><p>Non. Il suffit d'être ouvert·e à l'expérience. Beaucoup de personnes viennent par curiosité et ressentent une grande détente dès la première séance.</p></details>
+          <details style="--qc:var(--c5)"><summary><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Combien de séances faut-il prévoir ?</span><i aria-hidden="true"></i></summary><p>Une séance peut suffire pour un besoin ponctuel. Pour une période difficile, je propose souvent 3 séances espacées de 2 à 3 semaines.</p></details>
+          <details style="--qc:var(--c7)"><summary><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Les séances à distance sont-elles efficaces ?</span><i aria-hidden="true"></i></summary><p>Oui. Le soin à distance fait partie de la pratique du Reiki. Nous échangeons en visio avant et après, et vous restez allongé·e chez vous pendant le soin.</p></details>
+          <details style="--qc:var(--c1)"><summary><svg class="blob" aria-hidden="true"><use href="#blob"/></svg><span>Le Reiki remplace-t-il un traitement médical ?</span><i aria-hidden="true"></i></summary><p>Non. Le Reiki est une pratique de bien-être complémentaire. Il ne remplace ni un diagnostic, ni un traitement, ni le suivi d'un professionnel de santé.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact-box">
+        <div class="contact-info">
+          <svg class="spiral" style="color:var(--gold)" aria-hidden="true"><use href="#mark"/></svg>
+          <p class="script">À bientôt dans la clairière</p>
+          <h2>Prenons rendez-vous</h2>
+          <p>Écrivez-moi quelques mots sur ce qui vous amène. Je vous réponds sous 48 heures pour convenir d'un créneau.</p>
+          <dl>
+            <div><dt>Téléphone</dt><dd>06 00 00 00 00</dd></div>
+            <div><dt>E-mail</dt><dd>bonjour@clairiere-soins.fr</dd></div>
+            <div><dt>Cabinet</dt><dd>12 chemin des Sources<br>Du mardi au samedi, sur rendez-vous</dd></div>
+          </dl>
+        </div>
+        <form id="contactForm" novalidate>
+          <div class="row">
+            <label for="f-name">Prénom et nom<input id="f-name" name="name" autocomplete="name" required></label>
+            <label for="f-email">E-mail<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+          </div>
+          <label for="f-type">Je souhaite
+            <select id="f-type" name="type">
+              <option>Une première séance</option>
+              <option>Une séance de Reiki</option>
+              <option>Un soin énergétique complet</option>
+              <option>Participer à un atelier</option>
+              <option>M'inscrire à une formation</option>
+              <option>Poser une question</option>
+            </select>
+          </label>
+          <label for="f-msg">Votre message<textarea id="f-msg" name="message" placeholder="Ce qui vous amène, vos disponibilités…"></textarea></label>
+          <div><button class="btn big" type="submit">Préparer ma demande</button></div>
+          <p class="form-msg" id="formMsg" role="status" hidden></p>
+          <div class="request" id="request" hidden>
+            <p style="font-weight:600;color:var(--ink)">Votre demande est prête. Envoyez-la à <span style="user-select:all">bonjour@clairiere-soins.fr</span> ou appelez le 06 00 00 00 00.</p>
+            <pre id="requestText"></pre>
+            <div class="actions">
+              <button class="btn" type="button" id="copyBtn">Copier la demande</button>
+              <a class="btn line" id="mailLink" href="mailto:bonjour@clairiere-soins.fr">Ouvrir ma messagerie</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <svg class="flower-line" id="footFlowers" viewBox="0 0 420 70" aria-hidden="true"></svg>
+    <a class="logo" href="#accueil" style="margin:0"><svg style="color:var(--gold)" aria-hidden="true"><use href="#mark"/></svg><span><b>CLAIRIÈRE</b><small>Soins énergétiques</small></span></a>
+    <nav aria-label="Pied de page"><a href="#soins">Soins</a><a href="#ateliers">Ateliers</a><a href="#formations">Formations</a><a href="#tarifs">Tarifs</a><a href="#faq">Questions</a><a href="#contact">Contact</a></nav>
+    <p>Reiki Usui, soins énergétiques, ateliers et formations en développement personnel. Pratiques de bien-être complémentaires à la médecine conventionnelle.</p>
+    <p>© 2026 Clairière</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NS='http://www.w3.org/2000/svg';
+  function rand(seed){return function(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}}
+
+  /* ---------- Fleurs de montagne (SVG), réutilisées dans les illustrations ---------- */
+  const STEM='fill:none;stroke:var(--leaf);stroke-width:1.8;stroke-linecap:round';
+  const stem=d=>'<path d="'+d+'" style="'+STEM+'"/>';
+  const leaf=(x,y,l,a,w)=>'<path transform="translate('+x+','+y+') rotate('+a+')" d="M0,0 C'+(l*.3)+','+(-w)+' '+(l*.7)+','+(-w)+' '+l+',0 C'+(l*.7)+','+w+' '+(l*.3)+','+w+' 0,0Z" style="fill:var(--leaf);fill-opacity:.85"/>';
+  const ring=(x,y,n,rx,ry,off,fill,rot)=>{let s='';for(let i=0;i<n;i++)s+='<ellipse rx="'+rx+'" ry="'+ry+'" cy="'+(-off)+'" transform="translate('+x+','+y+') rotate('+((rot||0)+i*360/n).toFixed(1)+')" style="fill:'+fill+'"/>';return s};
+  const dot=(x,y,r,fill)=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" style="fill:'+fill+'"/>';
+  const FLORA={
+    rhodo(){let s=stem('M40,200 C46,165 58,135 72,108')+stem('M72,108 C88,92 104,84 122,76')+stem('M72,108 C64,90 56,78 44,66')+stem('M58,140 C76,132 92,128 108,128');
+      [[50,170,24,-70],[62,150,26,-115],[60,128,24,-40],[86,100,22,-20],[66,96,22,-130],[100,126,20,10]].forEach(l=>s+=leaf(l[0],l[1],l[2],l[3],5));
+      [[122,72],[44,60],[108,124],[74,102]].forEach(([x,y],k)=>{for(let i=0;i<7;i++){const a=i*51+k*20;s+='<path transform="translate('+x+','+y+') rotate('+a+')" d="M0,0 L-3,-9 L-5,-14 L0,-12 L5,-14 L3,-9Z" style="fill:'+(i%2?'#C2414F':'#E07A8B')+'"/>'}});
+      return s},
+    lily(){let s=stem('M60,200 C62,160 66,120 72,74')+stem('M66,128 C78,114 88,106 98,96');
+      for(let i=0;i<9;i++) s+=leaf(62+i*.8,190-i*12,22,i%2?-30:-150,3);
+      s+=ring(72,66,6,7,24,20,'#E8822E',15);
+      for(let i=0;i<6;i++){const a=(i*60+15)*Math.PI/180;s+=dot((72+Math.sin(a)*16).toFixed(1),(66-Math.cos(a)*16).toFixed(1),1.6,'#6B2A14')}
+      return s+dot(72,66,4,'#9A3A12')+'<ellipse rx="5" ry="13" transform="translate(100,88) rotate(35)" style="fill:#E8822E;fill-opacity:.85"/>'},
+    arnica(){let s=stem('M44,200 C48,165 52,130 56,98')+stem('M44,200 C34,175 28,150 24,128')+stem('M48,200 C70,175 88,152 100,120');
+      s+=leaf(44,198,42,-165,8)+leaf(44,198,42,-15,8)+leaf(46,196,34,-60,7)+leaf(52,160,18,-30,4)+leaf(30,170,16,-150,4);
+      [[56,90,1],[24,120,.8],[100,112,.9]].forEach(([x,y,k])=>{s+=ring(x,y,13,3*k,11*k,13*k,'#F0B92E')+dot(x,y,6*k,'#D9822B')});return s},
+    edelweiss(){let s=stem('M52,200 C54,172 56,148 58,122')+stem('M52,200 C70,178 84,160 96,140')+stem('M52,200 C40,182 32,168 26,152');
+      [[54,182,24,-150],[54,180,22,-35],[56,160,16,-60],[44,176,16,-120],[80,165,14,-30]].forEach(l=>s+=leaf(l[0],l[1],l[2],l[3],3));
+      [[58,114,1],[96,134,.8],[26,146,.75]].forEach(([x,y,k])=>{let p='';for(let i=0;i<10;i++){const a=i*36*Math.PI/180,b=(i*36+18)*Math.PI/180;p+=(i?'L':'M')+(x+Math.sin(a)*20*k).toFixed(1)+','+(y-Math.cos(a)*20*k).toFixed(1)+'L'+(x+Math.sin(b)*7*k).toFixed(1)+','+(y-Math.cos(b)*7*k).toFixed(1)}
+        s+='<path d="'+p+'Z" style="fill:var(--snow);stroke:var(--leaf);stroke-width:.6;stroke-linejoin:round"/>';
+        for(let i=0;i<5;i++){const a=i*72*Math.PI/180;s+=dot((x+Math.sin(a)*3.5*k).toFixed(1),(y-Math.cos(a)*3.5*k).toFixed(1),2.4*k,'#D9C97A')}});return s},
+    gentian(){let s='';
+      [[40,140,1],[76,126,1.15],[112,146,.9]].forEach(([x,y,k])=>{s+=stem('M'+x+',200 L'+x+','+(y+30*k));
+        s+=leaf(x,196,20,-160,5)+leaf(x,196,20,-20,5)+leaf(x,y+44*k,14,-150,4)+leaf(x,y+44*k,14,-30,4);
+        s+='<path transform="translate('+x+','+y+') scale('+k+')" d="M-6,30 C-8,15 -12,5 -15,-8 L-8,-3 L-2,-13 L0,-4 L2,-13 L8,-3 L15,-8 C12,5 8,15 6,30Z" style="fill:#2F5FB3"/>';
+        s+='<path transform="translate('+x+','+y+') scale('+k+')" d="M0,26 L0,0" style="stroke:#1C3A7A;stroke-width:1.4;fill:none"/>'});return s},
+    bell(){let s=stem('M30,200 C38,140 86,82 152,72');
+      [[50,166,-60],[62,136,-20],[84,110,-70],[110,92,-10]].forEach(l=>s+=leaf(l[0],l[1],18,l[2],4));
+      [[72,124],[96,98],[124,82],[150,78]].forEach(([x,y],i)=>{s+=stem('M'+x+','+(y-6)+' Q'+(x+4)+','+(y-2)+' '+(x+3)+','+(y+6));
+        s+='<path transform="translate('+(x+3)+','+(y+14)+') scale('+(1-i*.08)+')" d="M-8,-8 C-8,-18 8,-18 8,-8 L10,6 L5,3 L0,7 L-5,3 L-10,6Z" style="fill:#6C63B5"/>'});return s},
+    aster(){let s=stem('M46,200 C50,170 54,140 58,110')+stem('M46,200 C66,178 82,160 94,136')+stem('M46,200 C34,180 26,164 22,146');
+      s+=leaf(46,198,34,-160,6)+leaf(46,198,30,-25,6)+leaf(54,160,16,-40,4)+leaf(72,170,14,-20,3);
+      [[58,102,1],[94,128,.85],[22,140,.75]].forEach(([x,y,k])=>{s+=ring(x,y,22,2.2*k,12*k,12*k,'#9B6BC0')+dot(x,y,5*k,'#F0C33C')});return s},
+    globe(){let s=stem('M50,200 C52,170 56,140 60,112')+stem('M50,200 C68,180 82,164 92,142');
+      s+=leaf(50,198,30,-150,9)+leaf(50,198,30,-90,9)+leaf(50,198,30,-30,9)+leaf(58,150,14,-140,5)+leaf(58,150,14,-40,5);
+      [[60,102,1],[92,134,.8]].forEach(([x,y,k])=>{s+=ring(x,y,8,7*k,8*k,6*k,'#EDB43A')+dot(x,y,8*k,'#F2CC4E')+dot(x-2*k,y-3*k,3*k,'#FFF3C4')});return s}
+  };
+  const place=(kind,x,y,s,flip)=>'<g transform="translate('+x+','+y+') scale('+(flip?-s:s)+','+s+') translate(-60,-200)">'+FLORA[kind]()+'</g>';
+
+  /* ---------- Paysage de montagnes, généré ---------- */
+  function ridge(rnd,w,base,amp,step){let p='M0,'+base;for(let x=0;x<=w;x+=step){const y=base-amp*(0.35+0.65*Math.abs(Math.sin(x*0.004+rnd()*0.6)))*(0.6+rnd()*0.4);p+=' L'+x+','+y.toFixed(1)}return p+' L'+w+',2000 L0,2000Z'}
+  function landscape(svg,opt){
+    const rnd=rand(opt.seed),w=1200,h=+svg.getAttribute('viewBox').split(' ')[3];
+    let s='';
+    if(opt.sky) s+='<defs><linearGradient id="sky'+opt.seed+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+opt.sky[0]+'"/><stop offset="1" stop-color="'+opt.sky[1]+'"/></linearGradient></defs><rect width="'+w+'" height="'+h+'" fill="url(#sky'+opt.seed+')"/>';
+    if(opt.sun) s+='<circle cx="'+opt.sun[0]+'" cy="'+opt.sun[1]+'" r="'+opt.sun[2]+'" fill="#FBE2A6" opacity=".9"/><circle cx="'+opt.sun[0]+'" cy="'+opt.sun[1]+'" r="'+(opt.sun[2]*2.2)+'" fill="#FBE2A6" opacity=".25"/>';
+    opt.ridges.forEach((r,i)=>{s+='<path d="'+ridge(rnd,w,h*r[0],h*r[1],r[3]||40)+'" fill="'+r[2]+'"/>'});
+    (opt.flowers||[]).forEach(f=>s+=place(f[0],f[1],h+6,f[2],f[3]));
+    svg.innerHTML=s;
+  }
+  landscape(document.getElementById('land1'),{seed:4,sky:['#F3DCC9','#F6EDE2'],sun:[860,190,46],
+    ridges:[[.56,.3,'#C7BBD3',60],[.66,.26,'#A797B8',50],[.76,.22,'#7F8FA8',45],[.86,.16,'#5E7A6C',35],[.95,.1,'#4C6650',30]],
+    flowers:[['edelweiss',90,1.1],['gentian',210,1],['arnica',1020,1.2,1],['aster',1130,1],['globe',320,.8],['bell',930,.9,1]]});
+  landscape(document.getElementById('land2'),{seed:11,
+    ridges:[[.5,.35,'#2E5468',60],[.66,.3,'#294B5D',50],[.82,.22,'#233F4F',40],[1,.14,'#1C3441',30]],
+    flowers:[['aster',1060,1],['gentian',1150,.9],['edelweiss',960,.8,1]]});
+
+  /* bouquet dans le portrait */
+  document.getElementById('bouquet').innerHTML=place('lily',150,268,1.15)+place('aster',95,272,.95,1)+place('rhodo',205,272,.9)+place('edelweiss',150,272,.7,1)+place('gentian',118,270,.6)+place('arnica',186,272,.7,1);
+
+  /* illustrations des cartes en arche */
+  document.querySelectorAll('svg.art').forEach((svg,i)=>{
+    svg.setAttribute('viewBox','0 0 300 400');svg.setAttribute('preserveAspectRatio','xMidYMax slice');
+    const k=svg.dataset.art, bg=svg.dataset.bg;
+    svg.innerHTML='<rect width="300" height="400" fill="'+bg+'"/><circle cx="210" cy="110" r="46" fill="#FFF4DA" opacity=".55"/><path d="'+ridge(rand(i+30),300,260,90,30)+'" fill="#fff" opacity=".22"/>'+place(k,90,330,1.5)+place(k,215,340,1.2,1);
+  });
+
+  /* fleurs du pied de page */
+  document.getElementById('footFlowers').innerHTML=['gentian','arnica','edelweiss','rhodo','aster','globe','bell'].map((k,i)=>place(k,30+i*60,72,.32,i%2)).join('');
+
+  /* ---------- Paysage de l'accueil : montagnes dans la brume, soleil voilé, prairie fine ---------- */
+  const c=document.getElementById('meadow'),ctx=c.getContext('2d');
+  let W=0,H=0,stems=[],blooms=[],pollen=[];
+  function ell(x,y,rx,ry,a){ctx.beginPath();ctx.ellipse(x,y,rx,ry,a,0,6.2832);ctx.fill()}
+  const LAYERS=[[0.5,0.15,'#D6CAD8',0.011,0.027,1],[0.58,0.14,'#BFB2CC',0.013,0.031,2.3],[0.67,0.12,'#A1A8BC',0.015,0.034,3.6],[0.76,0.1,'#86978E',0.017,0.04,4.4]];
+  const ridgeY=(x,L)=>H*L[0]-H*L[1]*(0.55+0.3*Math.sin(x/W*L[3]*90+L[5])+0.15*Math.sin(x/W*L[4]*90+L[5]*2));
+  const BLOOM=['#C98B8B','#D6A55A','#9A86B5','#F7F1E7'];
+  function build(){
+    const r=c.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);
+    W=r.width;H=r.height;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    const rnd=rand(8);
+    stems=Array.from({length:Math.round(W/2)},()=>({x:rnd()*W,h:H*(0.07+rnd()*0.17),lean:(rnd()-.5)*.35,p:rnd()*6.28,d:rnd(),ear:rnd()<0.14}));
+    blooms=Array.from({length:Math.round(W/13)},()=>({x:rnd()*W,h:H*(0.1+rnd()*0.16),p:rnd()*6.28,k:Math.floor(rnd()*4),r:2.2+rnd()*2.4,umbel:rnd()<0.35,rot:rnd()*6.28}));
+    pollen=Array.from({length:24},()=>({x:rnd()*W,y:H*(0.25+rnd()*0.75),v:0.08+rnd()*0.2,p:rnd()*6.28,s:0.8+rnd()*1.3}));
+  }
+  function draw(time){
+    const t=reduce?2:time/1000;
+    // ciel
+    let g=ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,'#F5EBDF');g.addColorStop(.5,'#F1DED3');g.addColorStop(1,'#EADDD0');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    // soleil voilé qui respire
+    const sx=W*0.6,sy=H*0.3,sr=Math.min(W,H)*0.09*(1+0.025*Math.sin(t*0.6));
+    g=ctx.createRadialGradient(sx,sy,0,sx,sy,sr*4.5);g.addColorStop(0,'rgba(247,215,150,.55)');g.addColorStop(1,'rgba(247,215,150,0)');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    g=ctx.createRadialGradient(sx,sy-sr*0.3,0,sx,sy,sr);g.addColorStop(0,'#FDF1D2');g.addColorStop(1,'#F3D08E');
+    ctx.fillStyle=g;ell(sx,sy,sr,sr,0);
+    // montagnes et brume entre chaque plan
+    LAYERS.forEach((L,i)=>{
+      ctx.fillStyle=L[2];ctx.beginPath();ctx.moveTo(0,H);
+      for(let x=0;x<=W+6;x+=6) ctx.lineTo(x,ridgeY(x,L));
+      ctx.lineTo(W,H);ctx.fill();
+      const my=H*L[0]-H*L[1]*0.2, mh=H*0.09, drift=Math.sin(t*0.15+i)*W*0.04;
+      const m=ctx.createLinearGradient(0,my-mh,0,my+mh);
+      const a=0.5+0.12*Math.sin(t*0.3+i*1.7);
+      m.addColorStop(0,'rgba(251,245,238,0)');m.addColorStop(.5,'rgba(251,245,238,'+a.toFixed(3)+')');m.addColorStop(1,'rgba(251,245,238,0)');
+      ctx.fillStyle=m;ctx.save();ctx.translate(drift,0);ctx.fillRect(-W*0.1,my-mh,W*1.2,mh*2);ctx.restore();
+    });
+    // prairie au premier plan
+    const gy=H*0.84;
+    g=ctx.createLinearGradient(0,gy-H*0.04,0,H);g.addColorStop(0,'#74896E');g.addColorStop(1,'#5A6F55');
+    ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(0,H);for(let x=0;x<=W+6;x+=6)ctx.lineTo(x,gy-Math.sin(x/W*5+0.5)*H*0.02);ctx.lineTo(W,H);ctx.fill();
+    // herbes fines et épis
+    stems.forEach(s=>{const sw=Math.sin(t*0.8+s.p+s.x*0.01)*s.h*0.07+s.lean*s.h*0.3,tx=s.x+sw,ty=H-s.h;
+      ctx.strokeStyle='rgba(66,86,60,'+(0.35+s.d*0.45).toFixed(2)+')';ctx.lineWidth=0.5+s.d*0.7;
+      ctx.beginPath();ctx.moveTo(s.x,H+2);ctx.quadraticCurveTo(s.x+sw*0.3,H-s.h*0.55,tx,ty);ctx.stroke();
+      if(s.ear){ctx.fillStyle='rgba(214,190,140,.85)';for(let i=0;i<5;i++)ell(tx-sw*0.02*i,ty+i*3.2,1.3,2.6,sw*0.01)}});
+    // fleurs discrètes : ombelles et petites corolles
+    blooms.forEach(b=>{const sw=Math.sin(t*0.7+b.p+b.x*0.01)*b.h*0.06,tx=b.x+sw,ty=H-b.h;
+      ctx.strokeStyle='rgba(66,86,60,.7)';ctx.lineWidth=0.8;ctx.beginPath();ctx.moveTo(b.x,H+2);ctx.quadraticCurveTo(b.x+sw*0.3,H-b.h*0.5,tx,ty);ctx.stroke();
+      if(b.umbel){ctx.fillStyle='#F7F1E7';for(let i=0;i<7;i++){const a=-Math.PI*0.9+i*Math.PI*0.8/6;ell(tx+Math.cos(a)*b.r*2.2,ty+Math.sin(a)*b.r*1.2,b.r*0.55,b.r*0.55,0)}}
+      else{ctx.fillStyle=BLOOM[b.k];for(let i=0;i<5;i++){const q=b.rot+i*1.2566;ell(tx+Math.cos(q)*b.r*.55,ty+Math.sin(q)*b.r*.55,b.r*.55,b.r*.42,q)}ctx.fillStyle='rgba(120,90,60,.6)';ell(tx,ty,b.r*.22,b.r*.22,0)}});
+    // pollen qui s'élève dans la lumière
+    pollen.forEach(p=>{if(!reduce){p.y-=p.v;p.x+=Math.sin(t*0.8+p.p)*0.15;if(p.y<H*0.15){p.y=H;p.x=Math.random()*W}}
+      ctx.fillStyle='rgba(255,248,228,'+(0.45+0.35*Math.sin(t+p.p)).toFixed(2)+')';ell(p.x,p.y,p.s,p.s,0)});
+    if(!reduce) requestAnimationFrame(draw);
+  }
+  build();draw(0);
+  addEventListener('resize',()=>{build();if(reduce)draw(0)});
+
+  /* ---------- Menu mobile ---------- */
+  const top=document.getElementById('top'),bg=document.getElementById('burger');
+  const setMenu=o=>{top.classList.toggle('open',o);bg.setAttribute('aria-expanded',o);bg.setAttribute('aria-label',o?'Fermer le menu':'Ouvrir le menu')};
+  bg.addEventListener('click',()=>setMenu(!top.classList.contains('open')));
+  document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+
+  /* ---------- Chakras ---------- */
+  const CH=[
+    ['1er chakra · Muladhara','Le chakra racine','Base de la colonne','terre','rouge','la sécurité, l’ancrage et la confiance dans la vie.','on ressent de la peur, de l’insécurité ou l’impression de manquer de stabilité.','marcher pieds nus, jardiner, les routines rassurantes et les postures d’ancrage.'],
+    ['2e chakra · Svadhisthana','Le chakra sacré','Bas-ventre','eau','orange','la créativité, le plaisir et la circulation des émotions.','la créativité se bloque, les émotions semblent figées ou débordent.','la danse, l’eau, les activités créatives et l’accueil de ses émotions.'],
+    ['3e chakra · Manipura','Le chakra du plexus solaire','Au-dessus du nombril','feu','jaune','la confiance en soi, la volonté et l’affirmation.','on doute de soi, on a du mal à décider ou on cherche à tout contrôler.','le soleil, le mouvement, poser des choix et célébrer ses réussites.'],
+    ['4e chakra · Anahata','Le chakra du cœur','Centre de la poitrine','air','vert','l’amour, la compassion, le pardon et le lien aux autres.','on se replie sur soi, on a du mal à recevoir ou à faire confiance.','la gratitude, les respirations amples, le temps passé dans la nature et les liens qui nourrissent.'],
+    ['5e chakra · Vishuddha','Le chakra de la gorge','Gorge','éther','bleu','l’expression, la parole juste et l’authenticité.','on n’ose pas dire les choses ou on se sent peu entendu·e.','le chant, l’écriture, le journal intime et oser exprimer ses besoins.'],
+    ['6e chakra · Ajna','Le chakra du troisième œil','Entre les sourcils','lumière','indigo','l’intuition, la clarté et l’imagination.','le mental s’agite, les idées se brouillent, on se coupe de son ressenti.','la méditation, la visualisation, le silence et l’écoute des rêves.'],
+    ['7e chakra · Sahasrara','Le chakra couronne','Sommet de la tête','conscience','violet ou blanc','la spiritualité, la connexion à plus grand que soi et la sérénité.','on ressent un vide, une perte de sens ou une forme de déconnexion.','la contemplation, la méditation et les moments de silence.']
+  ];
+  const panel=document.getElementById('chPanel'),set=(id,t)=>{document.getElementById(id).textContent=t};
+  document.querySelectorAll('.ch-btn').forEach(b=>b.addEventListener('click',()=>{
+    const i=+b.dataset.i,d=CH[i];
+    document.querySelectorAll('.ch-btn').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    panel.style.setProperty('--c','var(--c'+(i+1)+')');
+    set('chSk',d[0]);set('chName',d[1]);set('chPlace',d[2]);set('chEl','Élément : '+d[3]);set('chCol','Couleur : '+d[4]);
+    document.getElementById('chTheme').innerHTML='<strong>Ce qu’il représente :</strong> '+d[5];
+    document.getElementById('chSign').innerHTML='<strong>Quand il est déséquilibré :</strong> '+d[6];
+    document.getElementById('chCare').innerHTML='<strong>Pour en prendre soin :</strong> '+d[7];
+  }));
+
+  /* ---------- Respiration ---------- */
+  const orb=document.getElementById('orb'),lbl=document.getElementById('orbLabel'),btn=document.getElementById('breathBtn');
+  const chNames=['racine','sacré','plexus solaire','cœur','gorge','troisième œil','couronne'];
+  let timer=null;
+  const stop=(msg,label)=>{timer=null;orb.style.transform='';orb.style.removeProperty('--oc');lbl.textContent=msg;btn.textContent=label};
+  btn.addEventListener('click',()=>{
+    if(timer){clearTimeout(timer);stop('Prêt·e ?','Commencer la respiration');return}
+    let n=0;btn.textContent='Arrêter';
+    const phase=()=>{
+      if(n>=14){stop('Merci, gardez ce calme','Recommencer');return}
+      const inhale=n%2===0,k=Math.floor(n/2);
+      orb.style.transform=inhale?'scale(1.9)':'scale(1)';orb.style.setProperty('--oc','var(--c'+(k+1)+')');
+      lbl.textContent=(inhale?'Inspirez':'Expirez')+' · '+chNames[k];n++;timer=setTimeout(phase,4000);
+    };phase();
+  });
+
+  /* ---------- Formulaire : prépare une demande à copier ou envoyer ---------- */
+  /* Sur l'hébergement définitif, ce formulaire peut être relié à Formspree ou Netlify Forms pour un envoi direct. */
+  const f=document.getElementById('contactForm'),msg=document.getElementById('formMsg'),req=document.getElementById('request'),reqText=document.getElementById('requestText');
+  f.addEventListener('submit',e=>{
+    e.preventDefault();
+    const name=f.elements.name.value.trim(),email=f.elements.email.value.trim(),type=f.elements.type.value,text=f.elements.message.value.trim();
+    if(!name||!/^\S+@\S+\.\S+$/.test(email)){msg.hidden=false;msg.textContent='Indiquez votre nom et une adresse e-mail valide pour que je puisse vous répondre.';req.hidden=true;return}
+    msg.hidden=true;
+    const body='Bonjour Camille,\n\nJe souhaite : '+type.toLowerCase()+'.\n'+(text?'\n'+text+'\n':'')+'\n'+name+'\n'+email;
+    reqText.textContent=body;
+    document.getElementById('mailLink').href='mailto:bonjour@clairiere-soins.fr?subject='+encodeURIComponent('Demande : '+type)+'&body='+encodeURIComponent(body);
+    req.hidden=false;
+  });
+  document.getElementById('copyBtn').addEventListener('click',e=>{
+    const b=e.currentTarget;
+    navigator.clipboard.writeText(reqText.textContent).then(()=>{b.textContent='Demande copiée'},()=>{
+      const r=document.createRange();r.selectNodeContents(reqText);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Texte sélectionné, copiez-le';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
