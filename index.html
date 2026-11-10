@@ -46,6 +46,15 @@ section{position:relative;padding-block:clamp(72px,10vw,136px)}
 .top,main,footer{position:relative;z-index:1}
 .top{z-index:40}
 
+/* En-tête compact sur téléphone : burger, emblème, compte et Réserver sur une seule ligne */
+@media (max-width:560px){html .top .wrap{gap:10px;flex-wrap:nowrap}html .top.open .wrap{flex-wrap:wrap}.brand{gap:8px;min-width:0}.brand svg{width:32px;height:32px}.brand b{font-size:1.15rem}.brand small{display:none}.top .btn{padding:9px 14px;font-size:.875rem}}
+
+/* Bouton du compte, en haut à droite */
+.acct-link{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 16px;border-radius:999px;border:1px solid var(--filet);color:var(--brume);text-decoration:none;font-size:.9375rem}
+.acct-link svg{width:18px;height:18px;color:var(--lumiere)}
+.acct-link:hover{border-color:var(--brume-2)}
+@media (max-width:560px){.acct-link span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.acct-link{padding:8px 11px}}
+
 /* Boutons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 28px;border-radius:999px;border:1px solid var(--lumiere);background:var(--lumiere);color:var(--nuit);font:700 1rem/1.2 var(--texte);letter-spacing:.02em;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px -12px rgba(242,213,138,.55);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(242,213,138,.7)}
@@ -293,6 +302,7 @@ footer p{font-size:.8125rem;color:var(--brume-3);max-width:40ch}
       <li><a href="#formations">Formations</a></li>
       <li><a href="#tarifs">Tarifs</a></li>
     </ul>
+    <a class="acct-link" href="espace-client.html"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="7" r="3.5"/><path d="M3.5 17c1-3.3 3.6-5 6.5-5s5.5 1.7 6.5 5" stroke-linecap="round"/></svg><span>Mon espace</span></a>
     <a class="btn" href="#contact">Réserver</a>
   </div>
 </header>

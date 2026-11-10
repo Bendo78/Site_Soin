@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mon espace · Clairière</title>
+<meta name="description" content="Espace client Clairière : vos rendez-vous, vos ressentis, les comptes rendus et la conversation avec votre praticienne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Espace client · monde Komorebi (voir DESIGN.md) : la prochaine séance au centre, l'historique en rangées, la conversation à côté */
+:root{
+  color-scheme:dark;
+  --nuit:#12221A; --bois:#1A3125; --bois-2:#22392C; --mousse:#A9BE8F; --feuille:#6F8C5E;
+  --lumiere:#F2D58A; --lumiere-pale:#FBF1D2; --brume:#E9EFE4; --brume-2:#B9C8B5; --brume-3:#93A592;
+  --crepuscule:#B3A3DA; --erreur:#E07A6A;
+  --filet:rgba(233,239,228,.14); --voile:rgba(233,239,228,.045); --puits:rgba(18,34,26,.6);
+  --titre:"Shippori Mincho","Iowan Old Style","Palatino Linotype",serif;
+  --texte:"Zen Kaku Gothic New","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scrollbar-color:var(--feuille) var(--nuit)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{min-height:100vh;background:linear-gradient(180deg,#12221A 0%,#183026 30%,#1E3829 60%,#152A1F 100%);background-attachment:fixed;color:var(--brume);font-family:var(--texte);font-size:1.0625rem;line-height:1.7;-webkit-font-smoothing:antialiased;caret-color:var(--lumiere)}
+::selection{background:var(--lumiere);color:var(--nuit)}
+h1,h2,h3,h4{font-family:var(--titre);font-weight:600;margin:0;line-height:1.2;text-wrap:balance}
+p{margin:0}
+a{color:inherit;text-underline-offset:.25em;text-decoration-thickness:1px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--lumiere);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+#veil{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.top,main,footer,.login{position:relative;z-index:1}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:11px 22px;border-radius:999px;border:1px solid var(--lumiere);background:var(--lumiere);color:var(--nuit);font:700 .9688rem/1.2 var(--texte);letter-spacing:.01em;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px -12px rgba(242,213,138,.55);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(242,213,138,.7)}
+.btn.soft{background:transparent;color:var(--brume);border-color:var(--filet);box-shadow:none}
+.btn.soft:hover{border-color:var(--brume-2)}
+.btn.small{min-height:38px;padding:7px 16px;font-size:.875rem}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.link{background:none;border:0;padding:0;cursor:pointer;font-weight:500;text-decoration:underline;text-decoration-color:var(--lumiere)}
+
+/* En-tête du site + bouton du compte */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(18,34,26,.78);backdrop-filter:blur(12px);border-bottom:1px solid var(--filet)}
+.top .wrap{display:flex;align-items:center;gap:24px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
+.brand svg{width:38px;height:38px;flex:none}
+.brand b{display:block;font:600 1.3rem/1 var(--titre)}
+.brand small{display:block;font-size:.75rem;letter-spacing:.14em;color:var(--brume-3);margin-top:4px}
+.sitenav{display:flex;gap:24px;list-style:none;margin:0;padding:0}
+.sitenav a{text-decoration:none;font-size:.9375rem;color:var(--brume-2)}
+.sitenav a:hover{color:var(--lumiere)}
+.acct{position:relative}
+.acct-btn{display:flex;align-items:center;gap:10px;min-height:44px;padding:5px 16px 5px 5px;border-radius:999px;border:1px solid var(--lumiere);background:rgba(242,213,138,.08);cursor:pointer;font-size:.9375rem;font-weight:500}
+.acct-btn svg{width:14px;height:14px;transition:transform .3s}
+.acct-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.avatar{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;font:700 .875rem var(--texte);color:var(--nuit);background:radial-gradient(circle at 40% 35%,var(--lumiere-pale),var(--lumiere) 60%,#C9A85E)}
+.avatar.camille{background:radial-gradient(circle at 40% 35%,#D8E4CB,var(--mousse) 60%,#7E9A6A)}
+.acct-menu{position:absolute;right:0;top:calc(100% + 10px);min-width:240px;padding:8px;border-radius:20px;background:#162B20;border:1px solid var(--filet);display:grid}
+.acct-menu .who{padding:10px 12px 12px;border-bottom:1px solid var(--filet);margin-bottom:6px}
+.acct-menu .who b{display:block;font:600 1.05rem var(--titre)}
+.acct-menu .who span{font-size:.8125rem;color:var(--brume-3)}
+.acct-menu a,.acct-menu button{display:block;width:100%;text-align:left;padding:10px 12px;border-radius:12px;border:0;background:none;text-decoration:none;font-size:.9375rem;color:var(--brume);cursor:pointer}
+.acct-menu a:hover,.acct-menu button:hover{background:var(--voile)}
+@media (max-width:960px){.sitenav{display:none}.acct-btn .name{display:none}.acct-btn{padding-right:12px}}
+
+/* Connexion (démonstration) */
+.login{min-height:calc(100vh - 70px);display:grid;place-items:center;padding:40px 20px}
+.login-card{width:min(440px,100%);padding:clamp(26px,5vw,40px);border-radius:28px;background:var(--voile);border:1px solid var(--filet);display:grid;gap:16px}
+.login-card h1{font-size:2rem}
+.login-card p{color:var(--brume-2)}
+.switch{display:flex;gap:6px;padding:4px;border-radius:999px;border:1px solid var(--filet)}
+.switch button{flex:1;padding:8px 0;border-radius:999px;border:0;background:none;cursor:pointer;color:var(--brume-2);font-size:.9375rem}
+.switch button[aria-pressed="true"]{background:var(--voile);color:var(--brume);box-shadow:inset 0 0 0 1px var(--filet)}
+label{display:grid;gap:6px;font-size:.9375rem;color:var(--brume-2)}
+input,select,textarea{font:400 1rem var(--texte);color:var(--brume);background:var(--puits);border:1px solid var(--filet);border-radius:14px;padding:12px 14px;width:100%}
+select option{background:var(--nuit);color:var(--brume)}
+textarea{resize:vertical;min-height:90px}
+input::placeholder,textarea::placeholder{color:var(--brume-3)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--lumiere);outline-offset:1px;border-color:transparent}
+.demo-note{font-size:.8125rem;color:var(--brume-3)}
+.demo-note b{color:var(--brume-2);font-weight:700}
+.form-err{font-size:.875rem;color:#E07A6A}
+
+/* Espace */
+.space{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:clamp(28px,4vw,56px);padding-block:clamp(28px,4vw,48px) 60px}
+.space > *{min-width:0}
+.hello h1{font-size:clamp(2rem,4vw,2.8rem)}
+.hello p{color:var(--brume-2);margin-top:6px;max-width:56ch}
+section{scroll-margin-top:90px}
+.blk{margin-top:clamp(36px,5vw,56px)}
+.blk-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 20px;margin-bottom:14px}
+.blk-head h2{font-size:clamp(1.5rem,2.6vw,1.9rem)}
+.blk-head p{color:var(--brume-3);font-size:.9375rem}
+
+/* Carte de la prochaine séance : la lumière komorebi */
+.next{position:relative;overflow:hidden;margin-top:26px;border-radius:28px;border:1px solid rgba(242,213,138,.28);background:transparent;isolation:isolate}
+.next canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
+ .next-in{background:linear-gradient(100deg,rgba(12,24,17,.62) 0%,rgba(12,24,17,.4) 55%,rgba(12,24,17,.08) 100%);padding:clamp(24px,4vw,40px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 28px}
+.next .lbl{grid-column:1/-1;font-size:.8125rem;letter-spacing:.12em;color:var(--mousse)}
+.next h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:500}
+.next .when{font:600 clamp(1.15rem,2vw,1.4rem)/1.3 var(--titre)}
+.next .meta{color:var(--brume-2);font-size:.9688rem}
+.next .status{display:inline-block;margin-top:8px;font-size:.8125rem;padding:3px 12px;border-radius:999px;border:1px solid var(--filet);color:var(--brume-2)}
+.next h2,.next .when,.next .meta{grid-column:1}
+.count{grid-column:2;grid-row:1/4;text-align:right;align-self:start}
+.count b{display:block;font:600 clamp(3rem,6vw,4.4rem)/1 var(--titre);font-variant-numeric:tabular-nums}
+.count b:not(:only-child){}
+.count b:only-child{font-size:clamp(1.6rem,3vw,2.2rem)}
+.count span{color:var(--brume-2);font-size:.9375rem}
+.intent{grid-column:1/-1;margin-top:18px;display:grid;gap:6px}
+.intent label{color:var(--crepuscule);font-family:var(--titre);font-size:1.05rem}
+.intent textarea{min-height:64px;background:rgba(12,24,17,.62)}
+.intent .saved{font-size:.8125rem;color:var(--brume-3);min-height:1.2em}
+.next .acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.quick{grid-column:1/-1;margin-top:16px;display:grid;gap:8px;padding:16px;border-radius:18px;background:rgba(12,24,17,.62);border:1px solid var(--filet)}
+.quick .notes{margin:0}
+.quick h3{font:500 1.05rem var(--titre);color:var(--mousse)}
+@media (max-width:620px){.next-in{grid-template-columns:1fr}.count{grid-column:1;grid-row:auto;text-align:left;display:flex;align-items:baseline;gap:8px;margin:6px 0}.count b{display:inline}}
+
+/* Rangées de séances */
+.rows{border-top:1px solid var(--filet)}
+.row{border-bottom:1px solid var(--filet)}
+.row summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:96px minmax(0,1fr) auto 92px 34px;gap:10px 22px;align-items:center;padding:18px 4px;position:relative}
+.row summary::-webkit-details-marker{display:none}
+.row summary::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 15% 50%,rgba(242,213,138,.08),transparent 70%);opacity:0;transition:opacity .5s;pointer-events:none}
+.row summary:hover::before,.row[open] summary::before{opacity:1}
+.date{font:600 1.15rem/1.2 var(--titre);font-variant-numeric:tabular-nums}
+.date small{display:block;font:400 .8125rem var(--texte);color:var(--brume-3)}
+.soin{font:500 1.25rem/1.3 var(--titre)}
+.soin small{display:block;font:400 .875rem var(--texte);color:var(--brume-3)}
+.tag{font-size:.8125rem;padding:4px 12px;border-radius:999px;border:1px solid var(--filet);color:var(--mousse);white-space:nowrap}
+.tag.new{border-color:var(--lumiere);color:var(--lumiere)}
+.tag.wait{color:var(--brume-2)}
+.mood{font-size:.875rem;color:var(--brume-2);white-space:nowrap}
+.mood b{font:600 1rem var(--titre);color:var(--brume)}
+.plus{width:34px;height:34px;border-radius:50%;border:1px solid var(--filet);position:relative;transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .3s}
+.plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--brume);transform:translate(-50%,-50%)}
+.plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+details[open] > summary .plus{transform:rotate(45deg);border-color:var(--lumiere)}
+.row .open{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,.8fr);gap:22px 34px;padding:4px 4px 28px}
+.row[open] .open{animation:rise .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.open h4{font:500 1.05rem var(--titre);color:var(--mousse);margin-bottom:8px}
+.report{padding:16px 18px;border-radius:18px;background:var(--voile);border:1px solid var(--filet)}
+.report p{color:var(--brume);font-size:.9688rem}
+.report small{display:block;margin-top:8px;color:var(--brume-3);font-size:.8125rem}
+.report.pending p{color:var(--brume-2)}
+.notes{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:10px}
+.notes li{padding:12px 14px;border-radius:14px;background:var(--puits);border:1px solid var(--filet);font-size:.9375rem}
+.notes .meta{display:flex;justify-content:space-between;gap:10px;margin-top:6px;font-size:.8125rem;color:var(--brume-3)}
+.notes .meta .shared{color:var(--mousse)}
+.add-note{display:grid;gap:8px}
+.add-note textarea{min-height:70px}
+.check{display:flex;align-items:center;gap:8px;font-size:.875rem;color:var(--brume-2)}
+.check input{width:18px;height:18px;accent-color:var(--lumiere)}
+.scale{display:grid;gap:10px}
+.scale label{grid-template-columns:auto 1fr auto;align-items:center;gap:10px;font-size:.875rem}
+.scale output{font:600 1.1rem var(--titre);color:var(--brume);min-width:2.2ch;text-align:right}
+input[type=range]{padding:0;border:0;background:none;accent-color:var(--lumiere);height:28px}
+.scale p{font-size:.8125rem;color:var(--brume-3)}
+@media (max-width:900px){
+  .row summary{grid-template-columns:minmax(0,1fr) 34px}
+  .row .date{grid-column:1}.row .soin{grid-column:1}
+  .row .tag{grid-column:1;justify-self:start}.row .mood{grid-column:1}
+  .row .plus{grid-column:2;grid-row:1}
+  .row .open{grid-template-columns:1fr}
+}
+
+/* Évolution : points de lumière */
+.evo{padding:clamp(20px,3vw,30px);border-radius:28px;background:var(--voile);border:1px solid var(--filet)}
+.evo svg{width:100%;height:auto;display:block;overflow:visible}
+.evo .legend{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:10px;font-size:.875rem;color:var(--brume-2)}
+.evo .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+
+/* Qui je suis */
+.profile{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px;padding:clamp(20px,3vw,30px);border-radius:28px;background:var(--voile);border:1px solid var(--filet)}
+.profile .full{grid-column:1/-1}
+.profile .hint{font-size:.8125rem;color:var(--brume-3)}
+.profile .acts{grid-column:1/-1;display:flex;align-items:center;gap:14px}
+.saved-msg{font-size:.875rem;color:var(--mousse)}
+@media (max-width:620px){.profile{grid-template-columns:1fr}}
+
+/* Conversation avec la praticienne */
+.chat{position:sticky;top:96px;height:calc(100vh - 120px);min-height:520px;display:flex;flex-direction:column;border-radius:28px;border:1px solid var(--filet);background:rgba(18,34,26,.78)}
+.chat-top{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--filet)}
+.chat-top b{display:block;font:600 1.15rem var(--titre)}
+.chat-top small{color:var(--mousse);font-size:.8125rem}
+.chat-close{margin-left:auto;display:none}
+.thread{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin}
+.bubble{max-width:86%;padding:11px 15px;border-radius:18px 18px 18px 6px;background:rgba(233,239,228,.07);border:1px solid rgba(233,239,228,.1);font-size:.9688rem;line-height:1.6}
+.bubble.me{align-self:flex-end;border-radius:18px 18px 6px 18px;background:rgba(242,213,138,.13);border-color:rgba(242,213,138,.26)}
+.bubble .ref{display:block;font-size:.75rem;color:var(--mousse);margin-bottom:3px}
+.bubble time{display:block;font-size:.75rem;color:var(--brume-3);margin-top:4px}
+.day{align-self:center;font-size:.75rem;color:var(--brume-3);letter-spacing:.06em}
+.compose{display:flex;gap:8px;align-items:flex-end;padding:12px;border-top:1px solid var(--filet)}
+.compose textarea{min-height:46px;max-height:140px;border-radius:22px;padding:11px 16px}
+.compose .btn{min-height:46px;padding:0 18px;flex:none}
+.chat-fab{display:none}
+@media (max-width:1060px){
+  .space{grid-template-columns:1fr}
+  .chat{position:fixed;inset:0;top:0;height:auto;min-height:0;z-index:60;border-radius:0;border:0;background:#132519;transform:translateY(100%);transition:transform .45s cubic-bezier(.2,.8,.2,1);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  .chat.open{transform:none}
+  .chat-close{display:inline-flex}
+  .chat-fab{display:inline-flex;position:fixed;z-index:50;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+  .chat-fab .count-badge{min-width:22px;height:22px;border-radius:999px;background:var(--nuit);color:var(--lumiere);font-size:.75rem;display:grid;place-items:center;padding:0 6px}
+}
+@media (prefers-reduced-motion: reduce){.row[open] .open{animation:none}.chat{transition:none}}
+
+/* Prise de rendez-vous */
+dialog{width:min(640px,calc(100% - 32px));max-height:calc(100vh - 40px);padding:0;border-radius:28px;border:1px solid var(--filet);background:#152A1F;color:var(--brume)}
+dialog::backdrop{background:rgba(8,16,11,.72);backdrop-filter:blur(3px)}
+.dlg{display:grid;gap:20px;padding:clamp(22px,4vw,34px)}
+.dlg-head{display:flex;justify-content:space-between;align-items:start;gap:16px}
+.dlg-head h2{font-size:1.7rem}
+.dlg-head p{color:var(--brume-3);font-size:.9375rem;margin-top:4px}
+.x{width:40px;height:40px;flex:none;border-radius:50%;border:1px solid var(--filet);background:none;cursor:pointer;position:relative}
+.x::before,.x::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:1.5px;background:var(--brume);transform:translate(-50%,-50%) rotate(45deg)}
+.x::after{transform:translate(-50%,-50%) rotate(-45deg)}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:10px}
+legend{font:500 1.05rem var(--titre);color:var(--mousse);margin-bottom:10px;padding:0}
+.choices{display:grid;gap:8px}
+.choice{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px 16px;border-radius:16px;border:1px solid var(--filet);cursor:pointer;color:var(--brume)}
+.choice input{width:18px;height:18px;accent-color:var(--lumiere);margin:0}
+.choice small{display:block;color:var(--brume-3);font-size:.8125rem}
+.choice b{font:600 1.1rem var(--titre)}
+.choice:has(input:checked){border-color:var(--lumiere);background:rgba(242,213,138,.06)}
+.places-pick{display:flex;gap:8px;flex-wrap:wrap}
+.places-pick .choice{grid-template-columns:auto auto}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.day-btn{flex:none;width:68px;padding:8px 0;border-radius:16px;border:1px solid var(--filet);background:none;cursor:pointer;text-align:center;color:var(--brume-2);font-size:.8125rem}
+.day-btn b{display:block;font:600 1.3rem var(--titre);color:var(--brume)}
+.day-btn[aria-pressed="true"]{border-color:var(--lumiere);background:rgba(242,213,138,.08)}
+.day-btn:disabled{opacity:.35;cursor:not-allowed}
+.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slot{padding:9px 16px;border-radius:999px;border:1px solid var(--filet);background:none;cursor:pointer;font:600 1rem var(--titre);font-variant-numeric:tabular-nums}
+.slot[aria-pressed="true"]{background:var(--lumiere);color:var(--nuit);border-color:var(--lumiere)}
+.recap{padding:14px 16px;border-radius:16px;background:var(--voile);border:1px solid var(--filet);font-size:.9375rem;color:var(--brume-2)}
+.recap b{color:var(--brume)}
+.dlg-acts{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:12px}
+
+@media (max-width:440px){.brand small{display:none}}
+@media (max-width:1060px){main{padding-bottom:84px}.toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}body.chat-open main{z-index:70}}
+footer{padding-block:28px 40px;border-top:1px solid var(--filet);font-size:.8125rem;color:var(--brume-3)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 30px}
+.toast{position:fixed;z-index:80;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));max-width:calc(100% - 40px);text-align:center;transform:translate(-50%,20px);opacity:0;padding:12px 20px;border-radius:18px;background:#1E3829;border:1px solid var(--lumiere);font-size:.9375rem;transition:opacity .3s,transform .3s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast{left:20px;right:20px;margin-inline:auto;width:fit-content;transform:translateY(20px)}
+.toast.show{transform:none}
+@media (max-width:1060px){.toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+
+/* Onglets : une rangée de mots calmes, un point de lumière sous l'onglet ouvert */
+.tabs-bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 69px);z-index:30;background:rgba(16,30,22,.97);border-bottom:1px solid var(--filet)}
+.tabs{display:flex;gap:clamp(4px,2vw,30px);overflow-x:auto;scrollbar-width:none;padding-block:4px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{position:relative;flex:none;display:inline-flex;align-items:center;gap:8px;padding:14px 8px 16px;text-decoration:none;font:500 1.05rem var(--titre);color:var(--brume-2);white-space:nowrap}
+.tabs a:hover{color:var(--brume)}
+.tabs a[aria-current="page"]{color:var(--brume)}
+.tabs a[aria-current="page"]::after{content:"";position:absolute;left:50%;bottom:4px;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:var(--lumiere);box-shadow:0 0 12px 2px rgba(242,213,138,.6)}
+.badge{min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--lumiere);color:var(--nuit);font:700 .75rem/20px var(--texte);text-align:center}
+.panel{padding-block:clamp(30px,5vw,60px) 80px}
+.panel-head{max-width:760px;margin-bottom:28px}
+.panel-head h1{font-size:clamp(2rem,4vw,2.8rem)}
+.panel-head p{color:var(--brume-2);margin-top:6px;max-width:56ch}
+.narrow{max-width:900px}
+
+/* Mon carnet : une page qu'on ouvre, pas un tableau de bord */
+.carnet{position:relative;max-width:760px;margin:0 auto;isolation:isolate}
+#carnet{overflow-x:clip}
+.carnet > canvas{position:absolute;z-index:-1;left:-14%;top:-60px;width:128%;height:460px;display:block;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 60% 55% at 40% 40%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 60% 55% at 40% 40%,#000 40%,transparent 100%)}
+.carnet-head{padding-top:clamp(10px,3vw,30px)}
+.carnet-head .le-jour{font:500 1.05rem var(--titre);color:var(--mousse)}
+.carnet-head h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:600;line-height:1.05;margin-top:6px}
+.carnet-head .invite-main{color:var(--brume-3);font-size:.875rem;margin-top:12px}
+.leaf{margin-top:clamp(40px,6vw,64px)}
+.leaf h2{font:500 1.15rem var(--titre);color:var(--mousse);margin-bottom:12px}
+.leaf.intention h2{color:var(--crepuscule)}
+.intention textarea{width:100%;min-height:0;resize:none;overflow:hidden;padding:0;border:0;border-radius:0;background:none;font:500 clamp(1.5rem,3.4vw,2.2rem)/1.35 var(--titre);color:var(--brume)}
+.intention textarea:focus{outline:none;box-shadow:0 2px 0 var(--lumiere)}
+.intention textarea::placeholder{color:var(--brume-3)}
+.intention .saved{display:block;margin-top:8px;font-size:.8125rem;color:var(--brume-3);min-height:1.2em}
+.sentence{font:500 clamp(1.25rem,2.6vw,1.6rem)/1.5 var(--titre);color:var(--brume)}
+.sentence em{font-style:normal;color:var(--lumiere-pale)}
+.aside{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:.9375rem;color:var(--brume-2)}
+.aside a,.aside .link{color:var(--brume)}
+.mot{margin:0;padding:4px 0 4px 22px;border-left:1px solid var(--lumiere);font:400 clamp(1.1rem,2vw,1.25rem)/1.7 var(--titre);color:var(--brume)}
+.jl{list-style:none;margin:0;padding:0;display:grid;gap:18px}
+.jl li{display:grid;grid-template-columns:92px minmax(0,1fr);gap:18px}
+.jl time{font:600 1rem/1.5 var(--titre);color:var(--brume-2)}
+.jl time small{display:block;font:400 .8125rem var(--texte);color:var(--brume-3)}
+.jl p{font-size:1.0313rem}
+.jl .meta{display:block;margin-top:4px;font-size:.8125rem;color:var(--brume-3)}
+.jl .meta .shared{color:var(--mousse)}
+.lights{display:flex;flex-wrap:wrap;gap:22px 34px;align-items:flex-end}
+.light-step{display:grid;justify-items:center;gap:6px;font-size:.8125rem;color:var(--brume-2)}
+.light-step .pair{display:flex;align-items:flex-end;gap:10px;height:76px}
+.light-step i{display:block;width:12px;height:12px;border-radius:50%;background:var(--brume-3)}
+.light-step i.after{width:16px;height:16px;background:radial-gradient(circle,var(--lumiere-pale),var(--lumiere) 55%,rgba(242,213,138,.2));box-shadow:0 0 16px 4px rgba(242,213,138,.45)}
+.light-step b{font:600 .9375rem var(--titre);color:var(--brume)}
+.today-note{display:grid;gap:10px}
+.today-note label.q{font:500 1.15rem var(--titre);color:var(--mousse)}
+.today-note .row-acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+@media (max-width:560px){.jl li{grid-template-columns:1fr;gap:4px}}
+
+/* Messages dans leur onglet */
+.chat{position:relative;top:auto;height:min(72vh,680px);max-width:900px}
+@media (max-width:1060px){.chat{position:relative;inset:auto;z-index:auto;transform:none;border-radius:28px;border:1px solid var(--filet);background:rgba(18,34,26,.78);height:calc(100vh - 220px);min-height:440px}.chat-close,.chat-fab{display:none!important}main{padding-bottom:0}}
+.chat-close{display:none}
+.journal-list{margin-top:28px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="18" fill="none" stroke="var(--brume-2)" stroke-width="1.2"/>
+    <circle cx="20" cy="20" r="11" fill="rgba(242,213,138,.16)"/>
+    <path d="M12 27c2-9 8-14 17-15-1 9-6 15-17 15z" fill="none" stroke="var(--mousse)" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M12 27l12-10" stroke="var(--mousse)" stroke-width="1.2" stroke-linecap="round"/>
+    <circle cx="26" cy="13" r="2.6" fill="var(--lumiere)"/>
+  </symbol>
+</svg>
+<canvas id="veil" aria-hidden="true"></canvas>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>Clairière</b><small>REIKI · SOINS ÉNERGÉTIQUES</small></span></a>
+    <ul class="sitenav">
+      <li><a href="index.html#principes">Le Reiki</a></li>
+      <li><a href="index.html#soins">Soins</a></li>
+      <li><a href="index.html#ateliers">Ateliers</a></li>
+      <li><a href="index.html#tarifs">Tarifs</a></li>
+    </ul>
+    <div class="acct" id="acct" hidden>
+      <button class="acct-btn" id="acctBtn" type="button" aria-expanded="false" aria-controls="acctMenu"><span class="avatar" id="acctInitial">L</span><span class="name">Mon espace</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5l4 4 4-4"/></svg></button>
+      <div class="acct-menu" id="acctMenu" hidden>
+        <div class="who"><b id="menuName">Léa Martin</b><span id="menuMail">lea.martin@exemple.fr</span></div>
+        <a href="#carnet" data-tab="carnet">Mon carnet</a>
+        <a href="#rendez-vous" data-tab="rendez-vous">Mes rendez-vous</a>
+        <a href="#messages" data-tab="messages">Messages</a>
+        <a href="#journal" data-tab="journal">Mon journal</a>
+        <a href="#profil" data-tab="profil">Qui je suis</a>
+        <button type="button" id="logout">Se déconnecter</button>
+      </div>
+    </div>
+    <a class="btn small" id="loginTop" href="#connexion">Se connecter</a>
+  </div>
+</header>
+
+<!-- Connexion (démonstration : rien n'est envoyé ni enregistré) -->
+<div class="login" id="connexion">
+  <form class="login-card" id="loginForm" novalidate>
+    <div class="switch" role="group" aria-label="Type d'accès">
+      <button type="button" id="tabLogin" aria-pressed="true">J'ai un compte</button>
+      <button type="button" id="tabSignup" aria-pressed="false">Créer mon compte</button>
+    </div>
+    <h1 id="loginTitle">Mon espace</h1>
+    <p id="loginText">Retrouvez vos rendez-vous, vos ressentis et la conversation avec Camille.</p>
+    <label for="l-first" id="firstWrap" hidden>Prénom<input id="l-first" autocomplete="given-name" value="Léa"></label>
+    <label for="l-mail">E-mail ou identifiant<input id="l-mail" type="text" inputmode="email" autocomplete="username" value="lea.martin@exemple.fr"></label>
+    <label for="l-pass">Mot de passe<input id="l-pass" type="password" autocomplete="current-password" placeholder="Laissez vide pour l'espace client de démonstration"></label>
+    <p class="form-err" id="loginErr" role="alert" hidden></p>
+    <button class="btn" type="submit" id="loginGo">Entrer dans mon espace</button>
+    <p class="demo-note">Maquette de démonstration : aucun compte n'est créé et rien n'est enregistré en ligne. Compte de test praticienne : identifiant <b>admin</b>, mot de passe <b>admin</b> (vérifié seulement dans votre navigateur, ce n'est pas une vraie protection).</p>
+  </form>
+</div>
+
+<main id="app" hidden>
+  <nav class="tabs-bar" aria-label="Mon espace">
+    <div class="wrap tabs">
+      <a href="#carnet" data-tab="carnet">Mon carnet</a>
+      <a href="#rendez-vous" data-tab="rendez-vous">Mes rendez-vous</a>
+      <a href="#messages" data-tab="messages">Messages <span class="badge" id="fabCount">1</span></a>
+      <a href="#journal" data-tab="journal">Mon journal</a>
+      <a href="#profil" data-tab="profil">Qui je suis</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <section class="panel" id="carnet" data-panel aria-labelledby="carnetTitle">
+      <div class="carnet" id="carnetPage">
+        <canvas id="carnetLight" aria-hidden="true"></canvas>
+        <div id="carnetBody"></div>
+      </div>
+    </section>
+
+    <section class="panel narrow" id="rendez-vous" data-panel hidden aria-labelledby="rdvTitle">
+      <div class="panel-head"><h1 id="rdvTitle">Mes rendez-vous</h1><p>Votre prochaine séance, puis celles déjà vécues avec leur compte rendu et vos ressentis.</p></div>
+      <article class="next" id="nextCard" aria-labelledby="nextTitle">
+        <canvas id="nextLight" aria-hidden="true"></canvas>
+        <div class="next-in" id="nextIn"></div>
+      </article>
+      <div class="blk" id="seances">
+        <div class="blk-head"><h2>Mes séances</h2><p>Ouvrez une séance pour lire le compte rendu, noter vos ressentis et votre état.</p></div>
+        <div class="rows" id="rows"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="messages" data-panel hidden aria-labelledby="chatTitle">
+      <div class="chat" id="chat">
+        <div class="chat-top"><span class="avatar camille" aria-hidden="true">C</span><div><b id="chatTitle">Camille</b><small>répond en général sous 24 h</small></div></div>
+        <div class="thread" id="thread" aria-live="polite"></div>
+        <form class="compose" id="compose">
+          <label class="sr" for="msg">Votre message à Camille</label>
+          <textarea id="msg" rows="1" placeholder="Écrire à Camille…"></textarea>
+          <button class="btn" type="submit">Envoyer</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="panel narrow" id="journal" data-panel hidden aria-labelledby="journalTitle">
+      <div class="panel-head"><h1 id="journalTitle">Mon journal</h1><p>Tous vos ressentis, gardés pour vous ou partagés avec Camille, et votre état au fil des séances.</p></div>
+      <div class="evo" id="evolution"><svg id="evoChart" viewBox="0 0 640 220" role="img" aria-labelledby="evoDesc"><desc id="evoDesc">Graphique de votre état avant et après chaque séance.</desc></svg>
+        <div class="legend"><span><i style="background:var(--brume-3)"></i>Avant la séance</span><span><i style="background:var(--lumiere);box-shadow:0 0 10px var(--lumiere)"></i>Après la séance</span></div></div>
+      <div class="journal-list"><ol class="jl" id="journalList"></ol></div>
+    </section>
+
+    <section class="panel narrow" id="profil" data-panel hidden aria-labelledby="profilTitle">
+      <div class="panel-head"><h1 id="profilTitle">Qui je suis</h1><p>Ces informations aident Camille à préparer vos séances. Vous pouvez les modifier à tout moment.</p></div>
+      <form class="profile" id="profileForm" novalidate>
+        <label for="p-first">Prénom<input id="p-first" name="first" autocomplete="given-name"></label>
+        <label for="p-last">Nom<input id="p-last" name="last" autocomplete="family-name"></label>
+        <label for="p-mail">E-mail<input id="p-mail" name="mail" type="email" autocomplete="email"></label>
+        <label for="p-phone">Téléphone<input id="p-phone" name="phone" type="tel" autocomplete="tel"></label>
+        <label for="p-pref">Je préfère les séances
+          <select id="p-pref" name="pref"><option>Au cabinet, à Aillon-le-Vieux</option><option>En visio, chez moi</option><option>Les deux me conviennent</option></select>
+        </label>
+        <label for="p-reach">Être prévenu·e
+          <select id="p-reach" name="reach"><option>Par e-mail</option><option>Par SMS</option><option>Par e-mail et SMS</option></select>
+        </label>
+        <label class="full" for="p-why">Ce qui m'amène<textarea id="p-why" name="why" placeholder="Fatigue, stress, période de transition, simple curiosité…"></textarea></label>
+        <label class="full" for="p-know">Ce que Camille devrait savoir<textarea id="p-know" name="know" placeholder="Une sensibilité, une grossesse, un traitement en cours…"></textarea><span class="hint">Visible uniquement par Camille. Le Reiki ne remplace pas un suivi médical : continuez vos traitements.</span></label>
+        <div class="acts"><button class="btn" type="submit">Enregistrer</button><span class="saved-msg" id="profileSaved" role="status"></span></div>
+      </form>
+    </section>
+  </div>
+</main>
+
+<dialog id="booking" aria-labelledby="bookTitle">
+  <form class="dlg" id="bookForm" method="dialog" novalidate>
+    <div class="dlg-head"><div><h2 id="bookTitle">Reprendre rendez-vous</h2><p id="bookSub">Choisissez un soin, un lieu et un créneau. Camille confirme sous 24 h.</p></div><button class="x" type="button" id="bookClose" aria-label="Fermer"></button></div>
+    <fieldset><legend>Le soin</legend><div class="choices" id="soinChoices"></div></fieldset>
+    <fieldset><legend>Le lieu</legend><div class="places-pick">
+      <label class="choice"><input type="radio" name="lieu" value="Au cabinet, Aillon-le-Vieux" checked><span>Au cabinet</span></label>
+      <label class="choice"><input type="radio" name="lieu" value="En visio, chez vous"><span>En visio</span></label>
+    </div></fieldset>
+    <fieldset><legend>Le jour</legend><div class="days" id="days"></div></fieldset>
+    <fieldset><legend>L'heure</legend><div class="slots" id="slots"></div></fieldset>
+    <p class="recap" id="recap" aria-live="polite">Choisissez un jour et une heure.</p>
+    <div class="dlg-acts"><button class="btn soft" type="button" id="bookCancel">Annuler</button><button class="btn" type="button" id="bookGo" disabled>Envoyer la demande</button></div>
+  </form>
+</dialog>
+
+<footer id="footer" hidden>
+  <div class="wrap"><span>Maquette de démonstration · données d'exemple, enregistrées seulement dans ce navigateur.</span><button class="link" type="button" id="reset">Réinitialiser la démonstration</button></div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  /* ---------- Komorebi : le même moteur de lumière que le site ---------- */
+  function rand(seed){return function(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}}
+  function komorebi(c,o){
+    const ctx=c.getContext('2d');let W=0,H=0,spots=[],motes=[],leafC=null,seen=true;const hand={x:-999,y:-999,on:0,t:0};
+    function twig(lc,rnd,x0,y0,ang,len,blur,col){lc.filter='blur('+blur+'px)';lc.strokeStyle=col;lc.lineWidth=2;lc.beginPath();lc.moveTo(x0,y0);
+      const x1=x0+Math.cos(ang)*len,y1=y0+Math.sin(ang)*len;lc.quadraticCurveTo((x0+x1)/2+20,(y0+y1)/2-10,x1,y1);lc.stroke();
+      for(let u=.1;u<1;u+=.075){const x=x0+(x1-x0)*u,y=y0+(y1-y0)*u,side=(Math.round(u*13)%2?1:-1),l=(24+rnd()*34)*(o.leafScale||1),a=ang+side*(.7+rnd()*.5);
+        lc.save();lc.translate(x,y);lc.rotate(a);lc.fillStyle=col;lc.beginPath();lc.moveTo(0,0);lc.quadraticCurveTo(l*.45,-l*.32,l,0);lc.quadraticCurveTo(l*.45,l*.32,0,0);lc.fill();lc.restore()}
+      lc.filter='none'}
+    function build(){
+      const r=c.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);
+      W=r.width;H=r.height;if(!W||!H)return;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+      const rnd=rand(o.seed||9),n=Math.round(Math.max(o.min||10,Math.min(o.max||70,W*H/(o.area||16000))));
+      spots=Array.from({length:n},()=>({bx:W*(o.left+rnd()*(1.05-o.left)),by:H*rnd(),r:(18+rnd()*60)*(o.size||1),p:rnd()*6.28,s:.3+rnd()*.7,dx:0,dy:0}));
+      motes=Array.from({length:o.motes||0},()=>({x:rnd()*W,y:rnd()*H,v:.08+rnd()*.25,p:rnd()*6.28,s:.6+rnd()*1.3}));
+      leafC=document.createElement('canvas');leafC.width=Math.ceil(W*dpr);leafC.height=Math.ceil(H*dpr);
+      const lc=leafC.getContext('2d');lc.setTransform(dpr,0,0,dpr,0,0);(o.twigs||[]).forEach(t=>twig(lc,rnd,W*t[0],H*t[1],t[2],Math.min(W,H)*t[3],t[4],t[5]));
+    }
+    function draw(time){
+      if(!W)return;const t=reduce?4:time/1000;ctx.clearRect(0,0,W,H);
+      if(o.beam){ctx.save();ctx.translate(W*.7,H*.4);ctx.rotate(.45);const bw=W*.18,g=ctx.createLinearGradient(-bw,0,bw,0);
+        g.addColorStop(0,'rgba(251,241,210,0)');g.addColorStop(.35,'rgba(251,241,210,.10)');g.addColorStop(.5,'rgba(251,241,210,.24)');g.addColorStop(.65,'rgba(251,241,210,.10)');g.addColorStop(1,'rgba(251,241,210,0)');ctx.fillStyle=g;ctx.fillRect(-bw,-H*1.6,bw*2,H*3.2);ctx.restore()}
+      ctx.globalCompositeOperation='lighter';
+      hand.on+=((hand.t>0?1:0)-hand.on)*(reduce?1:.06);
+      const sy=o.scroll?scrollY*o.scroll:0;
+      spots.forEach(s=>{
+        const wind=Math.sin(t*.35*s.s+s.p)*.5+Math.sin(t*.9*s.s+s.p*2)*.5;
+        let x=s.bx+Math.sin(t*.25+s.p)*14,y=s.by+Math.cos(t*.2+s.p)*10;
+        if(o.scroll){y=((y-sy)%(H+160)+H+160)%(H+160)-80}
+        const dx=hand.x-x,dy=hand.y-y,d=Math.hypot(dx,dy),pull=hand.on*Math.max(0,1-d/320)*.55,k=reduce?1:.08;
+        s.dx+=((dx*pull)-s.dx)*k;s.dy+=((dy*pull)-s.dy)*k;x+=s.dx;y+=s.dy;
+        const a=(.10+.12*(wind*.5+.5)+pull*.25)*(o.alpha||1),r=s.r*(.85+.25*wind);
+        const gr=ctx.createRadialGradient(x,y,0,x,y,r);
+        gr.addColorStop(0,'rgba(251,236,190,'+a.toFixed(3)+')');gr.addColorStop(.5,'rgba(242,213,138,'+(a*.45).toFixed(3)+')');gr.addColorStop(1,'rgba(242,213,138,0)');
+        ctx.fillStyle=gr;ctx.beginPath();ctx.ellipse(x,y,r*1.2,r*.8,s.p,0,6.2832);ctx.fill();
+      });
+      if(hand.on>.02){const gr=ctx.createRadialGradient(hand.x,hand.y,0,hand.x,hand.y,170);gr.addColorStop(0,'rgba(251,236,190,'+(.22*hand.on).toFixed(3)+')');gr.addColorStop(1,'rgba(242,213,138,0)');ctx.fillStyle=gr;ctx.fillRect(hand.x-170,hand.y-170,340,340)}
+      motes.forEach(m=>{if(!reduce){m.y-=m.v;m.x+=Math.sin(t*.6+m.p)*.2;if(m.y<-4){m.y=H+4;m.x=Math.random()*W}}
+        ctx.fillStyle='rgba(251,241,210,'+(.25+.3*Math.sin(t+m.p)).toFixed(2)+')';ctx.beginPath();ctx.arc(m.x,m.y,m.s,0,6.2832);ctx.fill()});
+      ctx.globalCompositeOperation='source-over';
+      const sw=reduce?0:Math.sin(t*.5+(o.seed||0))*6;ctx.save();ctx.translate(sw,sw*.4);ctx.drawImage(leafC,0,0,W,H);ctx.restore();
+    }
+    function loop(time){if(seen)draw(time);requestAnimationFrame(loop)}
+    build();draw(0);
+    if(!reduce){requestAnimationFrame(loop);if('IntersectionObserver' in window&&o.watch){new IntersectionObserver(es=>{seen=es[0].isIntersecting}).observe(o.watch)}}
+    else if(o.scroll){addEventListener('scroll',()=>draw(0),{passive:true})}
+    addEventListener('resize',()=>{build();draw(0)});
+    if(o.hover){const el=o.hover;
+      const move=e=>{const r=c.getBoundingClientRect();hand.x=e.clientX-r.left;hand.y=e.clientY-r.top;hand.t=1;if(reduce)draw(0)};
+      const out=()=>{hand.t=0;if(reduce){hand.on=0;draw(0)}};
+      el.addEventListener('pointermove',move);el.addEventListener('pointerdown',move);
+      ['pointerleave','pointerup','pointercancel'].forEach(ev=>el.addEventListener(ev,out));}
+    return {hand,draw,build};
+  }
+  komorebi($('veil'),{left:0,area:30000,max:44,min:14,motes:26,size:1.25,alpha:.7,scroll:.18,seed:21,
+    twigs:[[1.03,.05,2.6,.5,10,'rgba(6,16,10,.38)'],[-.03,.72,-.35,.42,12,'rgba(6,16,10,.32)']]});
+
+  /* ---------- Données d'exemple (relatives à aujourd'hui) ---------- */
+  const DAY=864e5,now=new Date();
+  const at=(days,h,m)=>{const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+days,h,m||0);return d.toISOString()};
+  const SOINS=[['Première séance','1 h 15','55 €'],['Séance de Reiki','1 h 15','65 €'],['Reiki à distance','1 h','55 €'],['Soin énergétique complet','1 h 30','80 €']];
+  const SEED={
+    profile:{first:'Léa',last:'Martin',mail:'lea.martin@exemple.fr',phone:'06 00 00 00 00',pref:'Au cabinet, à Aillon-le-Vieux',reach:'Par e-mail',why:'Une période de fatigue et un sommeil agité depuis la rentrée.',know:''},
+    sessions:[
+      {id:'s4',date:at(9,10),soin:'Séance de Reiki',dur:'1 h 15',lieu:'Au cabinet, Aillon-le-Vieux',status:'confirmed',intention:'Retrouver un sommeil plus calme.',notes:[],before:null,after:null},
+      {id:'s3',date:at(-5,10),soin:'Soin énergétique complet',dur:'1 h 30',lieu:'Au cabinet, Aillon-le-Vieux',status:'done',
+        report:{date:at(-4,9,12),text:"Beaucoup de tensions relâchées au niveau du ventre et des épaules. L'ancrage était plus stable en fin de séance. À poursuivre chez vous : cinq minutes de respiration lente le soir, et beaucoup d'eau dans les jours qui suivent."},
+        notes:[{t:at(-5,11,40),txt:"Chaleur dans les mains de Camille, puis une grosse envie de dormir. Une émotion est montée vers la fin.",shared:true},{t:at(-3,8,10),txt:"Deux nuits complètes. Moins de pensées le soir.",shared:false}],before:4,after:7},
+      {id:'s2',date:at(-19,14),soin:'Première séance',dur:'1 h 15',lieu:'Au cabinet, Aillon-le-Vieux',status:'done',
+        report:{date:at(-18,10,5),text:"Première rencontre. Fatigue importante, beaucoup de tension dans la nuque. La détente est venue après une vingtaine de minutes. Proposition : trois séances espacées de deux semaines."},
+        notes:[{t:at(-19,15,30),txt:"Je ne savais pas à quoi m'attendre. Très reposant, je me suis presque endormie.",shared:false}],before:3,after:6},
+      {id:'s1',date:at(-33,14),soin:"Atelier : cercle d'automne",dur:'2 h 30',lieu:'En visio',status:'done',report:null,
+        notes:[{t:at(-33,17,0),txt:"Le rituel des feuilles m'a beaucoup parlé.",shared:true}],before:5,after:7}
+    ],
+    messages:[
+      {from:'c',t:at(-4,9,14),ref:'s3',txt:"Bonjour Léa, le compte rendu de notre séance est en ligne dans vos séances. Pensez à bien vous hydrater cette semaine."},
+      {from:'me',t:at(-3,20,40),txt:"Merci ! J'ai beaucoup mieux dormi les deux nuits suivantes."},
+      {from:'c',t:at(-2,8,5),txt:"Très bonne nouvelle. Notez-le dans vos ressentis si vous le souhaitez, on en reparlera à la prochaine séance."}
+    ],
+    unread:1
+  };
+  const KEY='clairiere-espace-demo';
+  let S;
+  try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+  if(!S||!S.sessions)S=JSON.parse(JSON.stringify(SEED));
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+
+  const fmtDay=d=>new Date(d).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
+  const fmtShort=d=>new Date(d).toLocaleDateString('fr-FR',{day:'numeric',month:'short'});
+  const fmtHour=d=>new Date(d).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}).replace(':',' h ');
+  const fmtStamp=d=>fmtShort(d)+' · '+fmtHour(d);
+  const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+  function toast(t){const el=$('toast');el.textContent=t;el.classList.add('show');clearTimeout(toast.k);toast.k=setTimeout(()=>el.classList.remove('show'),2600)}
+
+  /* ---------- Connexion de démonstration ---------- */
+  let signup=false;
+  function setMode(s){signup=s;$('tabLogin').setAttribute('aria-pressed',!s);$('tabSignup').setAttribute('aria-pressed',s);$('firstWrap').hidden=!s;
+    $('loginTitle').textContent=s?'Créer mon espace':'Mon espace';$('loginText').textContent=s?"Un espace pour suivre vos séances et échanger avec Camille.":"Retrouvez vos rendez-vous, vos ressentis et la conversation avec Camille.";$('loginGo').textContent=s?'Créer mon espace':'Entrer dans mon espace'}
+  $('tabLogin').onclick=()=>setMode(false);$('tabSignup').onclick=()=>setMode(true);
+  function enter(){try{sessionStorage.setItem('clairiere-in','1')}catch(e){}
+    $('connexion').hidden=true;$('loginTop').hidden=true;$('app').hidden=false;$('acct').hidden=false;$('footer').hidden=false;renderAll();
+    const t=location.hash.slice(1);go(TABS.includes(t)?t:'carnet')}
+  $('loginForm').addEventListener('submit',e=>{e.preventDefault();
+    const ident=$('l-mail').value.trim().toLowerCase(),pass=$('l-pass').value;
+    if(ident==='admin'){if(pass==='admin'){try{sessionStorage.setItem('clairiere-admin','1')}catch(err){}$('l-pass').value='';location.href='espace-praticien.html';return}
+      $('loginErr').hidden=false;$('loginErr').textContent='Mot de passe incorrect pour le compte praticienne.';$('l-pass').focus();return}
+    $('loginErr').hidden=true;
+    if(signup){const f=$('l-first').value.trim();if(f){S.profile.first=f;save()}}
+    $('l-pass').value='';enter()});
+  $('logout').onclick=()=>{try{sessionStorage.removeItem('clairiere-in')}catch(e){}location.reload()};
+  let wasIn=false;try{wasIn=sessionStorage.getItem('clairiere-in')==='1'}catch(e){}
+
+  /* ---------- Menu du compte ---------- */
+  const ab=$('acctBtn'),am=$('acctMenu');
+  const menu=o=>{am.hidden=!o;ab.setAttribute('aria-expanded',o)};
+  ab.onclick=e=>{e.stopPropagation();menu(am.hidden)};
+  document.addEventListener('click',e=>{if(!am.hidden&&!am.contains(e.target))menu(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!am.hidden){menu(false);ab.focus()}});
+  am.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu(false)));
+
+  /* ---------- Prochaine séance ---------- */
+  const upcoming=()=>S.sessions.filter(s=>s.status!=='done').sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const past=()=>S.sessions.filter(s=>s.status==='done').sort((a,b)=>new Date(b.date)-new Date(a.date));
+  function renderNext(){
+    const n=upcoming()[0],box=$('nextIn');
+    $('acctInitial').textContent=(S.profile.first[0]||'?').toUpperCase();
+    $('menuName').textContent=S.profile.first+' '+S.profile.last;$('menuMail').textContent=S.profile.mail;
+    if(!n){
+      box.innerHTML='<h2 id="nextTitle">Aucune séance prévue</h2><p class="meta">Quand vous serez prêt·e, choisissez un créneau : Camille confirme sous 24 h.</p><div class="acts"><button class="btn" type="button" data-book>Prendre rendez-vous</button></div>';return}
+    const d0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),dn=new Date(n.date),d1=new Date(dn.getFullYear(),dn.getMonth(),dn.getDate()),days=Math.max(0,Math.round((d1-d0)/DAY));
+    
+    box.innerHTML=
+      '<h2 id="nextTitle">'+esc(n.soin)+'</h2>'+
+      '<p class="when">'+cap(fmtDay(n.date))+' · '+fmtHour(n.date)+'</p>'+
+      '<p class="meta">'+esc(n.dur)+' · '+esc(n.lieu)+' · avec Camille'+(n.status==='pending'?'<br><span class="status">En attente de confirmation par Camille</span>':'')+'</p>'+
+      '<p class="count">'+(days===0?'<b>Aujourd\u2019hui</b>':days===1?'<b>Demain</b>':'<b>'+days+'</b><span>jours</span>')+'</p>'+
+      '<div class="intent"><label for="intent">Mon intention pour cette séance</label><textarea id="intent" placeholder="Ce que vous aimeriez déposer ou ressentir…">'+esc(n.intention||'')+'</textarea><span class="saved" id="intentSaved" role="status"></span></div>'+
+      '<div class="acts"><button class="btn" type="button" data-book>Reprendre rendez-vous</button><button class="btn soft" type="button" data-move="'+n.id+'">Déplacer</button><button class="btn soft" type="button" data-note="'+n.id+'" aria-expanded="false" aria-controls="quick">Noter un ressenti</button></div>'+
+      '<div class="quick" id="quick" hidden><h3>Mes ressentis pour cette séance</h3><ul class="notes">'+n.notes.map(noteItem).join('')+'</ul>'+
+      '<form class="add-note" data-id="'+n.id+'"><label class="sr" for="note-'+n.id+'">Nouveau ressenti</label><textarea id="note-'+n.id+'" placeholder="Ce que vous ressentez avant, pendant ou juste après la séance…"></textarea>'+
+      '<label class="check"><input type="checkbox" name="share"> Partager avec Camille</label><div><button class="btn small" type="submit">Ajouter ce ressenti</button></div></form></div>';
+    let tm;$('intent').addEventListener('input',e=>{n.intention=e.target.value;clearTimeout(tm);tm=setTimeout(()=>{save();$('intentSaved').textContent='Intention enregistrée'},500)});
+  }
+
+  /* ---------- Rangées des séances ---------- */
+  function noteItem(n){return '<li><p>'+esc(n.txt)+'</p><p class="meta"><span>'+fmtStamp(n.t)+'</span><span class="'+(n.shared?'shared':'')+'">'+(n.shared?'Partagé avec Camille':'Privé')+'</span></p></li>'}
+  function renderRows(){
+    const list=[...upcoming().slice(1),...past()],box=$('rows');
+    if(!list.length){box.innerHTML='<p style="padding:20px 4px;color:var(--brume-2)">Vos séances passées apparaîtront ici, avec leur compte rendu et vos ressentis.</p>';return}
+    box.innerHTML=list.map(s=>{
+      const done=s.status==='done';
+      const tag=!done?'<span class="tag wait">'+(s.status==='pending'?'En attente':'À venir')+'</span>':(s.report?'<span class="tag'+(s.reportSeen?'':' new')+'">'+(s.reportSeen?'Compte rendu':'Nouveau compte rendu')+'</span>':'<span class="tag">'+s.notes.length+' ressenti'+(s.notes.length>1?'s':'')+'</span>');
+      const mood=(s.before!=null&&s.after!=null)?'<span class="mood">État <b>'+s.before+' → '+s.after+'</b></span>':'<span class="mood">—</span>';
+      const report=done?(s.report?'<div class="report"><p>'+esc(s.report.text)+'</p><small>Publié par Camille le '+fmtStamp(s.report.date)+'</small></div>':'<div class="report pending"><p>Pas de compte rendu pour cet atelier collectif.</p></div>'):'<div class="report pending"><p>Camille publiera son compte rendu ici après la séance.</p></div>';
+      return '<details class="row" id="row-'+s.id+'" data-id="'+s.id+'"><summary><span class="date">'+fmtShort(s.date)+'<small>'+fmtHour(s.date)+'</small></span><span class="soin">'+esc(s.soin)+'<small>'+esc(s.dur)+' · '+esc(s.lieu)+'</small></span>'+tag+mood+'<span class="plus" aria-hidden="true"></span></summary>'+
+        '<div class="open"><div><h4>Compte rendu de Camille</h4>'+report+'</div>'+
+        '<div><h4>Mes ressentis</h4><ul class="notes">'+s.notes.map(noteItem).join('')+'</ul>'+
+          '<form class="add-note" data-id="'+s.id+'"><label class="sr" for="note-'+s.id+'">Nouveau ressenti</label><textarea id="note-'+s.id+'" placeholder="Ce que vous avez ressenti pendant ou après la séance…"></textarea>'+
+          '<label class="check"><input type="checkbox" name="share"> Partager avec Camille</label><div><button class="btn small" type="submit">Ajouter ce ressenti</button></div></form></div>'+
+        '<div><h4>Mon état</h4>'+(done?'<div class="scale"><label>Avant<input type="range" min="1" max="10" step="1" value="'+(s.before||5)+'" data-k="before" aria-label="Mon état avant la séance, de 1 à 10"><output>'+(s.before||5)+'</output></label><label>Après<input type="range" min="1" max="10" step="1" value="'+(s.after||5)+'" data-k="after" aria-label="Mon état après la séance, de 1 à 10"><output>'+(s.after||5)+'</output></label><p>1 : très fatigué·e ou tendu·e · 10 : très bien. Pour vous seul·e.</p></div>':'<p style="color:var(--brume-3);font-size:.9375rem">Vous pourrez noter votre état après la séance.</p>')+'</div></div></details>';
+    }).join('');
+  }
+  $('rows').addEventListener('toggle',e=>{const d=e.target;if(d.open){const s=S.sessions.find(x=>x.id===d.dataset.id);if(s&&s.report&&!s.reportSeen){s.reportSeen=true;save();const t=d.querySelector('.tag.new');if(t){t.classList.remove('new');t.textContent='Compte rendu'}}}},true);
+  $('rows').addEventListener('submit',e=>{const f=e.target.closest('.add-note');if(!f)return;e.preventDefault();
+    const s=S.sessions.find(x=>x.id===f.dataset.id),ta=f.querySelector('textarea'),txt=ta.value.trim();if(!txt){ta.focus();return}
+    const n={t:new Date().toISOString(),txt,shared:f.elements.share.checked};s.notes.push(n);save();
+    f.previousElementSibling.insertAdjacentHTML('beforeend',noteItem(n));ta.value='';f.elements.share.checked=false;renderJournal();renderCarnet();toast(n.shared?'Ressenti ajouté et partagé avec Camille':'Ressenti ajouté, gardé privé')});
+  $('rows').addEventListener('input',e=>{const r=e.target;if(r.type!=='range')return;const s=S.sessions.find(x=>x.id===r.closest('.row').dataset.id);
+    s[r.dataset.k]=+r.value;r.nextElementSibling.textContent=r.value;r.closest('.row').querySelector('.mood').innerHTML='État <b>'+s.before+' → '+s.after+'</b>';save();renderEvo()});
+
+  /* ---------- Évolution en points de lumière ---------- */
+  function renderEvo(){
+    const pts=past().filter(s=>s.before!=null&&s.after!=null).reverse(),svg=$('evoChart');
+    const narrow=matchMedia('(max-width:620px)').matches,W=narrow?340:640,H=narrow?240:220,L=34,R=18,T=16,B=36,x=i=>pts.length<2?(L+W-R)/2:L+i*(W-L-R)/(pts.length-1),y=v=>T+(10-v)*(H-T-B)/9;
+    let g='<desc id="evoDesc">Votre état avant et après chaque séance.</desc><defs><radialGradient id="lg"><stop offset="0" stop-color="#FBF1D2"/><stop offset=".5" stop-color="#F2D58A"/><stop offset="1" stop-color="#F2D58A" stop-opacity="0"/></radialGradient></defs>';
+    [1,5,10].forEach(v=>{g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v)+'" y2="'+y(v)+'" stroke="rgba(233,239,228,.14)"/><text x="'+(L-12)+'" y="'+(y(v)+4)+'" fill="#93A592" font-size="13" text-anchor="end" font-family="Shippori Mincho" font-weight="600">'+v+'</text>'});
+    if(pts.length>1)g+='<polyline fill="none" stroke="rgba(242,213,138,.45)" stroke-width="1.5" points="'+pts.map((s,i)=>x(i)+','+y(s.after)).join(' ')+'"/>';
+    pts.forEach((s,i)=>{g+='<line x1="'+x(i)+'" x2="'+x(i)+'" y1="'+y(s.before)+'" y2="'+y(s.after)+'" stroke="rgba(233,239,228,.25)" stroke-dasharray="2 4"/>'+
+      '<circle cx="'+x(i)+'" cy="'+y(s.before)+'" r="5" fill="#93A592"/><circle cx="'+x(i)+'" cy="'+y(s.after)+'" r="16" fill="url(#lg)"/><circle cx="'+x(i)+'" cy="'+y(s.after)+'" r="5" fill="#FBF1D2"/>'+
+      '<text x="'+x(i)+'" y="'+(H-10)+'" fill="#B9C8B5" font-size="14" text-anchor="middle" font-family="Shippori Mincho" font-weight="600">'+fmtShort(s.date)+'</text>'});
+    if(!pts.length)g+='<text x="'+W/2+'" y="'+H/2+'" fill="#B9C8B5" font-size="15" text-anchor="middle" font-family="Zen Kaku Gothic New">Notez votre état après une séance pour voir votre évolution.</text>';
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML=g;
+  }
+  addEventListener('resize',()=>{clearTimeout(renderEvo.k);renderEvo.k=setTimeout(renderEvo,200)});
+
+  /* ---------- Qui je suis ---------- */
+  function renderProfile(){const f=$('profileForm');['first','last','mail','phone','pref','reach','why','know'].forEach(k=>f.elements[k].value=S.profile[k]||'')}
+  $('profileForm').addEventListener('submit',e=>{e.preventDefault();const f=e.target;
+    if(!f.elements.first.value.trim()){$('profileSaved').textContent='Indiquez au moins votre prénom.';f.elements.first.focus();return}
+    ['first','last','mail','phone','pref','reach','why','know'].forEach(k=>S.profile[k]=f.elements[k].value.trim());save();
+    $('profileSaved').textContent='Enregistré';renderNext();setTimeout(()=>$('profileSaved').textContent='',2600)});
+
+  /* ---------- Conversation ---------- */
+  function renderThread(){
+    let last='',h='';
+    S.messages.forEach(m=>{const d=fmtShort(m.t);if(d!==last){h+='<p class="day">'+d+'</p>';last=d}
+      const ref=m.ref?S.sessions.find(s=>s.id===m.ref):null;
+      h+='<div class="bubble'+(m.from==='me'?' me':'')+'">'+(ref?'<span class="ref">À propos de : '+esc(ref.soin)+' du '+fmtShort(ref.date)+'</span>':'')+esc(m.txt)+'<time>'+fmtHour(m.t)+'</time></div>'});
+    const th=$('thread');th.innerHTML=h;th.scrollTop=th.scrollHeight;
+    $('fabCount').textContent=S.unread;$('fabCount').hidden=!S.unread;
+  }
+  $('compose').addEventListener('submit',e=>{e.preventDefault();const t=$('msg').value.trim();if(!t){$('msg').focus();return}
+    S.messages.push({from:'me',t:new Date().toISOString(),txt:t});save();$('msg').value='';renderThread();toast('Message envoyé à Camille (démonstration)')});
+  $('msg').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('compose').requestSubmit()}});
+  const chat=$('chat');
+  function openChat(){document.body.classList.add('chat-open');chat.classList.add('open');S.unread=0;save();renderThread();setTimeout(()=>$('msg').focus(),300)}
+  
+  
+
+  /* ---------- Noter un ressenti depuis la carte ---------- */
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-note]');if(!b)return;const q=$('quick');if(!q)return;
+    q.hidden=!q.hidden;b.setAttribute('aria-expanded',!q.hidden);if(!q.hidden)q.querySelector('textarea').focus()});
+  $('nextIn').addEventListener('submit',e=>{const f=e.target.closest('.add-note');if(!f)return;e.preventDefault();
+    const s=S.sessions.find(x=>x.id===f.dataset.id),ta=f.querySelector('textarea'),txt=ta.value.trim();if(!txt){ta.focus();return}
+    const n={t:new Date().toISOString(),txt,shared:f.elements.share.checked};s.notes.push(n);save();
+    f.previousElementSibling.insertAdjacentHTML('beforeend',noteItem(n));ta.value='';f.elements.share.checked=false;toast(n.shared?'Ressenti ajouté et partagé avec Camille':'Ressenti ajouté, gardé privé')});
+
+  /* ---------- Prise et déplacement de rendez-vous ---------- */
+  const dlg=$('booking');let moving=null,pick={day:null,slot:null};
+  $('soinChoices').innerHTML=SOINS.map((s,i)=>'<label class="choice"><input type="radio" name="soin" value="'+i+'"'+(i===1?' checked':'')+'><span>'+s[0]+'<small>'+s[1]+'</small></span><b>'+s[2]+'</b></label>').join('');
+  const rnd=rand(77),DAYS=[];
+  for(let i=1;i<=21&&DAYS.length<12;i++){const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i);const wd=d.getDay();if(wd===0||wd===1)continue;
+    const slots=['9 h 30','11 h 00','14 h 00','15 h 30','17 h 00'].filter(()=>rnd()>.45);DAYS.push({d,slots})}
+  function renderDays(){$('days').innerHTML=DAYS.map((x,i)=>'<button type="button" class="day-btn" data-i="'+i+'" aria-pressed="'+(pick.day===i)+'"'+(x.slots.length?'':' disabled')+'>'+x.d.toLocaleDateString('fr-FR',{weekday:'short'})+'<b>'+x.d.getDate()+'</b>'+x.d.toLocaleDateString('fr-FR',{month:'short'})+'</button>').join('');
+    const sl=pick.day!=null?DAYS[pick.day].slots:[];$('slots').innerHTML=pick.day==null?'<p style="color:var(--brume-3);font-size:.9375rem">Choisissez d’abord un jour.</p>':sl.map(s=>'<button type="button" class="slot" aria-pressed="'+(pick.slot===s)+'">'+s+'</button>').join('');recap()}
+  function recap(){const soin=SOINS[+dlg.querySelector('input[name=soin]:checked').value],lieu=dlg.querySelector('input[name=lieu]:checked').value;
+    const ok=pick.day!=null&&pick.slot;$('bookGo').disabled=!ok;
+    $('recap').innerHTML=ok?'<b>'+soin[0]+'</b> · '+cap(DAYS[pick.day].d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'}))+' à '+pick.slot+' · '+lieu+' · '+soin[2]:'Choisissez un jour et une heure.'}
+  $('days').addEventListener('click',e=>{const b=e.target.closest('.day-btn');if(!b)return;pick.day=+b.dataset.i;pick.slot=null;renderDays()});
+  $('slots').addEventListener('click',e=>{const b=e.target.closest('.slot');if(!b)return;pick.slot=b.textContent;renderDays()});
+  dlg.addEventListener('change',recap);
+  function openBooking(id){moving=id||null;pick={day:null,slot:null};
+    $('bookTitle').textContent=moving?'Déplacer ma séance':'Reprendre rendez-vous';
+    $('bookSub').textContent=moving?'Choisissez un nouveau créneau. Camille confirme sous 24 h.':'Choisissez un soin, un lieu et un créneau. Camille confirme sous 24 h.';
+    if(moving){const s=S.sessions.find(x=>x.id===moving),i=SOINS.findIndex(x=>x[0]===s.soin);if(i>=0)dlg.querySelector('input[name=soin][value="'+i+'"]').checked=true}
+    renderDays();dlg.showModal()}
+  document.addEventListener('click',e=>{if(e.target.closest('[data-book]'))openBooking();const m=e.target.closest('[data-move]');if(m)openBooking(m.dataset.move)});
+  $('bookClose').onclick=$('bookCancel').onclick=()=>dlg.close();
+  $('bookGo').onclick=()=>{const soin=SOINS[+dlg.querySelector('input[name=soin]:checked').value],lieu=dlg.querySelector('input[name=lieu]:checked').value;
+    const [hh,mm]=pick.slot.split(' h ').map(Number),d=DAYS[pick.day].d,date=new Date(d.getFullYear(),d.getMonth(),d.getDate(),hh,mm).toISOString();
+    if(moving){const s=S.sessions.find(x=>x.id===moving);Object.assign(s,{date,soin:soin[0],dur:soin[1],lieu,status:'pending'})}
+    else S.sessions.push({id:'s'+Date.now(),date,soin:soin[0],dur:soin[1],lieu,status:'pending',intention:'',notes:[],before:null,after:null});
+    S.messages.push({from:'me',t:new Date().toISOString(),txt:(moving?'Demande de déplacement : ':'Demande de rendez-vous : ')+soin[0]+', '+fmtDay(date)+' à '+pick.slot+', '+lieu.charAt(0).toLowerCase()+lieu.slice(1)+'.'});
+    save();dlg.close();renderAll();toast(moving?'Demande de déplacement envoyée à Camille':'Demande envoyée : Camille confirme sous 24 h')};
+
+  $('reset').onclick=()=>{try{localStorage.removeItem(KEY)}catch(e){}S=JSON.parse(JSON.stringify(SEED));renderAll();toast('Démonstration réinitialisée')};
+
+  /* ---------- Onglets ---------- */
+  const TABS=['carnet','rendez-vous','messages','journal','profil'],lit={};
+  function go(t){
+    document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=p.id!==t);
+    document.querySelectorAll('[data-tab]').forEach(a=>{if(a.closest('.tabs'))a.toggleAttribute('aria-current',a.dataset.tab===t);if(a.dataset.tab===t&&a.closest('.tabs'))a.setAttribute('aria-current','page')});
+    try{history.replaceState(null,'','#'+t)}catch(e){}
+    scrollTo(0,0);menu(false);
+    if(t==='carnet'&&!lit.c){lit.c=1;komorebi($('carnetLight'),{left:0,area:7000,max:34,min:14,motes:18,size:1.1,alpha:1.1,beam:true,seed:12,hover:$('carnetPage'),watch:$('carnetPage'),twigs:[[1.0,-.08,2.5,.6,6,'rgba(6,16,10,.5)']]})}
+    if(t==='rendez-vous'&&!lit.r){lit.r=1;komorebi($('nextLight'),{left:.35,area:7000,max:36,min:14,motes:18,size:1.1,alpha:1.35,beam:true,seed:9,hover:$('nextCard'),watch:$('nextCard'),twigs:[[1.02,-.05,2.4,.7,5,'rgba(6,16,10,.55)'],[1.03,.5,2.9,.5,8,'rgba(6,16,10,.4)']]})}
+    if(t==='messages'){S.unread=0;save();renderThread();setTimeout(()=>$('msg').focus(),100)}
+    if(t==='journal')renderEvo();
+  }
+  document.addEventListener('click',e=>{const a=e.target.closest('[data-tab],[data-go]');if(!a)return;e.preventDefault();go(a.dataset.tab||a.dataset.go)});
+
+  /* ---------- Mon carnet ---------- */
+  function allNotes(){const out=[];S.sessions.forEach(s=>s.notes.forEach(n=>out.push(Object.assign({soin:s.soin},n))));(S.free||[]).forEach(n=>out.push(Object.assign({soin:null},n)));return out.sort((a,b)=>new Date(b.t)-new Date(a.t))}
+  function noteLine(n){return '<li><time>'+fmtShort(n.t)+'<small>'+fmtHour(n.t)+'</small></time><div><p>'+esc(n.txt)+'</p><span class="meta">'+(n.soin?'Après : '+esc(n.soin)+' · ':'')+'<span class="'+(n.shared?'shared':'')+'">'+(n.shared?'Partagé avec Camille':'Privé')+'</span></span></div></li>'}
+  function renderCarnet(){
+    const n=upcoming()[0],last=past().find(s=>s.report),steps=past().filter(s=>s.before!=null&&s.after!=null).reverse(),notes=allNotes().slice(0,2);
+    let html='<header class="carnet-head"><p class="le-jour">'+cap(now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'}))+'</p><h1 id="carnetTitle">Le carnet de '+esc(S.profile.first)+'</h1><p class="invite-main">Approchez la main : la lumière vient à vous.</p></header>';
+    html+='<div class="leaf intention"><h2>Mon intention du moment</h2><textarea id="carnetIntent" rows="1" placeholder="Écrivez ce que vous aimeriez déposer ou ressentir…">'+esc(n?n.intention||'':S.profile.intention||'')+'</textarea><span class="saved" id="carnetSaved" role="status"></span></div>';
+    if(n){const d0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),dn=new Date(n.date),d1=new Date(dn.getFullYear(),dn.getMonth(),dn.getDate()),days=Math.round((d1-d0)/DAY);
+      html+='<div class="leaf"><h2>Ma prochaine séance</h2><p class="sentence">'+cap(fmtDay(n.date))+' à '+fmtHour(n.date)+', <em>'+esc(n.soin.charAt(0).toLowerCase()+n.soin.slice(1))+'</em> '+esc(n.lieu.charAt(0).toLowerCase()+n.lieu.slice(1))+', avec Camille.</p><p class="aside"><span>'+(days===0?'Aujourd\u2019hui':days===1?'Demain':'Dans '+days+' jours')+(n.status==='pending'?' · en attente de confirmation':'')+'</span><a href="#rendez-vous" data-go="rendez-vous">Voir le rendez-vous</a><button class="link" type="button" data-book>Reprendre rendez-vous</button></p></div>'}
+    else html+='<div class="leaf"><h2>Ma prochaine séance</h2><p class="sentence">Aucune séance prévue pour le moment.</p><p class="aside"><button class="btn small" type="button" data-book>Prendre rendez-vous</button></p></div>';
+    if(last)html+='<div class="leaf"><h2>Le dernier mot de Camille</h2><blockquote class="mot">'+esc(last.report.text)+'</blockquote><p class="aside"><span>Après la séance du '+fmtShort(last.date)+'</span><a href="#rendez-vous" data-go="rendez-vous">Lire tous les comptes rendus</a></p></div>';
+    if(notes.length)html+='<div class="leaf"><h2>Mes derniers ressentis</h2><ol class="jl">'+notes.map(noteLine).join('')+'</ol><p class="aside"><a href="#journal" data-go="journal">Tout mon journal</a></p></div>';
+    if(steps.length)html+='<div class="leaf"><h2>Mon chemin</h2><div class="lights">'+steps.map(s=>'<div class="light-step"><span class="pair" aria-hidden="true"><i style="margin-bottom:'+(s.before-1)*7+'px"></i><i class="after" style="margin-bottom:'+(s.after-1)*7+'px"></i></span><b>'+s.before+' → '+s.after+'</b><span>'+fmtShort(s.date)+'</span></div>').join('')+'</div><p class="aside"><span>Votre état avant et après chaque séance, de 1 à 10</span></p></div>';
+    html+='<form class="leaf today-note" id="todayNote"><label class="q" for="todayTxt">Comment vous sentez-vous aujourd\u2019hui\u00a0?</label><textarea id="todayTxt" placeholder="Quelques mots pour vous…"></textarea><div class="row-acts"><label class="check"><input type="checkbox" name="share"> Partager avec Camille</label><button class="btn small" type="submit">Garder dans mon carnet</button></div></form>';
+    $('carnetBody').innerHTML=html;
+    const ta=$('carnetIntent'),fit=()=>{ta.style.height='auto';ta.style.height=ta.scrollHeight+'px'};fit();
+    let tm;ta.addEventListener('input',()=>{fit();if(n)n.intention=ta.value;else S.profile.intention=ta.value;clearTimeout(tm);tm=setTimeout(()=>{save();$('carnetSaved').textContent='Intention enregistrée';renderNext()},500)});
+  }
+  document.addEventListener('submit',e=>{if(e.target.id!=='todayNote')return;e.preventDefault();const f=e.target,txt=f.querySelector('textarea').value.trim();if(!txt){f.querySelector('textarea').focus();return}
+    S.free=S.free||[];S.free.push({t:new Date().toISOString(),txt,shared:f.elements.share.checked});save();renderCarnet();renderJournal();toast('Gardé dans votre carnet')});
+  function renderJournal(){const l=allNotes();$('journalList').innerHTML=l.length?l.map(noteLine).join(''):'<li><p style="color:var(--brume-2)">Vos ressentis apparaîtront ici.</p></li>'}
+
+  function renderAll(){renderNext();renderRows();renderEvo();renderProfile();renderThread();renderCarnet();renderJournal()}
+  if(wasIn)enter();
+})();
+</script>
+</body>
+</html>

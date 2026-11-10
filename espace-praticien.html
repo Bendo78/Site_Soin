@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Espace praticienne · Clairière</title>
+<meta name="description" content="Espace praticienne Clairière : planning de la semaine, demandes à confirmer, comptes rendus, messages et retours des clients.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Espace praticienne · monde Komorebi en registre de travail : la semaine, ce qui attend, et ce que disent les clients */
+:root{
+  color-scheme:dark;
+  --nuit:#12221A; --bois:#1A3125; --bois-2:#22392C; --mousse:#A9BE8F; --feuille:#6F8C5E;
+  --lumiere:#F2D58A; --lumiere-pale:#FBF1D2; --brume:#E9EFE4; --brume-2:#B9C8B5; --brume-3:#93A592;
+  --crepuscule:#B3A3DA; --alerte:#E9A15E;
+  --filet:rgba(233,239,228,.14); --voile:rgba(233,239,228,.045); --puits:rgba(18,34,26,.6);
+  --titre:"Shippori Mincho","Iowan Old Style","Palatino Linotype",serif;
+  --texte:"Zen Kaku Gothic New","Segoe UI",system-ui,sans-serif;
+  --hour:52px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+[hidden]{display:none!important}
+html{scrollbar-color:var(--feuille) var(--nuit)}
+body{min-height:100vh;background:linear-gradient(180deg,#12221A 0%,#172D22 40%,#1A3125 100%);background-attachment:fixed;color:var(--brume);font-family:var(--texte);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased;caret-color:var(--lumiere)}
+::selection{background:var(--lumiere);color:var(--nuit)}
+h1,h2,h3,h4{font-family:var(--titre);font-weight:600;margin:0;line-height:1.2;text-wrap:balance}
+p{margin:0}
+a{color:inherit;text-underline-offset:.25em;text-decoration-thickness:1px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--lumiere);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1440px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+#veil{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.top,main{position:relative;z-index:1}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:8px 18px;border-radius:999px;border:1px solid var(--lumiere);background:var(--lumiere);color:var(--nuit);font:700 .9063rem/1.2 var(--texte);cursor:pointer;box-shadow:0 10px 30px -12px rgba(242,213,138,.55);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.btn:hover{transform:translateY(-1px)}
+.btn.soft{background:transparent;color:var(--brume);border-color:var(--filet);box-shadow:none}
+.btn.soft:hover{border-color:var(--brume-2)}
+.btn.tiny{min-height:32px;padding:4px 12px;font-size:.8125rem}
+.icon-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--filet);background:none;cursor:pointer;display:inline-grid;place-items:center}
+.icon-btn svg{width:16px;height:16px}
+.link{background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-color:var(--lumiere)}
+
+/* En-tête */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(18,34,26,.78);backdrop-filter:blur(12px);border-bottom:1px solid var(--filet)}
+.top .wrap{display:flex;align-items:center;gap:22px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{width:34px;height:34px;flex:none}
+.brand b{display:block;font:600 1.2rem/1 var(--titre)}
+.brand small{display:block;font-size:.75rem;letter-spacing:.12em;color:var(--brume-3);margin-top:4px}
+.views{display:flex;gap:4px;margin-left:24px;margin-right:auto}
+.views a{position:relative;padding:10px 14px;text-decoration:none;font:500 1rem var(--titre);color:var(--brume-2);border-radius:999px}
+.views a:hover{color:var(--brume)}
+.views a[aria-current="page"]{color:var(--brume);background:var(--voile)}
+.views .badge{margin-left:6px}
+.badge{display:inline-block;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--lumiere);color:var(--nuit);font:700 .75rem/20px var(--texte);text-align:center;vertical-align:1px}
+.acct{position:relative}
+.acct-btn{display:flex;align-items:center;gap:10px;min-height:42px;padding:4px 14px 4px 4px;border-radius:999px;border:1px solid var(--lumiere);background:rgba(242,213,138,.08);cursor:pointer;font-weight:500;font-size:.9375rem}
+.avatar{width:32px;height:32px;flex:none;border-radius:50%;display:grid;place-items:center;font:700 .8125rem var(--texte);color:var(--nuit);background:radial-gradient(circle at 40% 35%,#D8E4CB,var(--mousse) 60%,#7E9A6A)}
+.avatar.client{background:radial-gradient(circle at 40% 35%,var(--lumiere-pale),var(--lumiere) 60%,#C9A85E)}
+.acct-menu{position:absolute;right:0;top:calc(100% + 10px);min-width:230px;padding:8px;border-radius:20px;background:#162B20;border:1px solid var(--filet);display:grid}
+.acct-menu a,.acct-menu button{display:block;width:100%;text-align:left;padding:10px 12px;border-radius:12px;border:0;background:none;text-decoration:none;font-size:.9375rem;cursor:pointer}
+.acct-menu a:hover,.acct-menu button:hover{background:var(--voile)}
+@media (max-width:900px){.views{margin-left:0;order:5;width:100%;overflow-x:auto}.top .wrap{flex-wrap:wrap}.brand{margin-right:auto}.acct-btn .name{display:none}}
+
+/* Semaine */
+.weekbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;padding-block:24px 6px}
+.weekbar h1{font-size:clamp(1.6rem,3vw,2.2rem);margin-right:auto}
+.weekbar .nav{display:flex;gap:8px;align-items:center}
+.overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 34px;margin:18px 0 26px;padding:18px 0;border-top:1px solid var(--filet);border-bottom:1px solid var(--filet)}
+.obs{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:start}
+.obs .dot{width:12px;height:12px;border-radius:50%;margin-top:7px}
+.obs p{font-size:.9688rem;color:var(--brume-2)}
+.obs p strong{color:var(--brume);font-weight:500}
+.obs .num{font:600 1.05rem var(--titre);color:var(--brume);font-variant-numeric:tabular-nums}
+.obs a,.obs .link{font-size:.875rem;color:var(--brume)}
+.spark{display:block;margin-top:6px}
+@media (max-width:980px){.overview{grid-template-columns:1fr;gap:16px}}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:start;padding-bottom:60px}
+.layout > *{min-width:0}
+
+/* Planning en colonnes */
+.planning{border:1px solid var(--filet);border-radius:24px;background:rgba(18,34,26,.55);overflow:hidden}
+.cal{display:grid;grid-template-columns:58px repeat(5,minmax(0,1fr));position:relative}
+.cal-head{display:contents}
+.cal-head div{padding:12px 10px;border-bottom:1px solid var(--filet);text-align:left;font-size:.8125rem;color:var(--brume-3)}
+.cal-head div b{display:block;font:600 1.15rem var(--titre);color:var(--brume)}
+.cal-head div.today{background:linear-gradient(180deg,rgba(242,213,138,.10),transparent)}
+.cal-head div.today b{color:var(--lumiere-pale)}
+.hours{position:relative}
+.hours span{display:block;height:var(--hour);font:600 .8125rem var(--titre);color:var(--brume-3);text-align:right;padding-right:10px;transform:translateY(-8px)}
+.daycol{position:relative;border-left:1px solid var(--filet);background-image:repeating-linear-gradient(180deg,transparent 0,transparent calc(var(--hour) - 1px),rgba(233,239,228,.06) calc(var(--hour) - 1px),rgba(233,239,228,.06) var(--hour))}
+.daycol.today{background-color:rgba(242,213,138,.03)}
+.now{position:absolute;left:0;right:0;height:2px;z-index:3;background:linear-gradient(90deg,var(--lumiere),rgba(242,213,138,.2));box-shadow:0 0 14px 2px rgba(242,213,138,.45);pointer-events:none}
+.now::before{content:"";position:absolute;left:-5px;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--lumiere-pale)}
+.ev{position:absolute;left:5px;right:5px;z-index:2;padding:7px 10px;border-radius:12px;border:1px solid var(--filet);background:#1F3A2B;text-align:left;cursor:pointer;overflow:hidden;display:grid;align-content:start;gap:1px;transition:border-color .2s,background .2s}
+.ev:hover{border-color:var(--brume-2)}
+.ev[aria-pressed="true"]{border-color:var(--lumiere);background:#28432F}
+.ev b{font:600 .9063rem/1.25 var(--titre);color:var(--brume)}
+.ev span{font-size:.75rem;color:var(--brume-2);line-height:1.35}
+.ev b{display:flex;align-items:center;gap:7px;min-width:0}
+.ev .sig{display:inline-flex;gap:4px;flex:none}
+.ev .hr{font:600 .8125rem/1.35 var(--titre);color:var(--brume-2);font-variant-numeric:tabular-nums}
+.ev .sig i{width:8px;height:8px;border-radius:50%}
+.ev.atelier{background:#2A2D3F;border-color:rgba(179,163,218,.35)}
+.ev.pending{background:transparent;border:1.5px dashed var(--lumiere)}
+.ev.pending b{color:var(--lumiere-pale)}
+.ev.done{opacity:.72}
+.i-int{background:var(--crepuscule)}
+.i-feel{background:var(--lumiere);box-shadow:0 0 6px var(--lumiere)}
+.i-first{background:var(--mousse)}
+.i-report{background:var(--alerte)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;padding:12px 16px;border-top:1px solid var(--filet);font-size:.8125rem;color:var(--brume-2)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.legend .k{display:inline-block;width:18px;height:10px;border-radius:3px;margin-right:6px;vertical-align:0;border:1.5px dashed var(--lumiere)}
+
+/* Liste du jour (téléphone) */
+.daypick{display:none;gap:6px;overflow-x:auto;padding:10px;border-bottom:1px solid var(--filet);scrollbar-width:none}
+.daypick button{flex:none;width:60px;padding:6px 0;border-radius:14px;border:1px solid var(--filet);background:none;cursor:pointer;font-size:.75rem;color:var(--brume-2)}
+.daypick button b{display:block;font:600 1.15rem var(--titre);color:var(--brume)}
+.daypick button[aria-pressed="true"]{border-color:var(--lumiere);background:rgba(242,213,138,.08)}
+.daylist{display:none;list-style:none;margin:0;padding:6px 10px 10px}
+.daylist li{border-bottom:1px solid var(--filet)}
+.daylist .ev{position:static;width:100%;margin:8px 0;padding:12px 14px}
+@media (max-width:760px){.cal{display:none}.daypick{display:flex}.daylist{display:block}}
+
+/* À traiter */
+.todo{display:grid;gap:22px;align-content:start}
+.todo section{border:1px solid var(--filet);border-radius:24px;background:rgba(18,34,26,.55);padding:16px 18px}
+.todo h2{display:flex;align-items:center;justify-content:space-between;gap:10px;font:500 1.15rem var(--titre);margin-bottom:10px}
+.todo h2 small{font:400 .8125rem var(--texte);color:var(--brume-3)}
+.item{padding:12px 0;border-top:1px solid var(--filet);display:grid;gap:6px}
+.item:first-of-type{border-top:0;padding-top:4px}
+.item .who{display:flex;align-items:center;gap:10px}
+.item .who b{display:block;font:600 1rem var(--titre)}
+.item .who span{font:600 .8125rem var(--titre);color:var(--brume-3);font-variant-numeric:tabular-nums}
+.item .who .avatar{font:700 .8125rem var(--texte);color:var(--nuit)}
+.item p{font-size:.9063rem;color:var(--brume-2)}
+.item .acts{display:flex;flex-wrap:wrap;gap:8px}
+.item .feel{padding-left:12px;border-left:1px solid var(--lumiere);color:var(--brume)}
+.empty{font-size:.9063rem;color:var(--brume-3);padding:6px 0}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}}
+
+/* Fiche séance et client (panneau latéral) */
+.drawer{position:fixed;z-index:60;top:0;right:0;bottom:0;width:min(560px,100%);background:#142820;border-left:1px solid var(--filet);transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+.drawer.open{transform:none}
+.scrim{position:fixed;inset:0;z-index:55;background:rgba(8,16,11,.55)}
+.d-head{display:flex;align-items:center;gap:14px;padding:18px 22px;border-bottom:1px solid var(--filet)}
+.d-head h2{font-size:1.5rem}
+.d-head p{font-size:.875rem;color:var(--brume-3)}
+.d-head .icon-btn{margin-left:auto;flex:none}
+.d-body{flex:1;overflow-y:auto;padding:20px 22px 30px;display:grid;gap:24px;align-content:start}
+.d-sec h3{font:500 1.05rem var(--titre);color:var(--mousse);margin-bottom:8px}
+.d-sec.intent h3{color:var(--crepuscule)}
+.d-sec .quote{font:500 1.2rem/1.5 var(--titre)}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:.9063rem}
+.facts dt{color:var(--brume-3)}
+.facts dd{margin:0}
+.notes{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.notes li{padding:12px 14px;border-radius:14px;background:var(--puits);border:1px solid var(--filet);font-size:.9375rem}
+.notes small{display:block;margin-top:6px;color:var(--brume-3);font-size:.8125rem}
+.hist{list-style:none;margin:0;padding:0}
+.hist li{display:grid;grid-template-columns:80px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:10px 0;border-top:1px solid var(--filet);font-size:.9063rem}
+.hist li b{font:600 .9375rem var(--titre)}
+.hist li span{font-family:var(--titre);font-variant-numeric:tabular-nums}
+.hist .st{font:600 .9375rem var(--titre);white-space:nowrap}
+.report-form{display:grid;gap:10px}
+textarea,input,select{font:400 .9688rem var(--texte);color:var(--brume);background:var(--puits);border:1px solid var(--filet);border-radius:14px;padding:11px 14px;width:100%}
+textarea{min-height:120px;resize:vertical}
+textarea::placeholder,input::placeholder{color:var(--brume-3)}
+textarea:focus,input:focus,select:focus{outline:2px solid var(--lumiere);outline-offset:1px;border-color:transparent}
+.published{padding:14px 16px;border-radius:16px;background:var(--voile);border:1px solid var(--filet);font-size:.9375rem}
+.published small{display:block;margin-top:6px;color:var(--brume-3)}
+.d-acts{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Clients */
+.table-wrap{overflow-x:auto;border:1px solid var(--filet);border-radius:24px;background:rgba(18,34,26,.55)}
+table{width:100%;border-collapse:collapse;font-size:.9375rem;font-variant-numeric:tabular-nums}
+th{text-align:left;font:400 .8125rem var(--texte);color:var(--brume-3);padding:14px 16px;border-bottom:1px solid var(--filet);white-space:nowrap}
+th button{background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit}
+th button[aria-sort]::after{content:" ↓";color:var(--lumiere)}
+td{padding:14px 16px;border-bottom:1px solid var(--filet);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:rgba(233,239,228,.03)}
+td.name b{font:600 1.05rem var(--titre)}
+td.num{font:600 1rem var(--titre);font-variant-numeric:tabular-nums}
+.nowli{position:relative;display:flex;align-items:center;gap:10px;padding:8px 0;font:600 .8125rem var(--titre);color:var(--lumiere-pale);border-bottom:0!important}
+.nowli::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,var(--lumiere),rgba(242,213,138,.15));box-shadow:0 0 12px 2px rgba(242,213,138,.4)}
+@media (max-width:760px){table thead{display:none}tbody tr{display:grid;grid-template-columns:1fr auto;gap:4px 14px;padding:14px 16px;border-bottom:1px solid var(--filet)}tbody td{padding:0;border:0}td.name{grid-column:1/-1}tbody td[data-l]::before{content:attr(data-l)" ";font:400 .8125rem var(--texte);color:var(--brume-3)}tbody td.c-sessions{display:none}}
+td.name small{display:block;color:var(--brume-3);font-size:.8125rem}
+.trend{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.trend.up{color:var(--mousse)}.trend.down{color:var(--alerte)}.trend.flat{color:var(--brume-2)}
+.filter{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.filter button{padding:7px 14px;border-radius:999px;border:1px solid var(--filet);background:none;cursor:pointer;font-size:.875rem;color:var(--brume-2)}
+.filter button[aria-pressed="true"]{border-color:var(--lumiere);color:var(--brume);background:rgba(242,213,138,.08)}
+
+/* Messages */
+.inbox{display:grid;grid-template-columns:300px minmax(0,1fr);border:1px solid var(--filet);border-radius:24px;background:rgba(18,34,26,.55);min-height:560px;overflow:hidden;margin-bottom:60px}
+.convs{list-style:none;margin:0;padding:0;border-right:1px solid var(--filet);overflow-y:auto}
+.convs button{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:14px 16px;border:0;border-bottom:1px solid var(--filet);background:none;text-align:left;cursor:pointer}
+.convs button[aria-pressed="true"]{background:rgba(242,213,138,.09)}
+.convs button[aria-pressed="true"] b{color:var(--lumiere-pale)}
+.conv-top{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--filet)}
+.conv-top b{display:block;font:600 1.1rem var(--titre)}
+.conv-top .link{font-size:.8125rem;margin-left:auto}
+.convs b{font:600 .9688rem var(--titre)}
+.convs span.last{display:block;font-size:.8125rem;color:var(--brume-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv{display:flex;flex-direction:column;min-height:560px}
+.thread{flex:1;padding:18px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;max-height:520px}
+.bubble{max-width:80%;padding:11px 15px;border-radius:18px 18px 18px 6px;background:rgba(233,239,228,.07);border:1px solid rgba(233,239,228,.1);font-size:.9375rem}
+.bubble.me{align-self:flex-end;border-radius:18px 18px 6px 18px;background:rgba(242,213,138,.13);border-color:rgba(242,213,138,.26)}
+.bubble time{display:block;font-size:.75rem;color:var(--brume-3);margin-top:4px}
+.compose{display:flex;gap:8px;padding:12px;border-top:1px solid var(--filet)}
+.compose textarea{min-height:44px;border-radius:22px}
+@media (max-width:760px){.inbox{grid-template-columns:1fr}.convs{border-right:0;border-bottom:1px solid var(--filet)}}
+.page-head{padding-block:24px 18px}
+.page-head h1{font-size:clamp(1.6rem,3vw,2.2rem)}
+.page-head p{color:var(--brume-2);margin-top:4px}
+.demo{padding-block:20px 30px;font-size:.8125rem;color:var(--brume-3);border-top:1px solid var(--filet)}
+.toast{position:fixed;z-index:80;left:20px;right:20px;margin-inline:auto;width:fit-content;max-width:calc(100% - 40px);bottom:calc(24px + env(safe-area-inset-bottom,0px));padding:12px 20px;border-radius:18px;background:#1E3829;border:1px solid var(--lumiere);font-size:.9375rem;text-align:center;opacity:0;transform:translateY(20px);transition:opacity .3s,transform .3s;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.drawer,.toast{transition:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="18" fill="none" stroke="var(--brume-2)" stroke-width="1.2"/>
+    <circle cx="20" cy="20" r="11" fill="rgba(242,213,138,.16)"/>
+    <path d="M12 27c2-9 8-14 17-15-1 9-6 15-17 15z" fill="none" stroke="var(--mousse)" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M12 27l12-10" stroke="var(--mousse)" stroke-width="1.2" stroke-linecap="round"/>
+    <circle cx="26" cy="13" r="2.6" fill="var(--lumiere)"/>
+  </symbol>
+</svg>
+<canvas id="veil" aria-hidden="true"></canvas>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>Clairière</b><small>ESPACE PRATICIENNE</small></span></a>
+    <nav class="views" aria-label="Rubriques">
+      <a href="#planning" data-view="planning">Planning</a>
+      <a href="#clients" data-view="clients">Clients</a>
+      <a href="#messages" data-view="messages">Messages<span class="badge" id="msgBadge">3</span></a>
+    </nav>
+    <div class="acct">
+      <button class="acct-btn" id="acctBtn" type="button" aria-expanded="false" aria-controls="acctMenu"><span class="avatar">C</span><span class="name">Camille</span></button>
+      <div class="acct-menu" id="acctMenu" hidden>
+        <a href="#planning" data-view="planning">Mon planning</a>
+        <a href="#clients" data-view="clients">Mes clients</a>
+        <a href="#messages" data-view="messages">Messages</a>
+        <a href="espace-client.html">Voir l'espace client</a>
+        <button type="button" id="reset">Réinitialiser la démonstration</button>
+        <button type="button" id="logout">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- Planning -->
+  <div id="planning" data-v>
+    <div class="weekbar">
+      <h1 id="weekTitle">Semaine du …</h1>
+      <div class="nav">
+        <button class="icon-btn" type="button" id="prevWeek" aria-label="Semaine précédente"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 3L5 8l5 5"/></svg></button>
+        <button class="btn soft tiny" type="button" id="thisWeek">Cette semaine</button>
+        <button class="icon-btn" type="button" id="nextWeek" aria-label="Semaine suivante"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg></button>
+      </div>
+    </div>
+
+    <section class="overview" aria-label="Vue d'ensemble de vos clients" id="overview"></section>
+
+    <div class="layout">
+      <div class="planning">
+        <div class="cal" id="cal"></div>
+        <div class="daypick" id="daypick" role="group" aria-label="Jour"></div>
+        <ul class="daylist" id="daylist"></ul>
+        <div class="legend"><span><i class="i-int"></i>Intention posée</span><span><i class="i-feel"></i>Nouveau ressenti partagé</span><span><i class="i-first"></i>Première séance</span><span><i class="i-report"></i>Compte rendu à écrire</span><span><span class="k"></span>Demande à confirmer</span></div>
+      </div>
+      <aside class="todo" aria-label="À traiter" id="todo"></aside>
+    </div>
+  </div>
+
+  <!-- Clients -->
+  <div id="clients" data-v hidden>
+    <div class="page-head"><h1>Mes clients</h1><p>Comment chacun se sent au fil des séances, d'après son état noté avant et après.</p></div>
+    <div class="filter" role="group" aria-label="Filtrer" id="filter">
+      <button type="button" data-f="all" aria-pressed="true">Tous</button>
+      <button type="button" data-f="up" aria-pressed="false">Vont mieux</button>
+      <button type="button" data-f="down" aria-pressed="false">À suivre</button>
+      <button type="button" data-f="quiet" aria-pressed="false">Sans nouvelles</button>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">Client</th><th scope="col">Séances</th><th scope="col"><button type="button" aria-sort="descending">Dernière séance</button></th><th scope="col">État moyen</th><th scope="col">Tendance</th><th scope="col">Ressentis partagés</th></tr></thead>
+      <tbody id="clientRows"></tbody>
+    </table></div>
+    <p class="demo" style="border:0">Cliquez sur un client pour ouvrir sa fiche.</p>
+  </div>
+
+  <!-- Messages -->
+  <div id="messages" data-v hidden>
+    <div class="page-head"><h1>Messages</h1><p>Les conversations avec vos clients.</p></div>
+    <div class="inbox">
+      <ul class="convs" id="convs"></ul>
+      <div class="conv">
+        <div class="conv-top" id="convTop"></div>
+        <div class="thread" id="thread" aria-live="polite"></div>
+        <form class="compose" id="compose"><label class="sr" for="msg">Votre réponse</label><textarea id="msg" placeholder="Répondre…"></textarea><button class="btn" type="submit">Envoyer</button></form>
+      </div>
+    </div>
+  </div>
+  <p class="demo">Maquette de démonstration · clients et données d'exemple, enregistrés seulement dans ce navigateur.</p>
+</main>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" aria-labelledby="dTitle" aria-hidden="true">
+  <div class="d-head"><span class="avatar client" id="dAvatar">L</span><div><h2 id="dTitle">—</h2><p id="dSub"></p></div><button class="icon-btn" type="button" id="dClose" aria-label="Fermer la fiche"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
+  <div class="d-body" id="dBody"></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  /* Accès réservé au compte de test « admin » (vérification locale, pas une vraie sécurité) */
+  let ok=false;try{ok=sessionStorage.getItem('clairiere-admin')==='1'}catch(e){}
+  if(!ok){location.replace('espace-client.html#connexion');return}
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function toast(t){const el=$('toast');el.textContent=t;el.classList.add('show');clearTimeout(toast.k);toast.k=setTimeout(()=>el.classList.remove('show'),2600)}
+
+  /* ---------- Komorebi : le voile de lumière, discret en registre de travail ---------- */
+  function rand(seed){return function(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}}
+  (function veil(c){const ctx=c.getContext('2d');let W,H,spots=[];
+    function build(){const dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);const r=rand(21);
+      spots=Array.from({length:Math.round(Math.min(30,W*H/40000))},()=>({bx:W*r(),by:H*r(),r:30+r()*70,p:r()*6.28,s:.3+r()*.7}))}
+    function draw(time){const t=reduce?4:time/1000;ctx.clearRect(0,0,W,H);ctx.globalCompositeOperation='lighter';
+      spots.forEach(s=>{const w=Math.sin(t*.3*s.s+s.p)*.5+.5,x=s.bx+Math.sin(t*.2+s.p)*14,y=s.by+Math.cos(t*.17+s.p)*10,a=.05+.06*w,g=ctx.createRadialGradient(x,y,0,x,y,s.r);
+        g.addColorStop(0,'rgba(251,236,190,'+a.toFixed(3)+')');g.addColorStop(1,'rgba(242,213,138,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,s.r,0,6.2832);ctx.fill()});
+      ctx.globalCompositeOperation='source-over';if(!reduce)requestAnimationFrame(draw)}
+    build();draw(0);addEventListener('resize',()=>{build();if(reduce)draw(0)});
+  })($('veil'));
+
+  /* ---------- Données d'exemple ---------- */
+  const DAY=864e5,now=new Date();
+  const monday=d=>{const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());const wd=(x.getDay()+6)%7;x.setDate(x.getDate()-wd);return x};
+  const W0=monday(now);
+  const at=(dayOffset,h,m)=>new Date(W0.getFullYear(),W0.getMonth(),W0.getDate()+dayOffset,h,m||0).toISOString();
+  const SEED={
+    clients:[
+      {id:'lea',name:'Léa Martin',since:'octobre',why:'Fatigue et sommeil agité depuis la rentrée.',know:'',pref:'Au cabinet',hist:[[-37,5,7],[-23,3,6],[-9,4,7]],feel:[{t:-9,txt:"Chaleur dans les mains de Camille, puis une grosse envie de dormir. Une émotion est montée vers la fin."},{t:-1,txt:"Deux nuits complètes depuis la dernière séance, moins de pensées le soir.",fresh:true}]},
+      {id:'marc',name:'Marc Dubois',since:'septembre',why:'Stress au travail, tensions dans les épaules.',know:'Mal de dos chronique, suivi par un kiné.',pref:'Au cabinet',hist:[[-42,4,7],[-28,5,6],[-14,4,5],[-1,3,4]],feel:[{t:-13,txt:"Moins détendu que d'habitude, j'ai eu du mal à lâcher prise.",fresh:true}]},
+      {id:'ines',name:'Inès Roux',since:'novembre',why:'Simple curiosité, envie de découvrir.',know:'',pref:'En visio',hist:[],feel:[]},
+      {id:'paul',name:'Paul Girard',since:'juin',why:'Deuil récent.',know:'',pref:'Au cabinet',hist:[[-120,2,5],[-98,3,6],[-63,4,7]],feel:[]},
+      {id:'sofia',name:'Sofia Benali',since:'août',why:'Grossesse, envie de calme.',know:'Enceinte de 6 mois.',pref:'En visio',hist:[[-30,5,8],[-16,6,8]],feel:[{t:-15,txt:"Le bébé a beaucoup bougé pendant la séance, puis un grand calme.",fresh:true}]},
+      {id:'jean',name:'Jean Morel',since:'mai',why:'Formation Reiki niveau 1.',know:'',pref:'Au cabinet',hist:[[-80,6,8]],feel:[]},
+      {id:'chloe',name:'Chloé Petit',since:'septembre',why:'Anxiété, besoin d’ancrage.',know:'',pref:'Au cabinet',hist:[[-35,3,6],[-21,4,7],[-7,4,8]],feel:[{t:-6,txt:"Je me sens plus stable cette semaine.",fresh:false}]}
+    ],
+    sessions:[
+      {id:'a1',client:'chloe',d:at(1,9,30),dur:75,soin:'Séance de Reiki',lieu:'cabinet',status:'confirmed',intention:"Garder cette stabilité."},
+      {id:'a2',client:'marc',d:at(1,14,0),dur:90,soin:'Soin énergétique complet',lieu:'cabinet',status:'confirmed',intention:''},
+      {id:'a3',client:'sofia',d:at(2,10,0),dur:60,soin:'Reiki à distance',lieu:'visio',status:'confirmed',intention:"Préparer l'arrivée du bébé dans la sérénité."},
+      {id:'a4',client:'ines',d:at(2,15,30),dur:75,soin:'Première séance',lieu:'cabinet',status:'confirmed',intention:''},
+      {id:'a5',client:'lea',d:at(3,10,0),dur:75,soin:'Séance de Reiki',lieu:'cabinet',status:'confirmed',intention:"Retrouver un sommeil plus calme."},
+      {id:'a6',client:'paul',d:at(3,16,0),dur:75,soin:'Séance de Reiki',lieu:'cabinet',status:'pending',intention:''},
+      {id:'a7',client:null,d:at(4,14,0),dur:150,soin:"Cercle d'automne",lieu:'visio',status:'atelier',inscrits:7,places:10},
+      {id:'a8',client:'jean',d:at(5,9,30),dur:90,soin:'Soin énergétique complet',lieu:'cabinet',status:'pending',intention:''},
+      {id:'a9',client:'marc',d:at(0,11,0),dur:90,soin:'Séance de Reiki',lieu:'cabinet',status:'done',report:null}
+    ],
+    messages:{
+      lea:[{me:false,t:-1,txt:"Bonjour Camille, j'ai beaucoup mieux dormi ! À jeudi."}],
+      marc:[{me:false,t:-1,txt:"Est-ce qu'on peut parler de mes tensions au dos demain ?"}],
+      sofia:[{me:true,t:-5,txt:"Pensez à vous installer confortablement, avec des coussins."},{me:false,t:-2,txt:"Merci, c'est noté pour mercredi."}],
+      paul:[{me:false,t:0,txt:"Je souhaiterais reprendre les séances, je vous ai envoyé une demande."}]
+    },
+    unread:['lea','marc','paul']
+  };
+  const KEY='clairiere-pro-demo';let S;
+  try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+  if(!S||!S.clients)S=JSON.parse(JSON.stringify(SEED));
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+  const C=id=>S.clients.find(c=>c.id===id);
+  const fmtDayLong=d=>{const s=new Date(d).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});return s.charAt(0).toUpperCase()+s.slice(1)};
+  const fmtShort=d=>new Date(d).toLocaleDateString('fr-FR',{day:'numeric',month:'short'});
+  const fmtHour=d=>new Date(d).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}).replace(':','\u00a0h\u00a0');
+  const relDay=n=>new Date(now.getFullYear(),now.getMonth(),now.getDate()+n);
+  const initials=n=>n.split(' ').map(x=>x[0]).join('').slice(0,2);
+  const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+  const fr=n=>n.toFixed(1).replace('.',',');
+
+  /* ---------- Indicateurs : la vue d'ensemble en phrases ---------- */
+  function stats(c){const h=c.hist;if(!h.length)return {n:0};const gains=h.map(x=>x[2]-x[1]),last=h[h.length-1],prev=h[h.length-2];
+    const trend=prev?(last[2]-prev[2]):0,lastDays=-last[0];
+    return {n:h.length,before:mean(h.map(x=>x[1])),after:mean(h.map(x=>x[2])),gain:mean(gains),trend,lastDays,dir:h.length<2?'flat':trend<0?'down':trend>0?'up':'flat'}}
+  function spark(vals){if(vals.length<2)return '';const w=120,h=28,mx=10,x=i=>i*(w-8)/(vals.length-1)+4,y=v=>h-4-(v-1)*(h-8)/(mx-1);
+    return '<svg class="spark" width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" aria-hidden="true"><polyline fill="none" stroke="rgba(242,213,138,.6)" stroke-width="1.5" points="'+vals.map((v,i)=>x(i)+','+y(v)).join(' ')+'"/>'+vals.map((v,i)=>'<circle cx="'+x(i)+'" cy="'+y(v)+'" r="2.5" fill="#FBF1D2"/>').join('')+'</svg>'}
+  function renderOverview(){
+    const all=S.clients.flatMap(c=>c.hist.slice(-3));
+    const b=mean(all.map(x=>x[1])),a=mean(all.map(x=>x[2]));
+    const down=S.clients.filter(c=>stats(c).dir==='down'),quiet=S.clients.filter(c=>{const s=stats(c);return s.n&&s.lastDays>42&&!S.sessions.some(x=>x.client===c.id&&x.status!=='done')});
+    const recentAfter=S.clients.flatMap(c=>c.hist).sort((x,y)=>x[0]-y[0]).slice(-8).map(x=>x[2]);
+    $('overview').innerHTML=
+      '<div class="obs"><span class="dot" style="background:var(--lumiere);box-shadow:0 0 10px var(--lumiere)"></span><div><p>Vos clients arrivent en moyenne à <span class="num">'+fr(b)+'</span> et repartent à <span class="num">'+fr(a)+'</span> sur 10, sur leurs trois dernières séances.</p></div></div>'+
+      '<div class="obs"><span class="dot" style="background:var(--alerte)"></span><div><p>'+(down.length?'<strong>'+down.map(c=>c.name).join(', ')+'</strong> '+(down.length>1?'se sentent':'se sent')+' moins bien après la dernière séance que la précédente.':'Aucun client ne se sent moins bien que la fois précédente.')+'</p>'+(down.length?'<button class="link" type="button" data-client="'+down[0].id+'">Ouvrir la fiche</button>':'')+'</div></div>'+
+      '<div class="obs"><span class="dot" style="background:var(--brume-3)"></span><div><p>'+(quiet.length?'<strong>'+quiet.map(c=>c.name).join(', ')+'</strong> : pas de séance depuis plus de six semaines, ni de rendez-vous prévu.':'Tous vos clients réguliers ont un rendez-vous prévu.')+'</p>'+(quiet.length?'<button class="link" type="button" data-write="'+quiet[0].id+'">Prendre des nouvelles</button>':'')+'</div></div>';
+  }
+
+  /* ---------- Planning ---------- */
+  let weekOffset=0,selected=null,dayIdx=Math.min(4,Math.max(0,((now.getDay()+6)%7)-1));
+  const H0=9,H1=19;
+  const evClass=s=>'ev'+(s.status==='pending'?' pending':'')+(s.status==='atelier'?' atelier':'')+(s.lieu==='visio'&&s.status!=='atelier'?' visio':'')+(s.status==='done'?' done':'');
+  function signals(s){if(!s.client)return '';const c=C(s.client),out=[];
+    if(s.intention)out.push('<i class="i-int" title="Intention posée"></i>');
+    if(c.feel.some(f=>f.fresh))out.push('<i class="i-feel" title="Nouveau ressenti partagé"></i>');
+    if(!c.hist.length)out.push('<i class="i-first" title="Première séance"></i>');
+    if(s.status==='done'&&!s.report)out.push('<i class="i-report" title="Compte rendu à écrire"></i>');
+    return out.length?'<span class="sig">'+out.join('')+'</span>':''}
+  function sigText(s){if(!s.client)return [];const c=C(s.client),o=[];if(s.intention)o.push('intention posée');if(c.feel.some(f=>f.fresh))o.push('nouveau ressenti partagé');if(!c.hist.length)o.push('première séance');if(s.status==='done'&&!s.report)o.push('compte rendu à écrire');return o}
+  function evLabel(s){const who=s.client?C(s.client).name:s.soin;return [who,s.soin,fmtHour(s.d),s.lieu==='visio'?'en visio':'',s.status==='pending'?'demande à confirmer':''].concat(sigText(s)).filter(Boolean).join(', ')}
+  function evInner(s){const who=s.client?C(s.client).name:s.soin,tags=(s.lieu==='visio'?' · visio':'')+(s.status==='pending'?' · à confirmer':'');
+    return '<b>'+esc(who)+signals(s)+'</b><span class="hr">'+fmtHour(s.d)+tags+'</span>'+(s.dur>=90?'<span>'+(s.client?esc(s.soin):(s.inscrits+'/'+s.places+' inscrits'))+'</span>':'')}
+  function weekDays(){const base=new Date(W0);base.setDate(base.getDate()+weekOffset*7);return [1,2,3,4,5].map(i=>{const d=new Date(base);d.setDate(d.getDate()+i);return d})}
+  function inDay(s,d){const x=new Date(s.d);return x.getFullYear()===d.getFullYear()&&x.getMonth()===d.getMonth()&&x.getDate()===d.getDate()}
+  function renderPlanning(){
+    const days=weekDays(),from=days[0],to=days[4];
+    $('weekTitle').textContent='Semaine du '+from.getDate()+(from.getMonth()!==to.getMonth()?' '+from.toLocaleDateString('fr-FR',{month:'long'}):'')+' au '+to.toLocaleDateString('fr-FR',{day:'numeric',month:'long'});
+    const isToday=d=>d.toDateString()===now.toDateString();
+    let g='<div class="cal-head"><div></div>'+days.map(d=>'<div class="'+(isToday(d)?'today':'')+'">'+d.toLocaleDateString('fr-FR',{weekday:'long'})+'<b>'+d.getDate()+' '+d.toLocaleDateString('fr-FR',{month:'short'})+'</b></div>').join('')+'</div>';
+    g+='<div class="hours">'+Array.from({length:H1-H0},(_,i)=>'<span>'+(H0+i)+' h</span>').join('')+'</div>';
+    days.forEach(d=>{g+='<div class="daycol'+(isToday(d)?' today':'')+'" style="height:calc(var(--hour) * '+(H1-H0)+')">';
+      S.sessions.filter(s=>inDay(s,d)).forEach(s=>{const t=new Date(s.d),top=(t.getHours()+t.getMinutes()/60-H0),h=s.dur/60;
+        g+='<button type="button" class="'+evClass(s)+'" data-s="'+s.id+'" aria-pressed="'+(selected===s.id)+'" aria-label="'+esc(evLabel(s))+'" style="top:calc(var(--hour) * '+top+' + 2px);height:calc(var(--hour) * '+h+' - 4px)">'+evInner(s)+'</button>'});
+      if(isToday(d)){const hh=now.getHours()+now.getMinutes()/60;if(hh>=H0&&hh<=H1)g+='<span class="now" style="top:calc(var(--hour) * '+(hh-H0)+')" aria-hidden="true"></span>'}
+      g+='</div>'});
+    $('cal').innerHTML=g;
+    $('daypick').innerHTML=days.map((d,i)=>'<button type="button" data-day="'+i+'" aria-pressed="'+(i===dayIdx)+'">'+d.toLocaleDateString('fr-FR',{weekday:'short'})+'<b>'+d.getDate()+'</b></button>').join('');
+    const list=S.sessions.filter(s=>inDay(s,days[dayIdx])).sort((a,b)=>new Date(a.d)-new Date(b.d));
+    let items=list.map(s=>({t:new Date(s.d),html:'<li><button type="button" class="'+evClass(s)+'" data-s="'+s.id+'" aria-label="'+esc(evLabel(s))+'">'+evInner(s)+'</button></li>'}));
+    if(days[dayIdx].toDateString()===now.toDateString())items.push({t:now,html:'<li class="nowli" aria-label="Maintenant, '+fmtHour(now)+'">'+fmtHour(now)+'</li>'});
+    items.sort((a,b)=>a.t-b.t);
+    $('daylist').innerHTML=list.length?items.map(x=>x.html).join(''):'<li class="empty" style="padding:16px 4px">Aucune séance ce jour-là.</li>';
+  }
+  $('prevWeek').onclick=()=>{weekOffset--;renderPlanning()};$('nextWeek').onclick=()=>{weekOffset++;renderPlanning()};$('thisWeek').onclick=()=>{weekOffset=0;renderPlanning()};
+  $('daypick').addEventListener('click',e=>{const b=e.target.closest('[data-day]');if(b){dayIdx=+b.dataset.day;renderPlanning()}});
+
+  /* ---------- À traiter ---------- */
+  function renderTodo(){
+    const pend=S.sessions.filter(s=>s.status==='pending').sort((a,b)=>new Date(a.d)-new Date(b.d));
+    const toWrite=S.sessions.filter(s=>s.status==='done'&&!s.report);
+    const feels=S.clients.flatMap(c=>c.feel.filter(f=>f.fresh).map(f=>({c,f}))).sort((a,b)=>b.f.t-a.f.t);
+    let h='<section><h2>Demandes à confirmer <small>'+pend.length+'</small></h2>'+(pend.length?pend.map(s=>{const c=C(s.client);return '<div class="item"><div class="who"><span class="avatar client">'+initials(c.name)+'</span><div><b>'+esc(c.name)+'</b><span>'+fmtDayLong(s.d)+' · '+fmtHour(s.d)+'</span></div></div><p>'+esc(s.soin)+', '+(s.lieu==='visio'?'en visio':'au cabinet')+'</p><div class="acts"><button class="btn tiny" type="button" data-confirm="'+s.id+'">Confirmer</button><button class="btn soft tiny" type="button" data-s="'+s.id+'">Voir la fiche</button></div></div>'}).join(''):'<p class="empty">Aucune demande en attente.</p>')+'</section>';
+    h+='<section><h2>Messages non lus <small>'+S.unread.length+'</small></h2>'+(S.unread.length?S.unread.map(id=>{const c=C(id),m=S.messages[id].filter(x=>!x.me).slice(-1)[0];return '<div class="item"><div class="who"><span class="avatar client">'+initials(c.name)+'</span><div><b>'+esc(c.name)+'</b><span>'+fmtShort(relDay(m.t))+'</span></div></div><p>'+esc(m.txt)+'</p><div class="acts"><button class="btn tiny" type="button" data-write="'+id+'">Répondre</button></div></div>'}).join(''):'<p class="empty">Aucun message en attente.</p>')+'</section>';
+    h+='<section><h2>Comptes rendus à écrire <small>'+toWrite.length+'</small></h2>'+(toWrite.length?toWrite.map(s=>{const c=C(s.client);return '<div class="item"><div class="who"><span class="avatar client">'+initials(c.name)+'</span><div><b>'+esc(c.name)+'</b><span>'+fmtDayLong(s.d)+' · '+esc(s.soin)+'</span></div></div><div class="acts"><button class="btn tiny" type="button" data-s="'+s.id+'" data-focus="report">Écrire le compte rendu</button></div></div>'}).join(''):'<p class="empty">Tous les comptes rendus sont publiés.</p>')+'</section>';
+    h+='<section><h2>Ressentis partagés <small>'+feels.length+' nouveaux</small></h2>'+(feels.length?feels.slice(0,2).map(({c,f})=>'<div class="item"><div class="who"><span class="avatar client">'+initials(c.name)+'</span><div><b>'+esc(c.name)+'</b><span>'+fmtShort(relDay(f.t))+'</span></div></div><p class="feel">'+esc(f.txt)+'</p><div class="acts"><button class="btn soft tiny" type="button" data-client="'+c.id+'">Ouvrir la fiche</button><button class="btn soft tiny" type="button" data-seen="'+c.id+'">Marquer comme lu</button></div></div>').join(''):'<p class="empty">Rien de nouveau.</p>')+'</section>';
+    $('todo').innerHTML=h;$('msgBadge').textContent=S.unread.length;$('msgBadge').hidden=!S.unread.length;
+  }
+
+  /* ---------- Fiche séance / client ---------- */
+  const drawer=$('drawer'),scrim=$('scrim');let lastFocus=null;
+  function openDrawer(html,title,sub,ini){$('dTitle').textContent=title;$('dSub').textContent=sub;$('dAvatar').textContent=ini;$('dBody').innerHTML=html;
+    lastFocus=document.activeElement;scrim.hidden=false;drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');setTimeout(()=>$('dClose').focus(),50)}
+  function closeDrawer(){drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');scrim.hidden=true;selected=null;renderPlanning();if(lastFocus)lastFocus.focus()}
+  $('dClose').onclick=closeDrawer;scrim.onclick=closeDrawer;
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))closeDrawer()});
+  function clientBlocks(c){const st=stats(c);
+    return '<div class="d-sec"><h3>Qui est '+esc(c.name.split(' ')[0])+'</h3><dl class="facts"><dt>Ce qui l’amène</dt><dd>'+esc(c.why||'—')+'</dd><dt>À savoir</dt><dd>'+esc(c.know||'Rien de signalé')+'</dd><dt>Préférence</dt><dd>'+esc(c.pref)+'</dd><dt>Suivi depuis</dt><dd>'+esc(c.since)+'</dd></dl></div>'+
+      '<div class="d-sec"><h3>Ressentis partagés</h3>'+(c.feel.length?'<ul class="notes">'+c.feel.slice().reverse().map(f=>'<li>'+esc(f.txt)+'<small>'+fmtShort(relDay(f.t))+(f.fresh?' · nouveau':'')+'</small></li>').join('')+'</ul>':'<p class="empty">Aucun ressenti partagé pour l’instant. Le client choisit ce qu’il partage.</p>')+'</div>'+
+      '<div class="d-sec"><h3>Son état au fil des séances</h3>'+(st.n?'<ul class="hist">'+c.hist.slice().reverse().map(x=>'<li><b>'+fmtShort(relDay(x[0]))+'</b><span>Avant '+x[1]+' · après '+x[2]+'</span><span class="st">+'+(x[2]-x[1])+'</span></li>').join('')+'</ul><p style="margin-top:8px;color:var(--brume-2);font-size:.9063rem">En moyenne '+fr(st.before)+' → '+fr(st.after)+' sur 10.</p>':'<p class="empty">Première séance : pas encore d’historique.</p>')+'</div>'}
+  function openSession(id,focusReport){const s=S.sessions.find(x=>x.id===id);selected=id;renderPlanning();
+    if(!s.client){openDrawer('<div class="d-sec"><h3>Atelier</h3><p>'+s.inscrits+' inscrits sur '+s.places+' places, '+(s.lieu==='visio'?'en visio':'au cabinet')+'.</p></div><div class="d-acts"><button class="btn soft" type="button" data-toast="Liste des inscrits (démonstration)">Voir les inscrits</button></div>',s.soin,fmtDayLong(s.d)+' · '+fmtHour(s.d),'A');return}
+    const c=C(s.client);let html='';
+    if(s.status==='pending')html+='<div class="d-sec"><h3>Demande à confirmer</h3><p>'+esc(s.soin)+', '+fmtDayLong(s.d)+' à '+fmtHour(s.d)+', '+(s.lieu==='visio'?'en visio':'au cabinet')+'.</p><div class="d-acts" style="margin-top:10px"><button class="btn" type="button" data-confirm="'+s.id+'">Confirmer</button><button class="btn soft" type="button" data-write="'+c.id+'">Proposer un autre créneau</button></div></div>';
+    html+='<div class="d-sec intent"><h3>Son intention pour cette séance</h3>'+(s.intention?'<p class="quote">«\u00a0'+esc(s.intention)+'\u00a0»</p>':'<p class="empty">Pas d’intention posée.</p>')+'</div>';
+    if(s.status==='done')html+='<div class="d-sec"><h3>Compte rendu</h3>'+(s.report?'<div class="published">'+esc(s.report.txt)+'<small>Publié le '+fmtShort(s.report.t)+' · visible dans l’espace de '+esc(c.name.split(' ')[0])+'</small></div>':'<form class="report-form" data-report="'+s.id+'"><label class="sr" for="rep">Compte rendu</label><textarea id="rep" placeholder="Ce que vous avez observé, ce qui a bougé, ce que vous conseillez pour les jours qui viennent…"></textarea><div class="d-acts"><button class="btn" type="submit">Publier pour '+esc(c.name.split(' ')[0])+'</button><button class="btn soft" type="button" data-draft="'+s.id+'">Garder en brouillon</button></div></form>')+'</div>';
+    html+=clientBlocks(c)+'<div class="d-acts"><button class="btn soft" type="button" data-write="'+c.id+'">Écrire à '+esc(c.name.split(' ')[0])+'</button></div>';
+    openDrawer(html,c.name,s.soin+' · '+fmtDayLong(s.d)+' · '+fmtHour(s.d),initials(c.name));
+    if(focusReport)setTimeout(()=>{const t=$('rep');if(t)t.focus()},120)}
+  function openClient(id){const c=C(id),next=S.sessions.filter(s=>s.client===id&&s.status!=='done').sort((a,b)=>new Date(a.d)-new Date(b.d))[0];
+    openDrawer('<div class="d-sec"><h3>Prochaine séance</h3><p>'+(next?esc(next.soin)+', '+fmtDayLong(next.d)+' à '+fmtHour(next.d)+(next.status==='pending'?' (à confirmer)':''):'Aucune séance prévue.')+'</p></div>'+clientBlocks(c)+'<div class="d-acts"><button class="btn soft" type="button" data-write="'+id+'">Écrire à '+esc(c.name.split(' ')[0])+'</button></div>',c.name,'Fiche client',initials(c.name))}
+
+  /* ---------- Clients ---------- */
+  let filt='all';
+  function renderClients(){const rows=S.clients.map(c=>({c,s:stats(c)})).filter(({c,s})=>filt==='all'||(filt==='up'&&s.dir==='up')||(filt==='down'&&s.dir==='down')||(filt==='quiet'&&s.n&&s.lastDays>42)).sort((a,b)=>(a.s.lastDays??999)-(b.s.lastDays??999));
+    $('clientRows').innerHTML=rows.map(({c,s})=>'<tr data-client="'+c.id+'" tabindex="0"><td class="name"><b>'+esc(c.name)+'</b><small>'+esc(c.why)+'</small></td><td class="num c-sessions">'+s.n+'</td><td class="num" data-l="Dernière">'+(s.n?fmtShort(relDay(-s.lastDays)):'—')+'</td><td class="num" data-l="État">'+(s.n?fr(s.before)+' → '+fr(s.after):'—')+'</td><td>'+(s.n<2?'<span class="trend flat">Pas encore</span>':'<span class="trend '+s.dir+'">'+spark(c.hist.map(x=>x[2]))+(s.dir==='up'?'Va mieux':s.dir==='down'?'À suivre':'Stable')+'</span>')+'</td><td>'+c.feel.length+(c.feel.some(f=>f.fresh)?' · <span style="color:var(--lumiere)">nouveau</span>':'')+'</td></tr>').join('')||'<tr><td colspan="6" class="empty">Aucun client dans ce filtre.</td></tr>'}
+  $('filter').addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b)return;filt=b.dataset.f;$('filter').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderClients()});
+  $('clientRows').addEventListener('keydown',e=>{const r=e.target.closest('tr[data-client]');if(r&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openClient(r.dataset.client)}});
+
+  /* ---------- Messages ---------- */
+  let conv='lea';
+  function renderConvs(){const ids=Object.keys(S.messages);$('convs').innerHTML=ids.map(id=>{const c=C(id),m=S.messages[id].slice(-1)[0];return '<li><button type="button" data-conv="'+id+'" aria-pressed="'+(id===conv)+'"><span class="avatar client">'+initials(c.name)+'</span><span><b>'+esc(c.name)+'</b><span class="last">'+esc(m.txt)+'</span></span>'+(S.unread.includes(id)?'<span class="badge">1</span>':'')+'</button></li>'}).join('')}
+  function renderThread(){const c=C(conv);$('convTop').innerHTML='<span class="avatar client">'+initials(c.name)+'</span><div><b>'+esc(c.name)+'</b></div><button class="link" type="button" data-client="'+c.id+'">Ouvrir la fiche</button>';$('thread').innerHTML=(S.messages[conv]||[]).map(m=>'<div class="bubble'+(m.me?' me':'')+'">'+esc(m.txt)+'<time>'+fmtShort(relDay(m.t))+'</time></div>').join('')||'<p class="empty">Commencez la conversation avec '+esc(c.name)+'.</p>';$('msg').placeholder='Répondre à '+c.name.split(' ')[0]+'…'}
+  function openConv(id){conv=id;S.messages[id]=S.messages[id]||[];S.unread=S.unread.filter(x=>x!==id);save();go('messages');renderConvs();renderThread();renderTodo();setTimeout(()=>$('msg').focus(),80)}
+  $('convs').addEventListener('click',e=>{const b=e.target.closest('[data-conv]');if(b)openConv(b.dataset.conv)});
+  $('compose').addEventListener('submit',e=>{e.preventDefault();const t=$('msg').value.trim();if(!t){$('msg').focus();return}S.messages[conv].push({me:true,t:0,txt:t});save();$('msg').value='';renderConvs();renderThread();toast('Message envoyé (démonstration)')});
+  $('msg').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('compose').requestSubmit()}});
+
+  /* ---------- Vues ---------- */
+  function go(v){document.querySelectorAll('[data-v]').forEach(x=>x.hidden=x.id!==v);
+    document.querySelectorAll('.views [data-view]').forEach(a=>{if(a.dataset.view===v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+    try{history.replaceState(null,'','#'+v)}catch(e){}$('acctMenu').hidden=true;$('acctBtn').setAttribute('aria-expanded','false');
+    if(v==='clients')renderClients();if(v==='messages'){renderConvs();renderThread()}}
+
+  /* ---------- Actions ---------- */
+  document.addEventListener('click',e=>{
+    const t=e.target;let b;
+    if((b=t.closest('[data-view]'))){e.preventDefault();go(b.dataset.view);return}
+    if((b=t.closest('[data-confirm]'))){const s=S.sessions.find(x=>x.id===b.dataset.confirm);s.status='confirmed';save();renderAll();if(drawer.classList.contains('open'))closeDrawer();toast('Séance confirmée : '+C(s.client).name.split(' ')[0]+' est prévenu·e (démonstration)');return}
+    if((b=t.closest('[data-seen]'))){C(b.dataset.seen).feel.forEach(f=>f.fresh=false);save();renderAll();return}
+    if((b=t.closest('[data-write]'))){if(drawer.classList.contains('open'))closeDrawer();openConv(b.dataset.write);return}
+    if((b=t.closest('[data-draft]'))){toast('Brouillon gardé (démonstration)');return}
+    if((b=t.closest('[data-toast]'))){toast(b.dataset.toast);return}
+    if((b=t.closest('[data-s]'))){openSession(b.dataset.s,b.dataset.focus==='report');return}
+    if((b=t.closest('[data-client]'))){openClient(b.dataset.client);return}
+  });
+  document.addEventListener('submit',e=>{const f=e.target.closest('[data-report]');if(!f)return;e.preventDefault();const txt=f.querySelector('textarea').value.trim();if(!txt){f.querySelector('textarea').focus();return}
+    const s=S.sessions.find(x=>x.id===f.dataset.report);s.report={txt,t:new Date().toISOString()};save();renderAll();openSession(s.id);toast('Compte rendu publié dans l’espace de '+C(s.client).name.split(' ')[0])});
+  const ab=$('acctBtn'),am=$('acctMenu');
+  ab.onclick=e=>{e.stopPropagation();am.hidden=!am.hidden;ab.setAttribute('aria-expanded',!am.hidden)};
+  document.addEventListener('click',e=>{if(!am.hidden&&!am.contains(e.target)&&e.target!==ab){am.hidden=true;ab.setAttribute('aria-expanded','false')}});
+  $('logout').onclick=()=>{try{sessionStorage.removeItem('clairiere-admin')}catch(e){}location.href='espace-client.html'};
+  $('reset').onclick=()=>{try{localStorage.removeItem(KEY)}catch(e){}S=JSON.parse(JSON.stringify(SEED));renderAll();toast('Démonstration réinitialisée')};
+
+  function renderAll(){renderOverview();renderPlanning();renderTodo();renderClients();renderConvs();renderThread()}
+  renderAll();
+  const h=location.hash.slice(1);go(['planning','clients','messages'].includes(h)?h:'planning');
+})();
+</script>
+</body>
+</html>
