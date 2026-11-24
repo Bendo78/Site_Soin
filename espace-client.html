@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mon espace · Clairière</title>
-<meta name="description" content="Espace client Clairière : vos rendez-vous, vos ressentis, les comptes rendus et la conversation avec votre praticienne.">
+<title>Mon espace · L’Élan du Vivant</title>
+<meta name="description" content="Espace client L’Élan du Vivant : vos rendez-vous, vos ressentis, les comptes rendus et la conversation avec votre praticienne.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
@@ -319,22 +319,22 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
   <symbol id="mark" viewBox="0 0 40 40">
     <circle cx="20" cy="20" r="18" fill="none" stroke="var(--brume-2)" stroke-width="1.2"/>
     <circle cx="20" cy="20" r="11" fill="rgba(242,213,138,.16)"/>
-    <path d="M12 27c2-9 8-14 17-15-1 9-6 15-17 15z" fill="none" stroke="var(--mousse)" stroke-width="1.5" stroke-linejoin="round"/>
-    <path d="M12 27l12-10" stroke="var(--mousse)" stroke-width="1.2" stroke-linecap="round"/>
-    <circle cx="26" cy="13" r="2.6" fill="var(--lumiere)"/>
+    <path d="M6.5 27.5l7.5-9 4.5 4.5 6.5-9 8.5 13.5" fill="none" stroke="var(--mousse)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M14.5 33.5c3-1.5 6-3.4 8.5-7.5" fill="none" stroke="var(--lumiere)" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="1.4 2.4"/>
+    <circle cx="27.5" cy="10.5" r="2.6" fill="var(--lumiere)"/>
   </symbol>
 </svg>
 <canvas id="veil" aria-hidden="true"></canvas>
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>Clairière</b><small>REIKI · SOINS ÉNERGÉTIQUES</small></span></a>
+    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>L’Élan du Vivant</b><small>MARCHE · ACCOMPAGNEMENT · BAUGES</small></span></a>
     <ul class="sitenav">
-      <li><a href="index.html#principes">Le Reiki</a></li>
-      <li><a href="index.html#soins">Soins</a></li>
-      <li><a href="index.html#ateliers">Ateliers</a></li>
+      <li><a href="experience.html">L’expérience</a></li>
+      <li><a href="stages.html">Les stages</a></li>
+      <li><a href="refuge.html">Le Refuge</a></li>
+      <li><a href="qui-suis-je.html">Qui suis-je ?</a></li>
       <li><a href="blog.html">Le journal</a></li>
-      <li><a href="index.html#tarifs">Tarifs</a></li>
     </ul>
     <div class="acct" id="acct" hidden>
       <button class="acct-btn" id="acctBtn" type="button" aria-expanded="false" aria-controls="acctMenu"><span class="avatar" id="acctInitial">L</span><span class="name">Mon espace</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5l4 4 4-4"/></svg></button>
@@ -360,7 +360,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
       <button type="button" id="tabSignup" aria-pressed="false">Créer mon compte</button>
     </div>
     <h1 id="loginTitle">Mon espace</h1>
-    <p id="loginText">Retrouvez vos rendez-vous, vos ressentis et la conversation avec Camille.</p>
+    <p id="loginText">Retrouvez vos rendez-vous, vos ressentis et la conversation avec Odile.</p>
     <label for="l-first" id="firstWrap" hidden>Prénom<input id="l-first" autocomplete="given-name" value="Léa"></label>
     <label for="l-mail">E-mail ou identifiant<input id="l-mail" type="text" inputmode="email" autocomplete="username" value="lea.martin@exemple.fr"></label>
     <label for="l-pass">Mot de passe<input id="l-pass" type="password" autocomplete="current-password" placeholder="Laissez vide pour l'espace client de démonstration"></label>
@@ -403,38 +403,38 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
 
     <section class="panel" id="messages" data-panel hidden aria-labelledby="chatTitle">
       <div class="chat" id="chat">
-        <div class="chat-top"><span class="avatar camille" aria-hidden="true">C</span><div><b id="chatTitle">Camille</b><small>répond en général sous 24 h</small></div></div>
+        <div class="chat-top"><span class="avatar camille" aria-hidden="true">O</span><div><b id="chatTitle">Odile</b><small>répond en général sous 24 h</small></div></div>
         <div class="thread" id="thread" aria-live="polite"></div>
         <form class="compose" id="compose">
-          <label class="sr" for="msg">Votre message à Camille</label>
-          <textarea id="msg" rows="1" placeholder="Écrire à Camille…"></textarea>
+          <label class="sr" for="msg">Votre message à Odile</label>
+          <textarea id="msg" rows="1" placeholder="Écrire à Odile…"></textarea>
           <button class="btn" type="submit">Envoyer</button>
         </form>
       </div>
     </section>
 
     <section class="panel narrow" id="journal" data-panel hidden aria-labelledby="journalTitle">
-      <div class="panel-head"><h1 id="journalTitle">Mon journal</h1><p>Tous vos ressentis, gardés pour vous ou partagés avec Camille, et votre état au fil des séances.</p></div>
+      <div class="panel-head"><h1 id="journalTitle">Mon journal</h1><p>Tous vos ressentis, gardés pour vous ou partagés avec Odile, et votre état au fil des séances.</p></div>
       <div class="evo" id="evolution"><svg id="evoChart" viewBox="0 0 640 220" role="img" aria-labelledby="evoDesc"><desc id="evoDesc">Graphique de votre état avant et après chaque séance.</desc></svg>
         <div class="legend"><span><i style="background:var(--brume-3)"></i>Avant la séance</span><span><i style="background:var(--lumiere);box-shadow:0 0 10px var(--lumiere)"></i>Après la séance</span></div></div>
       <div class="journal-list"><ol class="jl" id="journalList"></ol></div>
     </section>
 
     <section class="panel narrow" id="profil" data-panel hidden aria-labelledby="profilTitle">
-      <div class="panel-head"><h1 id="profilTitle">Qui je suis</h1><p>Ces informations aident Camille à préparer vos séances. Vous pouvez les modifier à tout moment.</p></div>
+      <div class="panel-head"><h1 id="profilTitle">Qui je suis</h1><p>Ces informations aident Odile à préparer vos séances. Vous pouvez les modifier à tout moment.</p></div>
       <form class="profile" id="profileForm" novalidate>
         <label for="p-first">Prénom<input id="p-first" name="first" autocomplete="given-name"></label>
         <label for="p-last">Nom<input id="p-last" name="last" autocomplete="family-name"></label>
         <label for="p-mail">E-mail<input id="p-mail" name="mail" type="email" autocomplete="email"></label>
         <label for="p-phone">Téléphone<input id="p-phone" name="phone" type="tel" autocomplete="tel"></label>
         <label for="p-pref">Je préfère les séances
-          <select id="p-pref" name="pref"><option>Au cabinet, à Aillon-le-Vieux</option><option>En visio, chez moi</option><option>Les deux me conviennent</option></select>
+          <select id="p-pref" name="pref"><option>À Aillon-le-Vieux, dans les Bauges</option><option>En visio, chez moi</option><option>Les deux me conviennent</option></select>
         </label>
         <label for="p-reach">Être prévenu·e
           <select id="p-reach" name="reach"><option>Par e-mail</option><option>Par SMS</option><option>Par e-mail et SMS</option></select>
         </label>
         <label class="full" for="p-why">Ce qui m'amène<textarea id="p-why" name="why" placeholder="Fatigue, stress, période de transition, simple curiosité…"></textarea></label>
-        <label class="full" for="p-know">Ce que Camille devrait savoir<textarea id="p-know" name="know" placeholder="Une sensibilité, une grossesse, un traitement en cours…"></textarea><span class="hint">Visible uniquement par Camille. Le Reiki ne remplace pas un suivi médical : continuez vos traitements.</span></label>
+        <label class="full" for="p-know">Ce qu’Odile devrait savoir<textarea id="p-know" name="know" placeholder="Une contrainte pour la marche, un traitement en cours, une sensibilité…"></textarea><span class="hint">Visible uniquement par Odile. Le Reiki ne remplace pas un suivi médical : continuez vos traitements.</span></label>
         <div class="acts"><button class="btn" type="submit">Enregistrer</button><span class="saved-msg" id="profileSaved" role="status"></span></div>
       </form>
     </section>
@@ -443,10 +443,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
 
 <dialog id="booking" aria-labelledby="bookTitle">
   <form class="dlg" id="bookForm" method="dialog" novalidate>
-    <div class="dlg-head"><div><h2 id="bookTitle">Reprendre rendez-vous</h2><p id="bookSub">Choisissez un soin, un lieu et un créneau. Camille confirme sous 24 h.</p></div><button class="x" type="button" id="bookClose" aria-label="Fermer"></button></div>
+    <div class="dlg-head"><div><h2 id="bookTitle">Reprendre rendez-vous</h2><p id="bookSub">Choisissez un accompagnement, un lieu et un créneau. Odile confirme sous 24 h.</p></div><button class="x" type="button" id="bookClose" aria-label="Fermer"></button></div>
     <fieldset><legend>Le soin</legend><div class="choices" id="soinChoices"></div></fieldset>
     <fieldset><legend>Le lieu</legend><div class="places-pick">
-      <label class="choice"><input type="radio" name="lieu" value="Au cabinet, Aillon-le-Vieux" checked><span>Au cabinet</span></label>
+      <label class="choice"><input type="radio" name="lieu" value="À Aillon-le-Vieux" checked><span>À Aillon-le-Vieux</span></label>
       <label class="choice"><input type="radio" name="lieu" value="En visio, chez vous"><span>En visio</span></label>
     </div></fieldset>
     <fieldset><legend>Le jour</legend><div class="days" id="days"></div></fieldset>
@@ -527,28 +527,26 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
   /* ---------- Données d'exemple (relatives à aujourd'hui) ---------- */
   const DAY=864e5,now=new Date();
   const at=(days,h,m)=>{const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+days,h,m||0);return d.toISOString()};
-  const SOINS=[['Première séance','1 h 15','55 €'],['Séance de Reiki','1 h 15','65 €'],['Reiki à distance','1 h','55 €'],['Soin énergétique complet','1 h 30','80 €']];
+  const SOINS=[['Entretien préalable','45 min','à préciser'],['Le Refuge des Possibles · 1 jour','9 h 30 à 17 h 30','sur proposition'],['Le Refuge des Possibles · 2 jours','2 journées','sur proposition'],['Le Refuge des Possibles · 3 jours','3 journées','sur proposition'],['Séance de suivi en visio','1 h','incluse']];
   const SEED={
-    profile:{first:'Léa',last:'Martin',mail:'lea.martin@exemple.fr',phone:'06 00 00 00 00',pref:'Au cabinet, à Aillon-le-Vieux',reach:'Par e-mail',why:'Une période de fatigue et un sommeil agité depuis la rentrée.',know:''},
+    profile:{first:'Léa',last:'Martin',mail:'lea.martin@exemple.fr',phone:'06 00 00 00 00',pref:'À Aillon-le-Vieux, dans les Bauges',reach:'Par e-mail',why:'Une période de fatigue depuis la rentrée et l’envie de retrouver un cap.',know:''},
     sessions:[
-      {id:'s4',date:at(9,10),soin:'Séance de Reiki',dur:'1 h 15',lieu:'Au cabinet, Aillon-le-Vieux',status:'confirmed',intention:'Retrouver un sommeil plus calme.',notes:[],before:null,after:null},
-      {id:'s3',date:at(-5,10),soin:'Soin énergétique complet',dur:'1 h 30',lieu:'Au cabinet, Aillon-le-Vieux',status:'done',
-        report:{date:at(-4,9,12),text:"Beaucoup de tensions relâchées au niveau du ventre et des épaules. L'ancrage était plus stable en fin de séance. À poursuivre chez vous : cinq minutes de respiration lente le soir, et beaucoup d'eau dans les jours qui suivent."},
-        notes:[{t:at(-5,11,40),txt:"Chaleur dans les mains de Camille, puis une grosse envie de dormir. Une émotion est montée vers la fin.",shared:true},{t:at(-3,8,10),txt:"Deux nuits complètes. Moins de pensées le soir.",shared:false}],before:4,after:7},
-      {id:'s2',date:at(-19,14),soin:'Première séance',dur:'1 h 15',lieu:'Au cabinet, Aillon-le-Vieux',status:'done',
-        report:{date:at(-18,10,5),text:"Première rencontre. Fatigue importante, beaucoup de tension dans la nuque. La détente est venue après une vingtaine de minutes. Proposition : trois séances espacées de deux semaines."},
-        notes:[{t:at(-19,15,30),txt:"Je ne savais pas à quoi m'attendre. Très reposant, je me suis presque endormie.",shared:false}],before:3,after:6},
-      {id:'s1',date:at(-33,14),soin:"Atelier : cercle d'automne",dur:'2 h 30',lieu:'En visio',status:'done',report:null,
-        notes:[{t:at(-33,17,0),txt:"Le rituel des feuilles m'a beaucoup parlé.",shared:true}],before:5,after:7}
+      {id:'s4',date:at(9,9,30),soin:'Le Refuge des Possibles · 2 jours',dur:'9 h 30 à 17 h 30',lieu:'À Aillon-le-Vieux',status:'confirmed',intention:'Déposer ce qui pèse et retrouver un cap.',notes:[],before:null,after:null},
+      {id:'s3',date:at(-5,18),soin:'Entretien préalable',dur:'45 min',lieu:'En visio',status:'done',
+        report:{date:at(-4,9,12),text:"Merci pour cet échange. Je vous propose deux journées : une marche le premier matin pour vous poser, un travail sur les ressources et les tensions intérieures, et, si vous le souhaitez, un temps de Reiki en fin de deuxième journée. Prévoyez de bonnes chaussures et une tenue chaude."},
+        notes:[{t:at(-5,19,10),txt:"Ça m'a fait du bien de mettre des mots sur ce que je vis. J'ai hâte de marcher là-haut.",shared:true},{t:at(-3,8,10),txt:"J'ai repensé à la question sur ce qui dépend de moi.",shared:false}],before:4,after:6},
+      {id:'s2',date:at(-26,9),soin:'Stage « De la tête au cœur »',dur:'3 jours',lieu:'À Aillon-le-Vieux',status:'done',
+        report:{date:at(-22,10,5),text:"Merci pour votre présence pendant ces trois jours. La marche des cinq sens vous a visiblement aidée à quitter le flot des pensées. Pistes à garder : votre boîte à outils, et dix minutes dehors chaque jour sans téléphone."},
+        notes:[{t:at(-24,18,30),txt:"La marche en silence ce matin : je n'avais pas senti le vent comme ça depuis longtemps.",shared:true}],before:3,after:7}
     ],
     messages:[
-      {from:'c',t:at(-4,9,14),ref:'s3',txt:"Bonjour Léa, le compte rendu de notre séance est en ligne dans vos séances. Pensez à bien vous hydrater cette semaine."},
-      {from:'me',t:at(-3,20,40),txt:"Merci ! J'ai beaucoup mieux dormi les deux nuits suivantes."},
-      {from:'c',t:at(-2,8,5),txt:"Très bonne nouvelle. Notez-le dans vos ressentis si vous le souhaitez, on en reparlera à la prochaine séance."}
+      {from:'c',t:at(-4,9,14),ref:'s3',txt:"Bonjour Léa, ma proposition pour votre Refuge des Possibles est en ligne dans vos séances. Dites-moi si elle vous convient."},
+      {from:'me',t:at(-3,20,40),txt:"Merci ! Elle me convient tout à fait. Faut-il prévoir un pique-nique ?"},
+      {from:'c',t:at(-2,8,5),txt:"Non, le déjeuner est prévu sur place. Pensez seulement à de bonnes chaussures et une veste chaude."}
     ],
     unread:1
   };
-  const KEY='clairiere-espace-demo';
+  const KEY='elan-espace-demo';
   let S;
   try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
   if(!S||!S.sessions)S=JSON.parse(JSON.stringify(SEED));
@@ -564,20 +562,20 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
   /* ---------- Connexion de démonstration ---------- */
   let signup=false;
   function setMode(s){signup=s;$('tabLogin').setAttribute('aria-pressed',!s);$('tabSignup').setAttribute('aria-pressed',s);$('firstWrap').hidden=!s;
-    $('loginTitle').textContent=s?'Créer mon espace':'Mon espace';$('loginText').textContent=s?"Un espace pour suivre vos séances et échanger avec Camille.":"Retrouvez vos rendez-vous, vos ressentis et la conversation avec Camille.";$('loginGo').textContent=s?'Créer mon espace':'Entrer dans mon espace'}
+    $('loginTitle').textContent=s?'Créer mon espace':'Mon espace';$('loginText').textContent=s?"Un espace pour suivre vos séances et échanger avec Odile.":"Retrouvez vos rendez-vous, vos ressentis et la conversation avec Odile.";$('loginGo').textContent=s?'Créer mon espace':'Entrer dans mon espace'}
   $('tabLogin').onclick=()=>setMode(false);$('tabSignup').onclick=()=>setMode(true);
-  function enter(){try{sessionStorage.setItem('clairiere-in','1')}catch(e){}
+  function enter(){try{sessionStorage.setItem('elan-in','1')}catch(e){}
     $('connexion').hidden=true;$('loginTop').hidden=true;$('app').hidden=false;$('acct').hidden=false;$('footer').hidden=false;renderAll();
     const t=location.hash.slice(1);go(TABS.includes(t)?t:'carnet')}
   $('loginForm').addEventListener('submit',e=>{e.preventDefault();
     const ident=$('l-mail').value.trim().toLowerCase(),pass=$('l-pass').value;
-    if(ident==='admin'){if(pass==='admin'){try{sessionStorage.setItem('clairiere-admin','1')}catch(err){}$('l-pass').value='';location.href='espace-praticien.html';return}
+    if(ident==='admin'){if(pass==='admin'){try{sessionStorage.setItem('elan-admin','1')}catch(err){}$('l-pass').value='';location.href='espace-praticien.html';return}
       $('loginErr').hidden=false;$('loginErr').textContent='Mot de passe incorrect pour le compte praticienne.';$('l-pass').focus();return}
     $('loginErr').hidden=true;
     if(signup){const f=$('l-first').value.trim();if(f){S.profile.first=f;save()}}
     $('l-pass').value='';enter()});
-  $('logout').onclick=()=>{try{sessionStorage.removeItem('clairiere-in')}catch(e){}location.reload()};
-  let wasIn=false;try{wasIn=sessionStorage.getItem('clairiere-in')==='1'}catch(e){}
+  $('logout').onclick=()=>{try{sessionStorage.removeItem('elan-in')}catch(e){}location.reload()};
+  let wasIn=false;try{wasIn=sessionStorage.getItem('elan-in')==='1'}catch(e){}
 
   /* ---------- Menu du compte ---------- */
   const ab=$('acctBtn'),am=$('acctMenu');
@@ -595,24 +593,24 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
     $('acctInitial').textContent=(S.profile.first[0]||'?').toUpperCase();
     $('menuName').textContent=S.profile.first+' '+S.profile.last;$('menuMail').textContent=S.profile.mail;
     if(!n){
-      box.innerHTML='<h2 id="nextTitle">Aucune séance prévue</h2><p class="meta">Quand vous serez prêt·e, choisissez un créneau : Camille confirme sous 24 h.</p><div class="acts"><button class="btn" type="button" data-book>Prendre rendez-vous</button></div>';return}
+      box.innerHTML='<h2 id="nextTitle">Aucune séance prévue</h2><p class="meta">Quand vous serez prêt·e, choisissez un créneau : Odile confirme sous 24 h.</p><div class="acts"><button class="btn" type="button" data-book>Prendre rendez-vous</button></div>';return}
     const d0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),dn=new Date(n.date),d1=new Date(dn.getFullYear(),dn.getMonth(),dn.getDate()),days=Math.max(0,Math.round((d1-d0)/DAY));
     
     box.innerHTML=
       '<h2 id="nextTitle">'+esc(n.soin)+'</h2>'+
       '<p class="when">'+cap(fmtDay(n.date))+' · '+fmtHour(n.date)+'</p>'+
-      '<p class="meta">'+esc(n.dur)+' · '+esc(n.lieu)+' · avec Camille'+(n.status==='pending'?'<br><span class="status">En attente de confirmation par Camille</span>':'')+'</p>'+
+      '<p class="meta">'+esc(n.dur)+' · '+esc(n.lieu)+' · avec Odile'+(n.status==='pending'?'<br><span class="status">En attente de confirmation par Odile</span>':'')+'</p>'+
       '<p class="count">'+(days===0?'<b>Aujourd\u2019hui</b>':days===1?'<b>Demain</b>':'<b>'+days+'</b><span>jours</span>')+'</p>'+
       '<div class="intent"><label for="intent">Mon intention pour cette séance</label><textarea id="intent" placeholder="Ce que vous aimeriez déposer ou ressentir…">'+esc(n.intention||'')+'</textarea><span class="saved" id="intentSaved" role="status"></span></div>'+
       '<div class="acts"><button class="btn" type="button" data-book>Reprendre rendez-vous</button><button class="btn soft" type="button" data-move="'+n.id+'">Déplacer</button><button class="btn soft" type="button" data-note="'+n.id+'" aria-expanded="false" aria-controls="quick">Noter un ressenti</button></div>'+
       '<div class="quick" id="quick" hidden><h3>Mes ressentis pour cette séance</h3><ul class="notes">'+n.notes.map(noteItem).join('')+'</ul>'+
       '<form class="add-note" data-id="'+n.id+'"><label class="sr" for="note-'+n.id+'">Nouveau ressenti</label><textarea id="note-'+n.id+'" placeholder="Ce que vous ressentez avant, pendant ou juste après la séance…"></textarea>'+
-      '<label class="check"><input type="checkbox" name="share"> Partager avec Camille</label><div><button class="btn small" type="submit">Ajouter ce ressenti</button></div></form></div>';
+      '<label class="check"><input type="checkbox" name="share"> Partager avec Odile</label><div><button class="btn small" type="submit">Ajouter ce ressenti</button></div></form></div>';
     let tm;$('intent').addEventListener('input',e=>{n.intention=e.target.value;clearTimeout(tm);tm=setTimeout(()=>{save();$('intentSaved').textContent='Intention enregistrée'},500)});
   }
 
   /* ---------- Rangées des séances ---------- */
-  function noteItem(n){return '<li><p>'+esc(n.txt)+'</p><p class="meta"><span>'+fmtStamp(n.t)+'</span><span class="'+(n.shared?'shared':'')+'">'+(n.shared?'Partagé avec Camille':'Privé')+'</span></p></li>'}
+  function noteItem(n){return '<li><p>'+esc(n.txt)+'</p><p class="meta"><span>'+fmtStamp(n.t)+'</span><span class="'+(n.shared?'shared':'')+'">'+(n.shared?'Partagé avec Odile':'Privé')+'</span></p></li>'}
   function renderRows(){
     const list=[...upcoming().slice(1),...past()],box=$('rows');
     if(!list.length){box.innerHTML='<p style="padding:20px 4px;color:var(--brume-2)">Vos séances passées apparaîtront ici, avec leur compte rendu et vos ressentis.</p>';return}
@@ -620,12 +618,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
       const done=s.status==='done';
       const tag=!done?'<span class="tag wait">'+(s.status==='pending'?'En attente':'À venir')+'</span>':(s.report?'<span class="tag'+(s.reportSeen?'':' new')+'">'+(s.reportSeen?'Compte rendu':'Nouveau compte rendu')+'</span>':'<span class="tag">'+s.notes.length+' ressenti'+(s.notes.length>1?'s':'')+'</span>');
       const mood=(s.before!=null&&s.after!=null)?'<span class="mood">État <b>'+s.before+' → '+s.after+'</b></span>':'<span class="mood">—</span>';
-      const report=done?(s.report?'<div class="report"><p>'+esc(s.report.text)+'</p><small>Publié par Camille le '+fmtStamp(s.report.date)+'</small></div>':'<div class="report pending"><p>Pas de compte rendu pour cet atelier collectif.</p></div>'):'<div class="report pending"><p>Camille publiera son compte rendu ici après la séance.</p></div>';
+      const report=done?(s.report?'<div class="report"><p>'+esc(s.report.text)+'</p><small>Publié par Odile le '+fmtStamp(s.report.date)+'</small></div>':'<div class="report pending"><p>Pas de compte rendu pour cet atelier collectif.</p></div>'):'<div class="report pending"><p>Odile publiera son compte rendu ici après la séance.</p></div>';
       return '<details class="row" id="row-'+s.id+'" data-id="'+s.id+'"><summary><span class="date">'+fmtShort(s.date)+'<small>'+fmtHour(s.date)+'</small></span><span class="soin">'+esc(s.soin)+'<small>'+esc(s.dur)+' · '+esc(s.lieu)+'</small></span>'+tag+mood+'<span class="plus" aria-hidden="true"></span></summary>'+
-        '<div class="open"><div><h4>Compte rendu de Camille</h4>'+report+'</div>'+
+        '<div class="open"><div><h4>Compte rendu d’Odile</h4>'+report+'</div>'+
         '<div><h4>Mes ressentis</h4><ul class="notes">'+s.notes.map(noteItem).join('')+'</ul>'+
           '<form class="add-note" data-id="'+s.id+'"><label class="sr" for="note-'+s.id+'">Nouveau ressenti</label><textarea id="note-'+s.id+'" placeholder="Ce que vous avez ressenti pendant ou après la séance…"></textarea>'+
-          '<label class="check"><input type="checkbox" name="share"> Partager avec Camille</label><div><button class="btn small" type="submit">Ajouter ce ressenti</button></div></form></div>'+
+          '<label class="check"><input type="checkbox" name="share"> Partager avec Odile</label><div><button class="btn small" type="submit">Ajouter ce ressenti</button></div></form></div>'+
         '<div><h4>Mon état</h4>'+(done?'<div class="scale"><label>Avant<input type="range" min="1" max="10" step="1" value="'+(s.before||5)+'" data-k="before" aria-label="Mon état avant la séance, de 1 à 10"><output>'+(s.before||5)+'</output></label><label>Après<input type="range" min="1" max="10" step="1" value="'+(s.after||5)+'" data-k="after" aria-label="Mon état après la séance, de 1 à 10"><output>'+(s.after||5)+'</output></label><p>1 : très fatigué·e ou tendu·e · 10 : très bien. Pour vous seul·e.</p></div>':'<p style="color:var(--brume-3);font-size:.9375rem">Vous pourrez noter votre état après la séance.</p>')+'</div></div></details>';
     }).join('');
   }
@@ -633,7 +631,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
   $('rows').addEventListener('submit',e=>{const f=e.target.closest('.add-note');if(!f)return;e.preventDefault();
     const s=S.sessions.find(x=>x.id===f.dataset.id),ta=f.querySelector('textarea'),txt=ta.value.trim();if(!txt){ta.focus();return}
     const n={t:new Date().toISOString(),txt,shared:f.elements.share.checked};s.notes.push(n);save();
-    f.previousElementSibling.insertAdjacentHTML('beforeend',noteItem(n));ta.value='';f.elements.share.checked=false;renderJournal();renderCarnet();toast(n.shared?'Ressenti ajouté et partagé avec Camille':'Ressenti ajouté, gardé privé')});
+    f.previousElementSibling.insertAdjacentHTML('beforeend',noteItem(n));ta.value='';f.elements.share.checked=false;renderJournal();renderCarnet();toast(n.shared?'Ressenti ajouté et partagé avec Odile':'Ressenti ajouté, gardé privé')});
   $('rows').addEventListener('input',e=>{const r=e.target;if(r.type!=='range')return;const s=S.sessions.find(x=>x.id===r.closest('.row').dataset.id);
     s[r.dataset.k]=+r.value;r.nextElementSibling.textContent=r.value;r.closest('.row').querySelector('.mood').innerHTML='État <b>'+s.before+' → '+s.after+'</b>';save();renderEvo()});
 
@@ -669,7 +667,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
     $('fabCount').textContent=S.unread;$('fabCount').hidden=!S.unread;
   }
   $('compose').addEventListener('submit',e=>{e.preventDefault();const t=$('msg').value.trim();if(!t){$('msg').focus();return}
-    S.messages.push({from:'me',t:new Date().toISOString(),txt:t});save();$('msg').value='';renderThread();toast('Message envoyé à Camille (démonstration)')});
+    S.messages.push({from:'me',t:new Date().toISOString(),txt:t});save();$('msg').value='';renderThread();toast('Message envoyé à Odile (démonstration)')});
   $('msg').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('compose').requestSubmit()}});
   const chat=$('chat');
   function openChat(){document.body.classList.add('chat-open');chat.classList.add('open');S.unread=0;save();renderThread();setTimeout(()=>$('msg').focus(),300)}
@@ -682,7 +680,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
   $('nextIn').addEventListener('submit',e=>{const f=e.target.closest('.add-note');if(!f)return;e.preventDefault();
     const s=S.sessions.find(x=>x.id===f.dataset.id),ta=f.querySelector('textarea'),txt=ta.value.trim();if(!txt){ta.focus();return}
     const n={t:new Date().toISOString(),txt,shared:f.elements.share.checked};s.notes.push(n);save();
-    f.previousElementSibling.insertAdjacentHTML('beforeend',noteItem(n));ta.value='';f.elements.share.checked=false;toast(n.shared?'Ressenti ajouté et partagé avec Camille':'Ressenti ajouté, gardé privé')});
+    f.previousElementSibling.insertAdjacentHTML('beforeend',noteItem(n));ta.value='';f.elements.share.checked=false;toast(n.shared?'Ressenti ajouté et partagé avec Odile':'Ressenti ajouté, gardé privé')});
 
   /* ---------- Prise et déplacement de rendez-vous ---------- */
   const dlg=$('booking');let moving=null,pick={day:null,slot:null};
@@ -700,7 +698,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
   dlg.addEventListener('change',recap);
   function openBooking(id){moving=id||null;pick={day:null,slot:null};
     $('bookTitle').textContent=moving?'Déplacer ma séance':'Reprendre rendez-vous';
-    $('bookSub').textContent=moving?'Choisissez un nouveau créneau. Camille confirme sous 24 h.':'Choisissez un soin, un lieu et un créneau. Camille confirme sous 24 h.';
+    $('bookSub').textContent=moving?'Choisissez un nouveau créneau. Odile confirme sous 24 h.':'Choisissez un accompagnement, un lieu et un créneau. Odile confirme sous 24 h.';
     if(moving){const s=S.sessions.find(x=>x.id===moving),i=SOINS.findIndex(x=>x[0]===s.soin);if(i>=0)dlg.querySelector('input[name=soin][value="'+i+'"]').checked=true}
     renderDays();dlg.showModal()}
   document.addEventListener('click',e=>{if(e.target.closest('[data-book]'))openBooking();const m=e.target.closest('[data-move]');if(m)openBooking(m.dataset.move)});
@@ -710,7 +708,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
     if(moving){const s=S.sessions.find(x=>x.id===moving);Object.assign(s,{date,soin:soin[0],dur:soin[1],lieu,status:'pending'})}
     else S.sessions.push({id:'s'+Date.now(),date,soin:soin[0],dur:soin[1],lieu,status:'pending',intention:'',notes:[],before:null,after:null});
     S.messages.push({from:'me',t:new Date().toISOString(),txt:(moving?'Demande de déplacement : ':'Demande de rendez-vous : ')+soin[0]+', '+fmtDay(date)+' à '+pick.slot+', '+lieu.charAt(0).toLowerCase()+lieu.slice(1)+'.'});
-    save();dlg.close();renderAll();toast(moving?'Demande de déplacement envoyée à Camille':'Demande envoyée : Camille confirme sous 24 h')};
+    save();dlg.close();renderAll();toast(moving?'Demande de déplacement envoyée à Odile':'Demande envoyée : Odile confirme sous 24 h')};
 
   $('reset').onclick=()=>{try{localStorage.removeItem(KEY)}catch(e){}S=JSON.parse(JSON.stringify(SEED));renderAll();toast('Démonstration réinitialisée')};
 
@@ -730,18 +728,18 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
 
   /* ---------- Mon carnet ---------- */
   function allNotes(){const out=[];S.sessions.forEach(s=>s.notes.forEach(n=>out.push(Object.assign({soin:s.soin},n))));(S.free||[]).forEach(n=>out.push(Object.assign({soin:null},n)));return out.sort((a,b)=>new Date(b.t)-new Date(a.t))}
-  function noteLine(n){return '<li><time>'+fmtShort(n.t)+'<small>'+fmtHour(n.t)+'</small></time><div><p>'+esc(n.txt)+'</p><span class="meta">'+(n.soin?'Après : '+esc(n.soin)+' · ':'')+'<span class="'+(n.shared?'shared':'')+'">'+(n.shared?'Partagé avec Camille':'Privé')+'</span></span></div></li>'}
+  function noteLine(n){return '<li><time>'+fmtShort(n.t)+'<small>'+fmtHour(n.t)+'</small></time><div><p>'+esc(n.txt)+'</p><span class="meta">'+(n.soin?'Après : '+esc(n.soin)+' · ':'')+'<span class="'+(n.shared?'shared':'')+'">'+(n.shared?'Partagé avec Odile':'Privé')+'</span></span></div></li>'}
   function renderCarnet(){
     const n=upcoming()[0],last=past().find(s=>s.report),steps=past().filter(s=>s.before!=null&&s.after!=null).reverse(),notes=allNotes().slice(0,2);
     let html='<header class="carnet-head"><p class="le-jour">'+cap(now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'}))+'</p><h1 id="carnetTitle">Le carnet de '+esc(S.profile.first)+'</h1><p class="invite-main">Approchez la main : la lumière vient à vous.</p></header>';
     html+='<div class="leaf intention"><h2>Mon intention du moment</h2><textarea id="carnetIntent" rows="1" placeholder="Écrivez ce que vous aimeriez déposer ou ressentir…">'+esc(n?n.intention||'':S.profile.intention||'')+'</textarea><span class="saved" id="carnetSaved" role="status"></span></div>';
     if(n){const d0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),dn=new Date(n.date),d1=new Date(dn.getFullYear(),dn.getMonth(),dn.getDate()),days=Math.round((d1-d0)/DAY);
-      html+='<div class="leaf"><h2>Ma prochaine séance</h2><p class="sentence">'+cap(fmtDay(n.date))+' à '+fmtHour(n.date)+', <em>'+esc(n.soin.charAt(0).toLowerCase()+n.soin.slice(1))+'</em> '+esc(n.lieu.charAt(0).toLowerCase()+n.lieu.slice(1))+', avec Camille.</p><p class="aside"><span>'+(days===0?'Aujourd\u2019hui':days===1?'Demain':'Dans '+days+' jours')+(n.status==='pending'?' · en attente de confirmation':'')+'</span><a href="#rendez-vous" data-go="rendez-vous">Voir le rendez-vous</a><button class="link" type="button" data-book>Reprendre rendez-vous</button></p></div>'}
+      html+='<div class="leaf"><h2>Ma prochaine séance</h2><p class="sentence">'+cap(fmtDay(n.date))+' à '+fmtHour(n.date)+', <em>'+esc(n.soin.charAt(0).toLowerCase()+n.soin.slice(1))+'</em> '+esc(n.lieu.charAt(0).toLowerCase()+n.lieu.slice(1))+', avec Odile.</p><p class="aside"><span>'+(days===0?'Aujourd\u2019hui':days===1?'Demain':'Dans '+days+' jours')+(n.status==='pending'?' · en attente de confirmation':'')+'</span><a href="#rendez-vous" data-go="rendez-vous">Voir le rendez-vous</a><button class="link" type="button" data-book>Reprendre rendez-vous</button></p></div>'}
     else html+='<div class="leaf"><h2>Ma prochaine séance</h2><p class="sentence">Aucune séance prévue pour le moment.</p><p class="aside"><button class="btn small" type="button" data-book>Prendre rendez-vous</button></p></div>';
-    if(last)html+='<div class="leaf"><h2>Le dernier mot de Camille</h2><blockquote class="mot">'+esc(last.report.text)+'</blockquote><p class="aside"><span>Après la séance du '+fmtShort(last.date)+'</span><a href="#rendez-vous" data-go="rendez-vous">Lire tous les comptes rendus</a></p></div>';
+    if(last)html+='<div class="leaf"><h2>Le dernier mot d’Odile</h2><blockquote class="mot">'+esc(last.report.text)+'</blockquote><p class="aside"><span>Après la séance du '+fmtShort(last.date)+'</span><a href="#rendez-vous" data-go="rendez-vous">Lire tous les comptes rendus</a></p></div>';
     if(notes.length)html+='<div class="leaf"><h2>Mes derniers ressentis</h2><ol class="jl">'+notes.map(noteLine).join('')+'</ol><p class="aside"><a href="#journal" data-go="journal">Tout mon journal</a></p></div>';
     if(steps.length)html+='<div class="leaf"><h2>Mon chemin</h2><div class="lights">'+steps.map(s=>'<div class="light-step"><span class="pair" aria-hidden="true"><i style="margin-bottom:'+(s.before-1)*7+'px"></i><i class="after" style="margin-bottom:'+(s.after-1)*7+'px"></i></span><b>'+s.before+' → '+s.after+'</b><span>'+fmtShort(s.date)+'</span></div>').join('')+'</div><p class="aside"><span>Votre état avant et après chaque séance, de 1 à 10</span></p></div>';
-    html+='<form class="leaf today-note" id="todayNote"><label class="q" for="todayTxt">Comment vous sentez-vous aujourd\u2019hui\u00a0?</label><textarea id="todayTxt" placeholder="Quelques mots pour vous…"></textarea><div class="row-acts"><label class="check"><input type="checkbox" name="share"> Partager avec Camille</label><button class="btn small" type="submit">Garder dans mon carnet</button></div></form>';
+    html+='<form class="leaf today-note" id="todayNote"><label class="q" for="todayTxt">Comment vous sentez-vous aujourd\u2019hui\u00a0?</label><textarea id="todayTxt" placeholder="Quelques mots pour vous…"></textarea><div class="row-acts"><label class="check"><input type="checkbox" name="share"> Partager avec Odile</label><button class="btn small" type="submit">Garder dans mon carnet</button></div></form>';
     $('carnetBody').innerHTML=html;
     const ta=$('carnetIntent'),fit=()=>{ta.style.height='auto';ta.style.height=ta.scrollHeight+'px'};fit();
     let tm;ta.addEventListener('input',()=>{fit();if(n)n.intention=ta.value;else S.profile.intention=ta.value;clearTimeout(tm);tm=setTimeout(()=>{save();$('carnetSaved').textContent='Intention enregistrée';renderNext()},500)});

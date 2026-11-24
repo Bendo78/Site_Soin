@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Espace praticienne · Clairière</title>
-<meta name="description" content="Espace praticienne Clairière : planning de la semaine, demandes à confirmer, comptes rendus, messages et retours des clients.">
+<title>Espace praticienne · L’Élan du Vivant</title>
+<meta name="description" content="Espace praticienne L’Élan du Vivant : planning de la semaine, demandes à confirmer, comptes rendus, messages et retours des clients.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
@@ -268,16 +268,16 @@ td.name small{display:block;color:var(--brume-3);font-size:.8125rem}
   <symbol id="mark" viewBox="0 0 40 40">
     <circle cx="20" cy="20" r="18" fill="none" stroke="var(--brume-2)" stroke-width="1.2"/>
     <circle cx="20" cy="20" r="11" fill="rgba(242,213,138,.16)"/>
-    <path d="M12 27c2-9 8-14 17-15-1 9-6 15-17 15z" fill="none" stroke="var(--mousse)" stroke-width="1.5" stroke-linejoin="round"/>
-    <path d="M12 27l12-10" stroke="var(--mousse)" stroke-width="1.2" stroke-linecap="round"/>
-    <circle cx="26" cy="13" r="2.6" fill="var(--lumiere)"/>
+    <path d="M6.5 27.5l7.5-9 4.5 4.5 6.5-9 8.5 13.5" fill="none" stroke="var(--mousse)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M14.5 33.5c3-1.5 6-3.4 8.5-7.5" fill="none" stroke="var(--lumiere)" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="1.4 2.4"/>
+    <circle cx="27.5" cy="10.5" r="2.6" fill="var(--lumiere)"/>
   </symbol>
 </svg>
 <canvas id="veil" aria-hidden="true"></canvas>
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>Clairière</b><small>ESPACE PRATICIENNE</small></span></a>
+    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>L’Élan du Vivant</b><small>ESPACE PRATICIENNE</small></span></a>
     <nav class="views" aria-label="Rubriques">
       <a href="#planning" data-view="planning">Planning</a>
       <a href="#clients" data-view="clients">Clients</a>
@@ -285,7 +285,7 @@ td.name small{display:block;color:var(--brume-3);font-size:.8125rem}
       <a href="#journal" data-view="journal">Journal</a>
     </nav>
     <div class="acct">
-      <button class="acct-btn" id="acctBtn" type="button" aria-expanded="false" aria-controls="acctMenu"><span class="avatar">C</span><span class="name">Camille</span></button>
+      <button class="acct-btn" id="acctBtn" type="button" aria-expanded="false" aria-controls="acctMenu"><span class="avatar">O</span><span class="name">Odile</span></button>
       <div class="acct-menu" id="acctMenu" hidden>
         <a href="#planning" data-view="planning">Mon planning</a>
         <a href="#clients" data-view="clients">Mes clients</a>
@@ -410,7 +410,7 @@ td.name small{display:block;color:var(--brume-3);font-size:.8125rem}
 <script>
 (function(){
   /* Accès réservé au compte de test « admin » (vérification locale, pas une vraie sécurité) */
-  let ok=false;try{ok=sessionStorage.getItem('clairiere-admin')==='1'}catch(e){}
+  let ok=false;try{ok=sessionStorage.getItem('elan-admin')==='1'}catch(e){}
   if(!ok){location.replace('espace-client.html#connexion');return}
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $=id=>document.getElementById(id);
@@ -436,34 +436,34 @@ td.name small{display:block;color:var(--brume-3);font-size:.8125rem}
   const at=(dayOffset,h,m)=>new Date(W0.getFullYear(),W0.getMonth(),W0.getDate()+dayOffset,h,m||0).toISOString();
   const SEED={
     clients:[
-      {id:'lea',name:'Léa Martin',since:'octobre',why:'Fatigue et sommeil agité depuis la rentrée.',know:'',pref:'Au cabinet',hist:[[-37,5,7],[-23,3,6],[-9,4,7]],feel:[{t:-9,txt:"Chaleur dans les mains de Camille, puis une grosse envie de dormir. Une émotion est montée vers la fin."},{t:-1,txt:"Deux nuits complètes depuis la dernière séance, moins de pensées le soir.",fresh:true}]},
-      {id:'marc',name:'Marc Dubois',since:'septembre',why:'Stress au travail, tensions dans les épaules.',know:'Mal de dos chronique, suivi par un kiné.',pref:'Au cabinet',hist:[[-42,4,7],[-28,5,6],[-14,4,5],[-1,3,4]],feel:[{t:-13,txt:"Moins détendu que d'habitude, j'ai eu du mal à lâcher prise.",fresh:true}]},
-      {id:'ines',name:'Inès Roux',since:'novembre',why:'Simple curiosité, envie de découvrir.',know:'',pref:'En visio',hist:[],feel:[]},
-      {id:'paul',name:'Paul Girard',since:'juin',why:'Deuil récent.',know:'',pref:'Au cabinet',hist:[[-120,2,5],[-98,3,6],[-63,4,7]],feel:[]},
-      {id:'sofia',name:'Sofia Benali',since:'août',why:'Grossesse, envie de calme.',know:'Enceinte de 6 mois.',pref:'En visio',hist:[[-30,5,8],[-16,6,8]],feel:[{t:-15,txt:"Le bébé a beaucoup bougé pendant la séance, puis un grand calme.",fresh:true}]},
-      {id:'jean',name:'Jean Morel',since:'mai',why:'Formation Reiki niveau 1.',know:'',pref:'Au cabinet',hist:[[-80,6,8]],feel:[]},
-      {id:'chloe',name:'Chloé Petit',since:'septembre',why:'Anxiété, besoin d’ancrage.',know:'',pref:'Au cabinet',hist:[[-35,3,6],[-21,4,7],[-7,4,8]],feel:[{t:-6,txt:"Je me sens plus stable cette semaine.",fresh:false}]}
+      {id:'lea',name:'Léa Martin',since:'octobre',why:'Fatigue depuis la rentrée, envie de retrouver un cap. Refuge des Possibles, 2 jours.',know:'',pref:'À Aillon-le-Vieux',hist:[[-37,5,7],[-23,3,6],[-9,4,7]],feel:[{t:-9,txt:"Ça m'a fait du bien de mettre des mots sur ce que je vis. J'ai hâte de marcher là-haut."},{t:-1,txt:"J'ai repensé à la question sur ce qui dépend de moi.",fresh:true}]},
+      {id:'marc',name:'Marc Dubois',since:'septembre',why:'Inquiétudes sur l’avenir de son métier. Stage « Garder le cap ».',know:'Genou fragile : marches sans grand dénivelé.',pref:'À Aillon-le-Vieux',hist:[[-42,4,7],[-28,5,6],[-14,4,5],[-1,3,4]],feel:[{t:-13,txt:"J'ai eu du mal à lâcher mes pensées pendant la marche.",fresh:true}]},
+      {id:'ines',name:'Inès Roux',since:'novembre',why:'Envie de découvrir, hésite entre deux stages.',know:'',pref:'En visio',hist:[],feel:[]},
+      {id:'paul',name:'Paul Girard',since:'juin',why:'Deuil récent. Refuge des Possibles.',know:'',pref:'À Aillon-le-Vieux',hist:[[-120,2,5],[-98,3,6],[-63,4,7]],feel:[]},
+      {id:'sofia',name:'Sofia Benali',since:'août',why:'Aidante familiale, besoin de souffler.',know:'Préfère des marches courtes.',pref:'À Aillon-le-Vieux',hist:[[-30,5,8],[-16,6,8]],feel:[{t:-15,txt:"Le temps de Reiki en fin de journée m'a profondément apaisée.",fresh:true}]},
+      {id:'jean',name:'Jean Morel',since:'mai',why:'Départ à la retraite dans un an. Stage « Préparer sa retraite ».',know:'',pref:'À Aillon-le-Vieux',hist:[[-80,6,8]],feel:[]},
+      {id:'chloe',name:'Chloé Petit',since:'septembre',why:'Perte de repères. Stage « Retrouver sa boussole intérieure ».',know:'',pref:'À Aillon-le-Vieux',hist:[[-35,3,6],[-21,4,7],[-7,4,8]],feel:[{t:-6,txt:"Je me sens plus stable cette semaine.",fresh:false}]}
     ],
     sessions:[
-      {id:'a1',client:'chloe',d:at(1,9,30),dur:75,soin:'Séance de Reiki',lieu:'cabinet',status:'confirmed',intention:"Garder cette stabilité."},
-      {id:'a2',client:'marc',d:at(1,14,0),dur:90,soin:'Soin énergétique complet',lieu:'cabinet',status:'confirmed',intention:''},
-      {id:'a3',client:'sofia',d:at(2,10,0),dur:60,soin:'Reiki à distance',lieu:'visio',status:'confirmed',intention:"Préparer l'arrivée du bébé dans la sérénité."},
-      {id:'a4',client:'ines',d:at(2,15,30),dur:75,soin:'Première séance',lieu:'cabinet',status:'confirmed',intention:''},
-      {id:'a5',client:'lea',d:at(3,10,0),dur:75,soin:'Séance de Reiki',lieu:'cabinet',status:'confirmed',intention:"Retrouver un sommeil plus calme."},
-      {id:'a6',client:'paul',d:at(3,16,0),dur:75,soin:'Séance de Reiki',lieu:'cabinet',status:'pending',intention:''},
-      {id:'a7',client:null,d:at(4,14,0),dur:150,soin:"Cercle d'automne",lieu:'visio',status:'atelier',inscrits:7,places:10},
-      {id:'a8',client:'jean',d:at(5,9,30),dur:90,soin:'Soin énergétique complet',lieu:'cabinet',status:'pending',intention:''},
-      {id:'a9',client:'marc',d:at(0,11,0),dur:90,soin:'Séance de Reiki',lieu:'cabinet',status:'done',report:null}
+      {id:'a1',client:'chloe',d:at(1,9,30),dur:60,soin:'Séance de suivi en visio',lieu:'visio',status:'confirmed',intention:"Garder cette stabilité."},
+      {id:'a2',client:'marc',d:at(1,14,0),dur:60,soin:'Séance de suivi en visio',lieu:'visio',status:'confirmed',intention:''},
+      {id:'a3',client:'sofia',d:at(2,10,0),dur:420,soin:'Le Refuge des Possibles · jour 1',lieu:'cabinet',status:'confirmed',intention:"Souffler et retrouver une place pour moi."},
+      {id:'a4',client:'ines',d:at(2,18,0),dur:45,soin:'Entretien préalable',lieu:'visio',status:'confirmed',intention:''},
+      {id:'a5',client:'lea',d:at(3,9,30),dur:480,soin:'Le Refuge des Possibles · jour 1',lieu:'cabinet',status:'confirmed',intention:"Déposer ce qui pèse et retrouver un cap."},
+      {id:'a6',client:'paul',d:at(4,18,0),dur:45,soin:'Entretien préalable',lieu:'visio',status:'pending',intention:''},
+      {id:'a7',client:null,d:at(4,9,0),dur:510,soin:'Stage « De la tête au cœur » · jour 1',lieu:'cabinet',status:'atelier',inscrits:4,places:6},
+      {id:'a8',client:'jean',d:at(5,10,0),dur:60,soin:'Séance de suivi en visio',lieu:'visio',status:'pending',intention:''},
+      {id:'a9',client:'marc',d:at(0,11,0),dur:60,soin:'Séance de suivi en visio',lieu:'visio',status:'done',report:null}
     ],
     messages:{
-      lea:[{me:false,t:-1,txt:"Bonjour Camille, j'ai beaucoup mieux dormi ! À jeudi."}],
-      marc:[{me:false,t:-1,txt:"Est-ce qu'on peut parler de mes tensions au dos demain ?"}],
-      sofia:[{me:true,t:-5,txt:"Pensez à vous installer confortablement, avec des coussins."},{me:false,t:-2,txt:"Merci, c'est noté pour mercredi."}],
-      paul:[{me:false,t:0,txt:"Je souhaiterais reprendre les séances, je vous ai envoyé une demande."}]
+      lea:[{me:false,t:-1,txt:"Bonjour Odile, votre proposition me convient tout à fait. À jeudi !"}],
+      marc:[{me:false,t:-1,txt:"Est-ce qu'on peut reparler de mon plan de navigation demain ?"}],
+      sofia:[{me:true,t:-5,txt:"Prévoyez de bonnes chaussures et une veste chaude pour la marche du matin."},{me:false,t:-2,txt:"Merci, c'est noté pour mercredi."}],
+      paul:[{me:false,t:0,txt:"Je pense être prêt pour le Refuge, je vous ai envoyé une demande d'entretien."}]
     },
     unread:['lea','marc','paul']
   };
-  const KEY='clairiere-pro-demo';let S;
+  const KEY='elan-pro-demo';let S;
   try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
   if(!S||!S.clients)S=JSON.parse(JSON.stringify(SEED));
   const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
@@ -536,7 +536,7 @@ td.name small{display:block;color:var(--brume-3);font-size:.8125rem}
     const pend=S.sessions.filter(s=>s.status==='pending').sort((a,b)=>new Date(a.d)-new Date(b.d));
     const toWrite=S.sessions.filter(s=>s.status==='done'&&!s.report);
     const feels=S.clients.flatMap(c=>c.feel.filter(f=>f.fresh).map(f=>({c,f}))).sort((a,b)=>b.f.t-a.f.t);
-    let h='<section><h2>Demandes à confirmer <small>'+pend.length+'</small></h2>'+(pend.length?pend.map(s=>{const c=C(s.client);return '<div class="item"><div class="who"><span class="avatar client">'+initials(c.name)+'</span><div><b>'+esc(c.name)+'</b><span>'+fmtDayLong(s.d)+' · '+fmtHour(s.d)+'</span></div></div><p>'+esc(s.soin)+', '+(s.lieu==='visio'?'en visio':'au cabinet')+'</p><div class="acts"><button class="btn tiny" type="button" data-confirm="'+s.id+'">Confirmer</button><button class="btn soft tiny" type="button" data-s="'+s.id+'">Voir la fiche</button></div></div>'}).join(''):'<p class="empty">Aucune demande en attente.</p>')+'</section>';
+    let h='<section><h2>Demandes à confirmer <small>'+pend.length+'</small></h2>'+(pend.length?pend.map(s=>{const c=C(s.client);return '<div class="item"><div class="who"><span class="avatar client">'+initials(c.name)+'</span><div><b>'+esc(c.name)+'</b><span>'+fmtDayLong(s.d)+' · '+fmtHour(s.d)+'</span></div></div><p>'+esc(s.soin)+', '+(s.lieu==='visio'?'en visio':'à Aillon-le-Vieux')+'</p><div class="acts"><button class="btn tiny" type="button" data-confirm="'+s.id+'">Confirmer</button><button class="btn soft tiny" type="button" data-s="'+s.id+'">Voir la fiche</button></div></div>'}).join(''):'<p class="empty">Aucune demande en attente.</p>')+'</section>';
     h+='<section><h2>Messages non lus <small>'+S.unread.length+'</small></h2>'+(S.unread.length?S.unread.map(id=>{const c=C(id),m=S.messages[id].filter(x=>!x.me).slice(-1)[0];return '<div class="item"><div class="who"><span class="avatar client">'+initials(c.name)+'</span><div><b>'+esc(c.name)+'</b><span>'+fmtShort(relDay(m.t))+'</span></div></div><p>'+esc(m.txt)+'</p><div class="acts"><button class="btn tiny" type="button" data-write="'+id+'">Répondre</button></div></div>'}).join(''):'<p class="empty">Aucun message en attente.</p>')+'</section>';
     h+='<section><h2>Comptes rendus à écrire <small>'+toWrite.length+'</small></h2>'+(toWrite.length?toWrite.map(s=>{const c=C(s.client);return '<div class="item"><div class="who"><span class="avatar client">'+initials(c.name)+'</span><div><b>'+esc(c.name)+'</b><span>'+fmtDayLong(s.d)+' · '+esc(s.soin)+'</span></div></div><div class="acts"><button class="btn tiny" type="button" data-s="'+s.id+'" data-focus="report">Écrire le compte rendu</button></div></div>'}).join(''):'<p class="empty">Tous les comptes rendus sont publiés.</p>')+'</section>';
     h+='<section><h2>Ressentis partagés <small>'+feels.length+' nouveaux</small></h2>'+(feels.length?feels.slice(0,2).map(({c,f})=>'<div class="item"><div class="who"><span class="avatar client">'+initials(c.name)+'</span><div><b>'+esc(c.name)+'</b><span>'+fmtShort(relDay(f.t))+'</span></div></div><p class="feel">'+esc(f.txt)+'</p><div class="acts"><button class="btn soft tiny" type="button" data-client="'+c.id+'">Ouvrir la fiche</button><button class="btn soft tiny" type="button" data-seen="'+c.id+'">Marquer comme lu</button></div></div>').join(''):'<p class="empty">Rien de nouveau.</p>')+'</section>';
@@ -555,9 +555,9 @@ td.name small{display:block;color:var(--brume-3);font-size:.8125rem}
       '<div class="d-sec"><h3>Ressentis partagés</h3>'+(c.feel.length?'<ul class="notes">'+c.feel.slice().reverse().map(f=>'<li>'+esc(f.txt)+'<small>'+fmtShort(relDay(f.t))+(f.fresh?' · nouveau':'')+'</small></li>').join('')+'</ul>':'<p class="empty">Aucun ressenti partagé pour l’instant. Le client choisit ce qu’il partage.</p>')+'</div>'+
       '<div class="d-sec"><h3>Son état au fil des séances</h3>'+(st.n?'<ul class="hist">'+c.hist.slice().reverse().map(x=>'<li><b>'+fmtShort(relDay(x[0]))+'</b><span>Avant '+x[1]+' · après '+x[2]+'</span><span class="st">+'+(x[2]-x[1])+'</span></li>').join('')+'</ul><p style="margin-top:8px;color:var(--brume-2);font-size:.9063rem">En moyenne '+fr(st.before)+' → '+fr(st.after)+' sur 10.</p>':'<p class="empty">Première séance : pas encore d’historique.</p>')+'</div>'}
   function openSession(id,focusReport){const s=S.sessions.find(x=>x.id===id);selected=id;renderPlanning();
-    if(!s.client){openDrawer('<div class="d-sec"><h3>Atelier</h3><p>'+s.inscrits+' inscrits sur '+s.places+' places, '+(s.lieu==='visio'?'en visio':'au cabinet')+'.</p></div><div class="d-acts"><button class="btn soft" type="button" data-toast="Liste des inscrits (démonstration)">Voir les inscrits</button></div>',s.soin,fmtDayLong(s.d)+' · '+fmtHour(s.d),'A');return}
+    if(!s.client){openDrawer('<div class="d-sec"><h3>Stage collectif</h3><p>'+s.inscrits+' inscrits sur '+s.places+' places, '+(s.lieu==='visio'?'en visio':'à Aillon-le-Vieux')+'.</p></div><div class="d-acts"><button class="btn soft" type="button" data-toast="Liste des inscrits (démonstration)">Voir les inscrits</button></div>',s.soin,fmtDayLong(s.d)+' · '+fmtHour(s.d),'A');return}
     const c=C(s.client);let html='';
-    if(s.status==='pending')html+='<div class="d-sec"><h3>Demande à confirmer</h3><p>'+esc(s.soin)+', '+fmtDayLong(s.d)+' à '+fmtHour(s.d)+', '+(s.lieu==='visio'?'en visio':'au cabinet')+'.</p><div class="d-acts" style="margin-top:10px"><button class="btn" type="button" data-confirm="'+s.id+'">Confirmer</button><button class="btn soft" type="button" data-write="'+c.id+'">Proposer un autre créneau</button></div></div>';
+    if(s.status==='pending')html+='<div class="d-sec"><h3>Demande à confirmer</h3><p>'+esc(s.soin)+', '+fmtDayLong(s.d)+' à '+fmtHour(s.d)+', '+(s.lieu==='visio'?'en visio':'à Aillon-le-Vieux')+'.</p><div class="d-acts" style="margin-top:10px"><button class="btn" type="button" data-confirm="'+s.id+'">Confirmer</button><button class="btn soft" type="button" data-write="'+c.id+'">Proposer un autre créneau</button></div></div>';
     html+='<div class="d-sec intent"><h3>Son intention pour cette séance</h3>'+(s.intention?'<p class="quote">«\u00a0'+esc(s.intention)+'\u00a0»</p>':'<p class="empty">Pas d’intention posée.</p>')+'</div>';
     if(s.status==='done')html+='<div class="d-sec"><h3>Compte rendu</h3>'+(s.report?'<div class="published">'+esc(s.report.txt)+'<small>Publié le '+fmtShort(s.report.t)+' · visible dans l’espace de '+esc(c.name.split(' ')[0])+'</small></div>':'<form class="report-form" data-report="'+s.id+'"><label class="sr" for="rep">Compte rendu</label><textarea id="rep" placeholder="Ce que vous avez observé, ce qui a bougé, ce que vous conseillez pour les jours qui viennent…"></textarea><div class="d-acts"><button class="btn" type="submit">Publier pour '+esc(c.name.split(' ')[0])+'</button><button class="btn soft" type="button" data-draft="'+s.id+'">Garder en brouillon</button></div></form>')+'</div>';
     html+=clientBlocks(c)+'<div class="d-acts"><button class="btn soft" type="button" data-write="'+c.id+'">Écrire à '+esc(c.name.split(' ')[0])+'</button></div>';
@@ -605,7 +605,7 @@ td.name small{display:block;color:var(--brume-3);font-size:.8125rem}
   const ab=$('acctBtn'),am=$('acctMenu');
   ab.onclick=e=>{e.stopPropagation();am.hidden=!am.hidden;ab.setAttribute('aria-expanded',!am.hidden)};
   document.addEventListener('click',e=>{if(!am.hidden&&!am.contains(e.target)&&e.target!==ab){am.hidden=true;ab.setAttribute('aria-expanded','false')}});
-  $('logout').onclick=()=>{try{sessionStorage.removeItem('clairiere-admin')}catch(e){}location.href='espace-client.html'};
+  $('logout').onclick=()=>{try{sessionStorage.removeItem('elan-admin')}catch(e){}location.href='espace-client.html'};
   $('reset').onclick=()=>{try{localStorage.removeItem(KEY)}catch(e){}S=JSON.parse(JSON.stringify(SEED));jposts=J.reset();resetForm();renderAll();toast('Démonstration réinitialisée')};
 
   /* ---------- Journal : rédiger et gérer les publications ---------- */
@@ -617,7 +617,7 @@ td.name small{display:block;color:var(--brume-3);font-size:.8125rem}
   $('previews').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(b){jphotos.splice(+b.dataset.rm,1);renderPreviews()}});
   const tipsMode=()=>document.querySelector('input[name=tipsMode]:checked').value;
   document.querySelectorAll('input[name=tipsMode]').forEach(r=>r.addEventListener('change',()=>{const t=tipsMode()==='text';$('jtipsLabel').textContent=t?'Conseils, en un bloc de texte':'Conseils, un par ligne';$('jtips').placeholder=t?'Écrivez vos conseils comme un paragraphe. Laissez une ligne vide pour en commencer un autre.':'Boire une boisson chaude en silence\nMarcher dix minutes dehors'}));
-  function resetForm(){editing=null;jphotos=[];draftOn=false;try{localStorage.removeItem('clairiere-journal-draft')}catch(e){}document.querySelector('input[name=tipsMode][value=list]').checked=true;document.querySelector('input[name=tipsMode]').dispatchEvent(new Event('change'));['jtitle','jintro','jbody','jtips','jquote'].forEach(id=>$(id).value='');$('jtheme').value=J.THEMES[0];document.querySelector('input[name=aud][value=all]').checked=true;$('jformTitle').textContent='Nouvelle publication';$('jsubmit').textContent='Publier';$('jcancel').hidden=true;$('jmsg').hidden=true;renderPreviews()}
+  function resetForm(){editing=null;jphotos=[];draftOn=false;try{localStorage.removeItem('elan-journal-draft')}catch(e){}document.querySelector('input[name=tipsMode][value=list]').checked=true;document.querySelector('input[name=tipsMode]').dispatchEvent(new Event('change'));['jtitle','jintro','jbody','jtips','jquote'].forEach(id=>$(id).value='');$('jtheme').value=J.THEMES[0];document.querySelector('input[name=aud][value=all]').checked=true;$('jformTitle').textContent='Nouvelle publication';$('jsubmit').textContent='Publier';$('jcancel').hidden=true;$('jmsg').hidden=true;renderPreviews()}
   function renderJournal(){const list=jposts.slice().sort((a,b)=>new Date(b.date)-new Date(a.date));$('jcount').textContent=list.length;
     $('jposts').innerHTML=list.map(p=>'<li><span class="th" style="'+J.photoStyle(p.photos[0])+'"></span><div><span class="m">'+fmtShort(p.date)+' · '+esc(p.theme)+(p.audience==='clients'?' · clients':'')+((p.comments||[]).length?' · '+p.comments.length+' commentaire'+(p.comments.length>1?'s':''):'')+'</span><b>'+esc(p.title)+'</b><div class="row-acts"><a class="btn soft tiny" href="blog.html#p-'+esc(p.id)+'">Voir</a><button class="btn soft tiny" type="button" data-edit="'+esc(p.id)+'">Modifier</button><button class="btn soft tiny" type="button" data-del="'+esc(p.id)+'">'+(armed===p.id?'Confirmer la suppression':'Supprimer')+'</button></div></div></li>').join('')}
   $('jposts').addEventListener('click',e=>{const ed=e.target.closest('[data-edit]'),dl=e.target.closest('[data-del]');
@@ -629,7 +629,7 @@ td.name small{display:block;color:var(--brume-3);font-size:.8125rem}
   const pview=$('pview'),pscrim=$('pscrim');var draftOn=false,draftT;
   function writeDraft(){const d=draftData(),prev=editing?jposts.find(x=>x.id===editing):null;
     const draft=Object.assign({id:'apercu',date:prev?prev.date:new Date().toISOString(),likes:prev?prev.likes:0},d,{title:d.title||'(Sans titre)',photos:d.photos.length?d.photos:['art:lumiere']});
-    try{localStorage.setItem('clairiere-journal-draft',JSON.stringify(draft));return true}catch(err){return false}}
+    try{localStorage.setItem('elan-journal-draft',JSON.stringify(draft));return true}catch(err){return false}}
   /* un onglet d'aperçu ouvert se met à jour pendant la saisie */
   $('jform').addEventListener('input',()=>{if(!draftOn)return;clearTimeout(draftT);draftT=setTimeout(writeDraft,400)});
   function closePreview(){pview.hidden=true;pscrim.hidden=true;$('pframe').src='about:blank';$('jpreview').focus()}
