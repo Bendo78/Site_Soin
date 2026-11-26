@@ -3,47 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>L'expérience dans les Bauges · L’Élan du Vivant</title>
-<meta name="description" content="Marcher, explorer, expérimenter : comment se vit un stage de L’Élan du Vivant au cœur du massif des Bauges, à Aillon-le-Vieux.">
+<title>L'expérience dans les Bauges · L’Élan des Cimes</title>
+<meta name="description" content="Marcher, explorer, expérimenter : comment se vit un stage de L’Élan des Cimes au cœur du massif des Bauges, à Aillon-le-Vieux.">
+<link rel="icon" href="images/logo-col.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Lato:wght@400;700&display=swap">
 <link rel="stylesheet" href="elan.css">
+<script>(function(){var p=null;try{p=new URLSearchParams(location.search).get("palette")}catch(e){}if(p===null)p="sousbois";if(p&&p!=="charte")document.documentElement.dataset.palette=p})()</script>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <!-- Emblème : deux crêtes des Bauges, un sentier qui monte, le soleil -->
-  <symbol id="mark" viewBox="0 0 40 40">
-    <circle cx="20" cy="20" r="18" fill="none" stroke="var(--brume-2)" stroke-width="1.2"/>
-    <circle cx="20" cy="20" r="11" fill="rgba(242,213,138,.16)"/>
-    <path d="M6.5 27.5l7.5-9 4.5 4.5 6.5-9 8.5 13.5" fill="none" stroke="var(--mousse)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-    <path d="M14.5 33.5c3-1.5 6-3.4 8.5-7.5" fill="none" stroke="var(--lumiere)" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="1.4 2.4"/>
-    <circle cx="27.5" cy="10.5" r="2.6" fill="var(--lumiere)"/>
-  </symbol>
-</svg>
-<canvas id="veil" aria-hidden="true"></canvas>
 <a class="skip" href="#main">Aller au contenu</a>
 <header class="top" id="top">
   <div class="wrap">
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
     </button>
-    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>L’Élan du Vivant</b><small>MARCHE · ACCOMPAGNEMENT · BAUGES</small></span></a>
+    <a class="brand" href="index.html" aria-label="L’Élan des Cimes, accueil"><svg class="mark" viewBox="0 0 256 256" aria-hidden="true"><path d="M16 206L88 96C93 88 103 88 108 96L130 130L150 106C155 100 163 100 168 106L240 206Z" fill="var(--logo-1,#2F4A3E)"/><circle cx="130" cy="92" r="16" fill="var(--logo-2,#C77F62)"/><path d="M121 206C121 186 140 176 140 160C140 152 136 146 130 140C134 150 126 156 126 166C126 182 110 190 110 206Z" fill="var(--logo-3,#F7F5EF)"/></svg><span class="brand-txt"><b>L’Élan des Cimes</b><small>Retrouver son élan, choisir son chemin.</small></span></a>
     <ul class="menu" id="menu">
-      <li><a href="experience.html" aria-current="page">L’expérience</a></li>
       <li><a href="stages.html">Les stages</a></li>
       <li><a href="refuge.html">Le Refuge</a></li>
+      <li><a href="seances.html">Séances individuelles</a></li>
+      <li><a href="experience.html" aria-current="page">L’expérience</a></li>
       <li><a href="qui-suis-je.html">Qui suis-je ?</a></li>
       <li><a href="blog.html">Le journal</a></li>
       <li class="m-only"><a href="index.html#contact">Me contacter</a></li>
     </ul>
-    <a class="acct-link" href="espace-client.html"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="7" r="3.5"/><path d="M3.5 17c1-3.3 3.6-5 6.5-5s5.5 1.7 6.5 5" stroke-linecap="round"/></svg><span>Mon espace</span></a>
+    <a class="acct-link" href="espace-client.html"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="7" r="3.5"/><path d="M3.5 17c1-3.3 3.6-5 6.5-5s5.5 1.7 6.5 5" stroke-linecap="round"/></svg><span>Mon espace</span></a>
     <a class="btn" href="index.html#contact">Me contacter</a>
   </div>
 </header>
 <main id="main">
-<section class="page-head">
-    <canvas aria-hidden="true"></canvas>
+<section class="page-head photo">
+    <img src="images/vallee-mer-de-nuages.jpg" alt="Une vallée des Bauges au-dessus d’une mer de nuages" width="1200" height="900">
     <div class="wrap">
       <p class="crumb"><a href="index.html">Accueil</a> · L'expérience</p>
       <h1>L'expérience dans les Bauges</h1>
@@ -88,13 +80,25 @@
     </div>
   </section>
 
+  <section class="tint">
+    <div class="wrap">
+      <div class="head"><h2>Au fil des saisons</h2><p>Les Bauges changent de visage chaque saison. Les stages s’y adaptent : prairies fleuries, forêts dorées, neige et silence.</p></div>
+      <div class="seasons">
+        <figure><img src="images/saison-printemps.jpg" alt="Prairie verte au printemps, montagnes et ciel bleu" loading="lazy" width="1000" height="750"><figcaption>Printemps</figcaption></figure>
+        <figure><img src="images/saison-ete.jpg" alt="Alpage d’été et forêt de sapins" loading="lazy" width="1000" height="750"><figcaption>Été</figcaption></figure>
+        <figure><img src="images/saison-automne.jpg" alt="Forêts dorées de l’automne" loading="lazy" width="1000" height="750"><figcaption>Automne</figcaption></figure>
+        <figure><img src="images/saison-hiver.jpg" alt="Arbres et prés enneigés sous le soleil" loading="lazy" width="1000" height="750"><figcaption>Hiver</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
   <section id="marcher">
     <div class="wrap">
       <div class="head">
         <h2>Marcher pour avancer autrement</h2>
         <p>Dans mes stages, la marche n'est pas une activité ajoutée au programme pour profiter de la montagne. Elle fait partie intégrante de l'accompagnement : le corps se met en mouvement, le regard se porte plus loin, les émotions et les pensées trouvent une autre place.</p>
       </div>
-      <div class="rows" data-light>
+      <div class="rows">
         <div class="row-i"><h3>Une montée<small>pour explorer notre rapport à l'effort</small></h3><p>L'occasion de regarder comment nous abordons les obstacles, et ce qui nous aide à continuer.</p></div>
         <div class="row-i"><h3>Un croisement de chemins<small>pour regarder les options</small></h3><p>Une invitation à considérer les différentes possibilités qui s'offrent à nous.</p></div>
         <div class="row-i"><h3>Un paysage vu d'en haut<small>pour comprendre le recul</small></h3><p>Prendre du recul cesse d'être une idée : cela devient une expérience vécue.</p></div>
@@ -110,9 +114,9 @@
         <p>Certains moments vécus en montagne m'ont particulièrement marquée. Ils illustrent ce que j'aime dans cette approche : découvrir, au détour d'un chemin, une image qui éclaire notre propre vie.</p>
       </div>
       <div class="stories">
-        <article class="story"><h3>Un champ de fleurs</h3><p>Une participante s'est arrêtée devant un champ de fleurs. Chacune était unique et apportait quelque chose au paysage : cette image l'a aidée à regarder autrement sa propre singularité.</p><p class="moral">Découvrir sa singularité.</p></article>
-        <article class="story"><h3>Marcher côte à côte</h3><p>En marchant, une personne a commencé à évoquer des moments difficiles de son passé. Avancer ensemble, sans être face à face, à son rythme, rendait la parole plus facile.</p><p class="moral">Trouver les mots.</p></article>
-        <article class="story"><h3>Un lac en contrebas</h3><p>Une autre personne cherchait à prendre du recul. Face à un lac visible près de 1 000 mètres plus bas, elle a soudain compris ce que cela pouvait signifier, de manière très concrète.</p><p class="moral">Comprendre le recul.</p></article>
+        <article class="story"><img src="images/champ-de-fleurs.jpg" alt="Un champ de fleurs jaunes dans une prairie de montagne" loading="lazy" width="1000" height="750"><div class="body"><h3>Un champ de fleurs</h3><p>Une participante s'est arrêtée devant un champ de fleurs. Chacune était unique et apportait quelque chose au paysage : cette image l'a aidée à regarder autrement sa propre singularité.</p><p class="moral">Découvrir sa singularité.</p></div></article>
+        <article class="story"><img src="images/sentier-foret.jpg" alt="Un sentier qui s’enfonce dans la forêt" loading="lazy" width="1000" height="750"><div class="body"><h3>Marcher côte à côte</h3><p>En marchant, une personne a commencé à évoquer des moments difficiles de son passé. Avancer ensemble, sans être face à face, à son rythme, rendait la parole plus facile.</p><p class="moral">Trouver les mots.</p></div></article>
+        <article class="story"><img src="images/lac-en-contrebas.jpg" alt="Un lac vu de très haut, en contrebas des crêtes" loading="lazy" width="1000" height="750"><div class="body"><h3>Un lac en contrebas</h3><p>Une autre personne cherchait à prendre du recul. Face à un lac visible près de 1 000 mètres plus bas, elle a soudain compris ce que cela pouvait signifier, de manière très concrète.</p><p class="moral">Comprendre le recul.</p></div></article>
       </div>
       <p class="outro">Je prépare mes stages avec soin, mais je laisse aussi de la place à l'imprévu. La nature ne donne pas de réponses toutes faites. Elle nous offre parfois une image qui nous aide à trouver les nôtres.</p>
     </div>
@@ -138,7 +142,7 @@
 
   <section id="groupes">
     <div class="wrap split">
-      <h2>La richesse des petits groupes</h2>
+      <div style="display:grid;gap:22px"><h2>La richesse des petits groupes</h2><figure class="figure"><img src="images/salle-atelier-tableau.jpg" alt="La salle d’atelier : écran, paperboard couvert de notes, fauteuils" loading="lazy" width="1200" height="900"><figcaption>La salle des ateliers de l’après-midi.</figcaption></figure></div>
       <div class="prose">
         <p>J'accueille de petits groupes, généralement de quatre à six participants. Ce format crée une atmosphère chaleureuse et me permet de prendre le temps d'écouter chacun.</p>
         <p>Il offre aussi la rencontre avec d'autres regards : une expérience qui fait écho à la vôtre, une question à laquelle vous n'auriez pas pensé, et parfois la découverte que vous n'êtes pas seul à vous poser certaines questions.</p>
@@ -174,19 +178,19 @@
 
   <section>
     <div class="wrap">
-      <div class="head"><h2>Deux façons de vivre L’Élan du Vivant</h2></div>
+      <div class="head"><h2>Deux façons de vivre L’Élan des Cimes</h2></div>
       <div class="ways">
-        <article class="way">
+        <article class="way"><img src="images/chemin-vers-les-sommets.jpg" alt="Un chemin qui monte vers les sommets" loading="lazy" width="1800" height="1350"><div class="body">
           <h3>Les stages collectifs</h3>
           <p class="sub">Avancer ensemble.</p>
           <p>Cinq stages de trois jours : retrouver sa boussole intérieure, passer de la tête au cœur, donner une chance à ses rêves, garder le cap dans un monde incertain, préparer sa retraite.</p>
-          <div class="acts"><a class="btn" href="stages.html">Découvrir les stages collectifs</a></div>
+          <div class="acts"><a class="btn" href="stages.html">Découvrir les stages collectifs</a></div></div>
         </article>
-        <article class="way">
+        <article class="way warm"><img src="images/balcon-fleuri.jpg" alt="Un balcon fleuri ouvert sur la montagne" loading="lazy" width="1800" height="1350"><div class="body">
           <h3>Le Refuge des Possibles</h3>
           <p class="sub">Un espace rien que pour vous.</p>
           <p>Un accompagnement individuel, confidentiel et personnalisé, sur un à trois jours, associant coaching, marche, expériences corporelles, créativité et, si vous le souhaitez, pratiques énergétiques.</p>
-          <div class="acts"><a class="btn soft" href="refuge.html">Découvrir Le Refuge des Possibles</a></div>
+          <div class="acts"><a class="btn soft" href="refuge.html">Découvrir Le Refuge des Possibles</a></div></div>
         </article>
       </div>
     </div>
@@ -197,15 +201,15 @@
       <h2>Et si vous veniez prendre de la hauteur ?</h2>
       <p>Marcher pour remettre vos idées en mouvement, ralentir pour entendre ce qui compte vraiment, et prendre le temps d'expérimenter avant de choisir comment avancer. Des chemins à parcourir, des expériences à vivre, de nouveaux possibles à explorer.</p>
       <div class="acts" style="justify-content:center"><a class="btn" href="index.html#contact">Me contacter</a><a class="btn soft" href="stages.html">Voir les stages</a></div>
-      <p class="sign">L’Élan du Vivant · Retrouver son élan, choisir son chemin.</p>
+      <p class="sign">L’Élan des Cimes · Retrouver son élan, choisir son chemin.</p>
     </div>
   </section>
 </main>
 <footer>
   <div class="wrap">
-    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>L’Élan du Vivant</b><small>MARCHE · ACCOMPAGNEMENT · BAUGES</small></span></a>
-    <nav aria-label="Pied de page"><a href="index.html">Accueil</a><a href="experience.html">L’expérience</a><a href="stages.html">Les stages</a><a href="refuge.html">Le Refuge</a><a href="qui-suis-je.html">Qui suis-je ?</a><a href="blog.html">Le journal</a><a href="index.html#questions">Questions</a><a href="index.html#contact">Contact</a></nav>
-    <p>© 2026 L’Élan du Vivant · Odile Bernhardt · Aillon-le-Vieux, massif des Bauges. Coordonnées, dates et tarifs « à préciser » restent à confirmer.</p>
+    <a class="brand foot-brand" href="index.html" aria-label="L’Élan des Cimes, accueil"><svg class="mark" viewBox="0 0 256 256" aria-hidden="true"><path d="M16 206L88 96C93 88 103 88 108 96L130 130L150 106C155 100 163 100 168 106L240 206Z" fill="var(--logo-1,#2F4A3E)"/><circle cx="130" cy="92" r="16" fill="var(--logo-2,#C77F62)"/><path d="M121 206C121 186 140 176 140 160C140 152 136 146 130 140C134 150 126 156 126 166C126 182 110 190 110 206Z" fill="var(--logo-3,#F7F5EF)"/></svg><span class="brand-txt"><b>L’Élan des Cimes</b><small>Retrouver son élan, choisir son chemin.</small></span></a>
+    <nav aria-label="Pied de page"><a href="index.html">Accueil</a><a href="stages.html">Les stages</a><a href="refuge.html">Le Refuge</a><a href="seances.html">Séances individuelles</a><a href="experience.html">L’expérience</a><a href="qui-suis-je.html">Qui suis-je ?</a><a href="blog.html">Le journal</a><a href="index.html#questions">Questions</a><a href="index.html#contact">Contact</a></nav>
+    <p>© 2026 L’Élan des Cimes · Odile Bernhardt · Aillon-le-Vieux, massif des Bauges. Photographies : Odile Bernhardt. Coordonnées, dates et tarifs « à préciser » restent à confirmer.</p>
   </div>
 </footer>
 <script src="elan.js"></script>

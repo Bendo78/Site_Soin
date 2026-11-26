@@ -3,28 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mon espace · L’Élan du Vivant</title>
-<meta name="description" content="Espace client L’Élan du Vivant : vos rendez-vous, vos ressentis, les comptes rendus et la conversation avec votre praticienne.">
+<title>Mon espace · L’Élan des Cimes</title>
+<link rel="icon" href="images/logo-col.svg" type="image/svg+xml">
+<meta name="description" content="Espace client L’Élan des Cimes : vos rendez-vous, vos ressentis, les comptes rendus et la conversation avec votre praticienne.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Lato:wght@400;700&display=swap">
 <style>
 /* Espace client · monde Komorebi (voir DESIGN.md) : la prochaine séance au centre, l'historique en rangées, la conversation à côté */
 :root{
-  color-scheme:dark;
-  --nuit:#12221A; --bois:#1A3125; --bois-2:#22392C; --mousse:#A9BE8F; --feuille:#6F8C5E;
-  --lumiere:#F2D58A; --lumiere-pale:#FBF1D2; --brume:#E9EFE4; --brume-2:#B9C8B5; --brume-3:#93A592;
-  --crepuscule:#B3A3DA; --erreur:#E07A6A;
-  --filet:rgba(233,239,228,.14); --voile:rgba(233,239,228,.045); --puits:rgba(18,34,26,.6);
-  --titre:"Shippori Mincho","Iowan Old Style","Palatino Linotype",serif;
-  --texte:"Zen Kaku Gothic New","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  --nuit:#FFFFFF; --bois:#FFFFFF; --bois-2:#EFEBE1; --mousse:#344D43; --feuille:#879B86;
+  --lumiere:#A8543D; --lumiere-pale:#A8543D; --brume:#303A35; --brume-2:#46514B; --brume-3:#5C6660;
+  --crepuscule:#6E7F6D; --erreur:#A8543D;
+  --filet:rgba(52,77,67,0.14); --voile:rgba(52,77,67,0.08); --puits:rgba(255,255,255,0.92);
+  --titre:"Cormorant Garamond","Iowan Old Style",serif;
+  --texte:"Lato","Segoe UI",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 html,body{margin:0}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth;scrollbar-color:var(--feuille) var(--nuit)}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-body{min-height:100vh;background:linear-gradient(180deg,#12221A 0%,#183026 30%,#1E3829 60%,#152A1F 100%);background-attachment:fixed;color:var(--brume);font-family:var(--texte);font-size:1.0625rem;line-height:1.7;-webkit-font-smoothing:antialiased;caret-color:var(--lumiere)}
+body{min-height:100vh;background:linear-gradient(180deg,#F7F5EF 0%,#F7F5EF 30%,#F7F5EF 60%,#FFFFFF 100%);background-attachment:fixed;color:var(--brume);font-family:var(--texte);font-size:1.0625rem;line-height:1.7;-webkit-font-smoothing:antialiased;caret-color:var(--lumiere)}
 ::selection{background:var(--lumiere);color:var(--nuit)}
 h1,h2,h3,h4{font-family:var(--titre);font-weight:600;margin:0;line-height:1.2;text-wrap:balance}
 p{margin:0}
@@ -37,8 +38,8 @@ button{font:inherit;color:inherit}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* Boutons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:11px 22px;border-radius:999px;border:1px solid var(--lumiere);background:var(--lumiere);color:var(--nuit);font:700 .9688rem/1.2 var(--texte);letter-spacing:.01em;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px -12px rgba(242,213,138,.55);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(242,213,138,.7)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:11px 22px;border-radius:999px;border:1px solid var(--lumiere);background:var(--lumiere);color:var(--nuit);font:700 .9688rem/1.2 var(--texte);letter-spacing:.01em;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px -12px rgba(168,84,61,0.300);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(168,84,61,0.300)}
 .btn.soft{background:transparent;color:var(--brume);border-color:var(--filet);box-shadow:none}
 .btn.soft:hover{border-color:var(--brume-2)}
 .btn.small{min-height:38px;padding:7px 16px;font-size:.875rem}
@@ -46,7 +47,7 @@ button{font:inherit;color:inherit}
 .link{background:none;border:0;padding:0;cursor:pointer;font-weight:500;text-decoration:underline;text-decoration-color:var(--lumiere)}
 
 /* En-tête du site + bouton du compte */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(18,34,26,.78);backdrop-filter:blur(12px);border-bottom:1px solid var(--filet)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--filet)}
 .top .wrap{display:flex;align-items:center;gap:24px;padding-block:12px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
 .brand svg{width:38px;height:38px;flex:none}
@@ -56,12 +57,12 @@ button{font:inherit;color:inherit}
 .sitenav a{text-decoration:none;font-size:.9375rem;color:var(--brume-2)}
 .sitenav a:hover{color:var(--lumiere)}
 .acct{position:relative}
-.acct-btn{display:flex;align-items:center;gap:10px;min-height:44px;padding:5px 16px 5px 5px;border-radius:999px;border:1px solid var(--lumiere);background:rgba(242,213,138,.08);cursor:pointer;font-size:.9375rem;font-weight:500}
+.acct-btn{display:flex;align-items:center;gap:10px;min-height:44px;padding:5px 16px 5px 5px;border-radius:999px;border:1px solid var(--lumiere);background:rgba(168,84,61,0.048);cursor:pointer;font-size:.9375rem;font-weight:500}
 .acct-btn svg{width:14px;height:14px;transition:transform .3s}
 .acct-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
-.avatar{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;font:700 .875rem var(--texte);color:var(--nuit);background:radial-gradient(circle at 40% 35%,var(--lumiere-pale),var(--lumiere) 60%,#C9A85E)}
-.avatar.camille{background:radial-gradient(circle at 40% 35%,#D8E4CB,var(--mousse) 60%,#7E9A6A)}
-.acct-menu{position:absolute;right:0;top:calc(100% + 10px);min-width:240px;padding:8px;border-radius:20px;background:#162B20;border:1px solid var(--filet);display:grid}
+.avatar{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;font:700 .875rem var(--texte);color:var(--nuit);background:radial-gradient(circle at 40% 35%,var(--lumiere-pale),var(--lumiere) 60%,#A8543D)}
+.avatar.camille{background:radial-gradient(circle at 40% 35%,#DCE3DA,var(--mousse) 60%,#879B86)}
+.acct-menu{position:absolute;right:0;top:calc(100% + 10px);min-width:240px;padding:8px;border-radius:20px;background:#FFFFFF;border:1px solid var(--filet);display:grid}
 .acct-menu .who{padding:10px 12px 12px;border-bottom:1px solid var(--filet);margin-bottom:6px}
 .acct-menu .who b{display:block;font:600 1.05rem var(--titre)}
 .acct-menu .who span{font-size:.8125rem;color:var(--brume-3)}
@@ -85,7 +86,7 @@ input::placeholder,textarea::placeholder{color:var(--brume-3)}
 input:focus,select:focus,textarea:focus{outline:2px solid var(--lumiere);outline-offset:1px;border-color:transparent}
 .demo-note{font-size:.8125rem;color:var(--brume-3)}
 .demo-note b{color:var(--brume-2);font-weight:700}
-.form-err{font-size:.875rem;color:#E07A6A}
+.form-err{font-size:.875rem;color:#A8543D}
 
 /* Espace */
 .space{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:clamp(28px,4vw,56px);padding-block:clamp(28px,4vw,48px) 60px}
@@ -99,7 +100,7 @@ section{scroll-margin-top:90px}
 .blk-head p{color:var(--brume-3);font-size:.9375rem}
 
 /* Carte de la prochaine séance : la lumière komorebi */
-.next{position:relative;overflow:hidden;margin-top:26px;border-radius:28px;border:1px solid rgba(242,213,138,.28);background:transparent;isolation:isolate}
+.next{position:relative;overflow:hidden;margin-top:26px;border-radius:28px;border:1px solid rgba(168,84,61,0.168);background:transparent;isolation:isolate}
 .next canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
  .next-in{background:linear-gradient(100deg,rgba(12,24,17,.62) 0%,rgba(12,24,17,.4) 55%,rgba(12,24,17,.08) 100%);padding:clamp(24px,4vw,40px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 28px}
 .next .lbl{grid-column:1/-1;font-size:.8125rem;letter-spacing:.12em;color:var(--mousse)}
@@ -128,7 +129,7 @@ section{scroll-margin-top:90px}
 .row{border-bottom:1px solid var(--filet)}
 .row summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:96px minmax(0,1fr) auto 92px 34px;gap:10px 22px;align-items:center;padding:18px 4px;position:relative}
 .row summary::-webkit-details-marker{display:none}
-.row summary::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 15% 50%,rgba(242,213,138,.08),transparent 70%);opacity:0;transition:opacity .5s;pointer-events:none}
+.row summary::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 15% 50%,rgba(168,84,61,0.048),transparent 70%);opacity:0;transition:opacity .5s;pointer-events:none}
 .row summary:hover::before,.row[open] summary::before{opacity:1}
 .date{font:600 1.15rem/1.2 var(--titre);font-variant-numeric:tabular-nums}
 .date small{display:block;font:400 .8125rem var(--texte);color:var(--brume-3)}
@@ -187,14 +188,14 @@ input[type=range]{padding:0;border:0;background:none;accent-color:var(--lumiere)
 @media (max-width:620px){.profile{grid-template-columns:1fr}}
 
 /* Conversation avec la praticienne */
-.chat{position:sticky;top:96px;height:calc(100vh - 120px);min-height:520px;display:flex;flex-direction:column;border-radius:28px;border:1px solid var(--filet);background:rgba(18,34,26,.78)}
+.chat{position:sticky;top:96px;height:calc(100vh - 120px);min-height:520px;display:flex;flex-direction:column;border-radius:28px;border:1px solid var(--filet);background:rgba(255,255,255,0.92)}
 .chat-top{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--filet)}
 .chat-top b{display:block;font:600 1.15rem var(--titre)}
 .chat-top small{color:var(--mousse);font-size:.8125rem}
 .chat-close{margin-left:auto;display:none}
 .thread{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin}
-.bubble{max-width:86%;padding:11px 15px;border-radius:18px 18px 18px 6px;background:rgba(233,239,228,.07);border:1px solid rgba(233,239,228,.1);font-size:.9688rem;line-height:1.6}
-.bubble.me{align-self:flex-end;border-radius:18px 18px 6px 18px;background:rgba(242,213,138,.13);border-color:rgba(242,213,138,.26)}
+.bubble{max-width:86%;padding:11px 15px;border-radius:18px 18px 18px 6px;background:rgba(52,77,67,0.08);border:1px solid rgba(52,77,67,0.1);font-size:.9688rem;line-height:1.6}
+.bubble.me{align-self:flex-end;border-radius:18px 18px 6px 18px;background:rgba(168,84,61,0.078);border-color:rgba(168,84,61,0.156)}
 .bubble .ref{display:block;font-size:.75rem;color:var(--mousse);margin-bottom:3px}
 .bubble time{display:block;font-size:.75rem;color:var(--brume-3);margin-top:4px}
 .day{align-self:center;font-size:.75rem;color:var(--brume-3);letter-spacing:.06em}
@@ -204,7 +205,7 @@ input[type=range]{padding:0;border:0;background:none;accent-color:var(--lumiere)
 .chat-fab{display:none}
 @media (max-width:1060px){
   .space{grid-template-columns:1fr}
-  .chat{position:fixed;inset:0;top:0;height:auto;min-height:0;z-index:60;border-radius:0;border:0;background:#132519;transform:translateY(100%);transition:transform .45s cubic-bezier(.2,.8,.2,1);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  .chat{position:fixed;inset:0;top:0;height:auto;min-height:0;z-index:60;border-radius:0;border:0;background:#F7F5EF;transform:translateY(100%);transition:transform .45s cubic-bezier(.2,.8,.2,1);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
   .chat.open{transform:none}
   .chat-close{display:inline-flex}
   .chat-fab{display:inline-flex;position:fixed;z-index:50;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px))}
@@ -213,7 +214,7 @@ input[type=range]{padding:0;border:0;background:none;accent-color:var(--lumiere)
 @media (prefers-reduced-motion: reduce){.row[open] .open{animation:none}.chat{transition:none}}
 
 /* Prise de rendez-vous */
-dialog{width:min(640px,calc(100% - 32px));max-height:calc(100vh - 40px);padding:0;border-radius:28px;border:1px solid var(--filet);background:#152A1F;color:var(--brume)}
+dialog{width:min(640px,calc(100% - 32px));max-height:calc(100vh - 40px);padding:0;border-radius:28px;border:1px solid var(--filet);background:#FFFFFF;color:var(--brume)}
 dialog::backdrop{background:rgba(8,16,11,.72);backdrop-filter:blur(3px)}
 .dlg{display:grid;gap:20px;padding:clamp(22px,4vw,34px)}
 .dlg-head{display:flex;justify-content:space-between;align-items:start;gap:16px}
@@ -229,13 +230,13 @@ legend{font:500 1.05rem var(--titre);color:var(--mousse);margin-bottom:10px;padd
 .choice input{width:18px;height:18px;accent-color:var(--lumiere);margin:0}
 .choice small{display:block;color:var(--brume-3);font-size:.8125rem}
 .choice b{font:600 1.1rem var(--titre)}
-.choice:has(input:checked){border-color:var(--lumiere);background:rgba(242,213,138,.06)}
+.choice:has(input:checked){border-color:var(--lumiere);background:rgba(168,84,61,0.036)}
 .places-pick{display:flex;gap:8px;flex-wrap:wrap}
 .places-pick .choice{grid-template-columns:auto auto}
 .days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
 .day-btn{flex:none;width:68px;padding:8px 0;border-radius:16px;border:1px solid var(--filet);background:none;cursor:pointer;text-align:center;color:var(--brume-2);font-size:.8125rem}
 .day-btn b{display:block;font:600 1.3rem var(--titre);color:var(--brume)}
-.day-btn[aria-pressed="true"]{border-color:var(--lumiere);background:rgba(242,213,138,.08)}
+.day-btn[aria-pressed="true"]{border-color:var(--lumiere);background:rgba(168,84,61,0.048)}
 .day-btn:disabled{opacity:.35;cursor:not-allowed}
 .slots{display:flex;flex-wrap:wrap;gap:8px}
 .slot{padding:9px 16px;border-radius:999px;border:1px solid var(--filet);background:none;cursor:pointer;font:600 1rem var(--titre);font-variant-numeric:tabular-nums}
@@ -248,20 +249,20 @@ legend{font:500 1.05rem var(--titre);color:var(--mousse);margin-bottom:10px;padd
 @media (max-width:1060px){main{padding-bottom:84px}.toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}body.chat-open main{z-index:70}}
 footer{padding-block:28px 40px;border-top:1px solid var(--filet);font-size:.8125rem;color:var(--brume-3)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 30px}
-.toast{position:fixed;z-index:80;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));max-width:calc(100% - 40px);text-align:center;transform:translate(-50%,20px);opacity:0;padding:12px 20px;border-radius:18px;background:#1E3829;border:1px solid var(--lumiere);font-size:.9375rem;transition:opacity .3s,transform .3s;pointer-events:none}
+.toast{position:fixed;z-index:80;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));max-width:calc(100% - 40px);text-align:center;transform:translate(-50%,20px);opacity:0;padding:12px 20px;border-radius:18px;background:#F7F5EF;border:1px solid var(--lumiere);font-size:.9375rem;transition:opacity .3s,transform .3s;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .toast{left:20px;right:20px;margin-inline:auto;width:fit-content;transform:translateY(20px)}
 .toast.show{transform:none}
 @media (max-width:1060px){.toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
 
 /* Onglets : une rangée de mots calmes, un point de lumière sous l'onglet ouvert */
-.tabs-bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 69px);z-index:30;background:rgba(16,30,22,.97);border-bottom:1px solid var(--filet)}
+.tabs-bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 69px);z-index:30;background:rgba(255,255,255,0.97);border-bottom:1px solid var(--filet)}
 .tabs{display:flex;gap:clamp(4px,2vw,30px);overflow-x:auto;scrollbar-width:none;padding-block:4px}
 .tabs::-webkit-scrollbar{display:none}
 .tabs a{position:relative;flex:none;display:inline-flex;align-items:center;gap:8px;padding:14px 8px 16px;text-decoration:none;font:500 1.05rem var(--titre);color:var(--brume-2);white-space:nowrap}
 .tabs a:hover{color:var(--brume)}
 .tabs a[aria-current="page"]{color:var(--brume)}
-.tabs a[aria-current="page"]::after{content:"";position:absolute;left:50%;bottom:4px;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:var(--lumiere);box-shadow:0 0 12px 2px rgba(242,213,138,.6)}
+.tabs a[aria-current="page"]::after{content:"";position:absolute;left:50%;bottom:4px;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:var(--lumiere);box-shadow:0 0 12px 2px rgba(168,84,61,0.300)}
 .badge{min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--lumiere);color:var(--nuit);font:700 .75rem/20px var(--texte);text-align:center}
 .panel{padding-block:clamp(30px,5vw,60px) 80px}
 .panel-head{max-width:760px;margin-bottom:28px}
@@ -300,7 +301,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
 .light-step{display:grid;justify-items:center;gap:6px;font-size:.8125rem;color:var(--brume-2)}
 .light-step .pair{display:flex;align-items:flex-end;gap:10px;height:76px}
 .light-step i{display:block;width:12px;height:12px;border-radius:50%;background:var(--brume-3)}
-.light-step i.after{width:16px;height:16px;background:radial-gradient(circle,var(--lumiere-pale),var(--lumiere) 55%,rgba(242,213,138,.2));box-shadow:0 0 16px 4px rgba(242,213,138,.45)}
+.light-step i.after{width:16px;height:16px;background:radial-gradient(circle,var(--lumiere-pale),var(--lumiere) 55%,rgba(168,84,61,0.120));box-shadow:0 0 16px 4px rgba(168,84,61,0.270)}
 .light-step b{font:600 .9375rem var(--titre);color:var(--brume)}
 .today-note{display:grid;gap:10px}
 .today-note label.q{font:500 1.15rem var(--titre);color:var(--mousse)}
@@ -309,9 +310,17 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
 
 /* Messages dans leur onglet */
 .chat{position:relative;top:auto;height:min(72vh,680px);max-width:900px}
-@media (max-width:1060px){.chat{position:relative;inset:auto;z-index:auto;transform:none;border-radius:28px;border:1px solid var(--filet);background:rgba(18,34,26,.78);height:calc(100vh - 220px);min-height:440px}.chat-close,.chat-fab{display:none!important}main{padding-bottom:0}}
+@media (max-width:1060px){.chat{position:relative;inset:auto;z-index:auto;transform:none;border-radius:28px;border:1px solid var(--filet);background:rgba(255,255,255,0.92);height:calc(100vh - 220px);min-height:440px}.chat-close,.chat-fab{display:none!important}main{padding-bottom:0}}
 .chat-close{display:none}
 .journal-list{margin-top:28px}
+
+/* Charte L’Élan des Cimes */
+#veil{display:none}
+body{background:#F7F5EF!important;color:#303A35}
+h1,h2,h3{color:#344D43}
+.brand img{height:44px;width:auto;display:block}
+#carnetLight,#nextLight{display:none}
+.brand .mark{width:46px;height:46px;flex:none}.brand-txt b{display:block;font:600 1.3rem/1 "Cormorant Garamond",serif;color:#344D43;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -328,11 +337,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>L’Élan du Vivant</b><small>MARCHE · ACCOMPAGNEMENT · BAUGES</small></span></a>
+    <a class="brand" href="index.html"><svg class="mark" viewBox="0 0 256 256" aria-hidden="true"><path d="M16 206L88 96C93 88 103 88 108 96L130 130L150 106C155 100 163 100 168 106L240 206Z" fill="var(--logo-1,#2F4A3E)"/><circle cx="130" cy="92" r="16" fill="var(--logo-2,#C77F62)"/><path d="M121 206C121 186 140 176 140 160C140 152 136 146 130 140C134 150 126 156 126 166C126 182 110 190 110 206Z" fill="var(--logo-3,#F7F5EF)"/></svg><span class="brand-txt"><b>L’Élan des Cimes</b></span></a>
     <ul class="sitenav">
       <li><a href="experience.html">L’expérience</a></li>
       <li><a href="stages.html">Les stages</a></li>
       <li><a href="refuge.html">Le Refuge</a></li>
+      <li><a href="seances.html">Séances individuelles</a></li>
       <li><a href="qui-suis-je.html">Qui suis-je ?</a></li>
       <li><a href="blog.html">Le journal</a></li>
     </ul>
@@ -731,7 +741,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
   function noteLine(n){return '<li><time>'+fmtShort(n.t)+'<small>'+fmtHour(n.t)+'</small></time><div><p>'+esc(n.txt)+'</p><span class="meta">'+(n.soin?'Après : '+esc(n.soin)+' · ':'')+'<span class="'+(n.shared?'shared':'')+'">'+(n.shared?'Partagé avec Odile':'Privé')+'</span></span></div></li>'}
   function renderCarnet(){
     const n=upcoming()[0],last=past().find(s=>s.report),steps=past().filter(s=>s.before!=null&&s.after!=null).reverse(),notes=allNotes().slice(0,2);
-    let html='<header class="carnet-head"><p class="le-jour">'+cap(now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'}))+'</p><h1 id="carnetTitle">Le carnet de '+esc(S.profile.first)+'</h1><p class="invite-main">Approchez la main : la lumière vient à vous.</p></header>';
+    let html='<header class="carnet-head"><p class="le-jour">'+cap(now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'}))+'</p><h1 id="carnetTitle">Le carnet de '+esc(S.profile.first)+'</h1></header>';
     html+='<div class="leaf intention"><h2>Mon intention du moment</h2><textarea id="carnetIntent" rows="1" placeholder="Écrivez ce que vous aimeriez déposer ou ressentir…">'+esc(n?n.intention||'':S.profile.intention||'')+'</textarea><span class="saved" id="carnetSaved" role="status"></span></div>';
     if(n){const d0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),dn=new Date(n.date),d1=new Date(dn.getFullYear(),dn.getMonth(),dn.getDate()),days=Math.round((d1-d0)/DAY);
       html+='<div class="leaf"><h2>Ma prochaine séance</h2><p class="sentence">'+cap(fmtDay(n.date))+' à '+fmtHour(n.date)+', <em>'+esc(n.soin.charAt(0).toLowerCase()+n.soin.slice(1))+'</em> '+esc(n.lieu.charAt(0).toLowerCase()+n.lieu.slice(1))+', avec Odile.</p><p class="aside"><span>'+(days===0?'Aujourd\u2019hui':days===1?'Demain':'Dans '+days+' jours')+(n.status==='pending'?' · en attente de confirmation':'')+'</span><a href="#rendez-vous" data-go="rendez-vous">Voir le rendez-vous</a><button class="link" type="button" data-book>Reprendre rendez-vous</button></p></div>'}

@@ -1,4 +1,4 @@
-/* L’Élan du Vivant · script commun : lumière de sous-bois, menu, formulaire, pages d'offres */
+/* L’Élan des Cimes · script commun : lumière de sous-bois, menu, formulaire, pages d'offres */
 (function(){
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $=id=>document.getElementById(id);
@@ -85,10 +85,12 @@
     const ph=root.querySelector('.page-head');
     if(ph&&ph.querySelector('canvas'))komorebi(ph.querySelector('canvas'),{left:.4,area:18000,max:46,min:14,motes:22,beam:true,seed:12,hover:ph,watch:ph,twigs:TW.slice(0,4)});
     root.querySelectorAll('.halo').forEach(h=>komorebi(h.querySelector('canvas'),{left:0,area:6000,max:26,min:12,motes:14,size:.9,seed:33,hover:h,watch:h,leafScale:.8,twigs:[[1.02,0,2.45,.7,4,'rgba(6,16,10,.6)'],[-.02,.15,.5,.5,6,'rgba(6,16,10,.45)']]}));
-    root.querySelectorAll('.rows[data-light]').forEach(lightRows);
     pageNav(root.querySelector('.pnav'));
   }
   function init(){
+    let pal='sousbois';try{const p=new URLSearchParams(location.search).get('palette');if(p!==null)pal=p}catch(e){}
+    if(pal&&pal!=='charte')document.documentElement.dataset.palette=pal;
+    if(pal==='sousbois'&&!document.getElementById('veil')){const v=document.createElement('canvas');v.id='veil';v.setAttribute('aria-hidden','true');document.body.prepend(v)}
     komorebi($('veil'),{left:0,area:30000,max:44,min:14,motes:26,size:1.25,alpha:.8,scroll:.18,seed:21,twigs:[[1.03,.05,2.6,.5,10,'rgba(6,16,10,.38)'],[-.03,.72,-.35,.42,12,'rgba(6,16,10,.32)']]});
     const hero=document.querySelector('.hero');
     if(hero)komorebi(hero.querySelector('canvas'),{left:.25,area:16000,max:70,min:24,motes:40,beam:true,seed:9,hover:hero,watch:hero,twigs:TW});
@@ -108,7 +110,7 @@
     if(f){
       const sel=f.elements.type,want=new URLSearchParams(location.search).get('sujet');
       if(want){const o=[...sel.options].find(x=>x.value===want);if(o)sel.value=want}
-      const msg=$('formMsg'),req=$('request'),reqText=$('requestText'),mail=$('mailBtn'),TO='bonjour@elanduvivant.fr';
+      const msg=$('formMsg'),req=$('request'),reqText=$('requestText'),mail=$('mailBtn'),TO='bonjour@elandescimes.fr';
       f.addEventListener('submit',e=>{
         e.preventDefault();
         const name=f.elements.name.value.trim(),email=f.elements.email.value.trim(),type=sel.options[sel.selectedIndex].text,text=f.elements.message.value.trim();
@@ -133,9 +135,9 @@
     const isRefuge=o.kind==='refuge',secs=SEC.filter(s=>o[s[0]]);
     if(isRefuge){secs[0]=['intro','le-refuge','Le Refuge']}
     const H=[];
-    H.push('<section class="page-head"><canvas aria-hidden="true"></canvas><div class="wrap">'+
+    H.push('<section class="page-head photo"><img src="images/'+o.photo+'.jpg" alt="'+esc(o.photoAlt)+'"><div class="wrap">'+
       '<p class="crumb">'+(isRefuge?'<a href="index.html">Accueil</a> · Accompagnement individuel':'<a href="stages.html">Les stages collectifs</a> · Stage de 3 jours')+'</p>'+
-      '<h1>'+esc(o.title)+'</h1><p class="hook">'+esc(o.hook)+'</p><p class="lead">'+esc(o.lead)+'</p>'+
+      '<h1>'+esc(o.title)+'</h1><p class="hook">'+esc(o.hook)+'</p></div></section><section class="under-head"><div class="wrap"><p class="lead" style="max-width:66ch;margin-bottom:22px">'+esc(o.lead)+'</p>'+
       '<dl class="facts">'+o.facts.map(f=>'<div><dt>'+esc(f[0])+'</dt><dd>'+esc(f[1])+'</dd></div>').join('')+'</dl>'+
       '<div class="acts"><a class="btn" href="'+contactUrl(o)+'">'+esc(o.cta||'Je suis intéressé·e par ce stage')+'</a><a class="link" href="#infos">Voir les infos pratiques</a></div></div></section>');
     H.push('<nav class="pnav" aria-label="Sur cette page"><div class="wrap"><ul>'+secs.map(s=>'<li><a href="#'+s[1]+'">'+s[2]+'</a></li>').join('')+'</ul></div></nav>');
@@ -147,7 +149,7 @@
       else if(k==='steps')b='<div class="split"><div class="prose"><h2>'+esc(d.title)+'</h2>'+(d.outro?'<p class="outro" style="margin-top:8px">'+esc(d.outro)+'</p>':'')+'</div><ol class="path">'+d.items.map(i=>'<li><div><b>'+esc(i[0])+'</b><span>'+esc(i[1])+'</span></div></li>').join('')+'</ol></div>';
       else if(k==='days')b='<div class="split"><h2>'+esc(d.title)+'</h2><ol class="path">'+d.items.map(i=>'<li><div><i>'+esc(i[0]).toUpperCase()+' · '+esc(i[1]).toUpperCase()+'</i><b>'+esc(i[2].charAt(0).toUpperCase()+i[2].slice(1))+'</b><span>'+esc(i[3])+'</span><span class="intent">Intention : '+esc(i[4].charAt(0).toLowerCase()+i[4].slice(1))+'</span></div></li>').join('')+'</ol></div>';
       else if(k==='soin')b='<div class="soin-box"><h2>'+esc(d.title)+'</h2><p>'+esc(d.text)+'</p></div>';
-      else if(k==='mountain')b='<div class="split"><h2>'+esc(d.title)+'</h2><div class="prose">'+d.paras.map(p=>'<p>'+esc(p)+'</p>').join('')+'</div></div>';
+      else if(k==='mountain')b='<div class="split"><div style="display:grid;gap:22px"><h2>'+esc(d.title)+'</h2>'+(o.photo2?'<figure class="figure"><img src="images/'+o.photo2+'.jpg" alt="'+esc(o.photo2Alt||'')+'" loading="lazy"></figure>':'')+'</div><div class="prose">'+d.paras.map(p=>'<p>'+esc(p)+'</p>').join('')+'</div></div>';
       else if(k==='exps')b='<div class="head"><h2>'+esc(d.title)+'</h2><p>Quelques expériences que vous pourrez vivre pendant '+(isRefuge?'votre séjour':'ces trois jours')+'.</p></div><ol class="exps">'+d.items.map(i=>'<li><b>'+esc(i[0])+(i[1]?'<small>'+esc(i[1])+'</small>':'')+'</b><p>'+esc(i[2])+'</p></li>').join('')+'</ol>'+(d.note?'<p class="note">'+esc(d.note)+'</p>':'');
       else if(k==='approach')b='<div class="split"><h2>'+esc(d.title)+'</h2><div class="prose"><p>'+esc(d.text)+'</p></div></div>';
       else if(k==='gains')b='<div class="head"><h2>'+esc(d.title)+'</h2></div><ul class="gains">'+d.items.map(i=>'<li>'+esc(i)+'</li>').join('')+'</ul>'+(d.outro?'<p class="outro">'+esc(d.outro)+'</p>':'');
@@ -163,7 +165,7 @@
     let sib='';
     if(!isRefuge&&all){const st=all.filter(x=>x.kind==='stage'),i=st.findIndex(x=>x.id===o.id),p=st[(i-1+st.length)%st.length],n=st[(i+1)%st.length];
       sib='<nav class="siblings" aria-label="Autres stages"><a href="stage-'+p.id+'.html"><small>Stage précédent</small><b>'+esc(p.short||p.title)+'</b></a><a href="stage-'+n.id+'.html"><small>Stage suivant</small><b>'+esc(n.short||n.title)+'</b></a></nav>'}
-    H.push('<section class="closing-sec"><div class="wrap"><div class="closing"><h2>'+esc(o.closing.title)+'</h2><p>'+esc(o.closing.text)+'</p><div class="acts" style="justify-content:center"><a class="btn" href="'+contactUrl(o)+'">'+esc(o.cta||'Je suis intéressé·e par ce stage')+'</a>'+(isRefuge?'<a class="btn soft" href="stages.html">Voir les stages collectifs</a>':'<a class="btn soft" href="refuge.html">Préférer un accompagnement individuel</a>')+'</div><p class="sign">L\'Élan du Vivant · Retrouver son élan, choisir son chemin.</p></div>'+sib+'</div></section>');
+    H.push('<section class="closing-sec"><div class="wrap"><div class="closing"><h2>'+esc(o.closing.title)+'</h2><p>'+esc(o.closing.text)+'</p><div class="acts" style="justify-content:center"><a class="btn" href="'+contactUrl(o)+'">'+esc(o.cta||'Je suis intéressé·e par ce stage')+'</a>'+(isRefuge?'<a class="btn soft" href="stages.html">Voir les stages collectifs</a>':'<a class="btn soft" href="refuge.html">Préférer un accompagnement individuel</a>')+'</div><p class="sign">L\'Élan des Cimes · Retrouver son élan, choisir son chemin.</p></div>'+sib+'</div></section>');
     return H.join('');
   }
 

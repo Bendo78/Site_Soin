@@ -3,27 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Le journal · L’Élan du Vivant</title>
-<meta name="description" content="Le journal de L’Élan du Vivant : conseils, ateliers, méditations et nouvelles de la praticienne, à Aillon-le-Vieux.">
+<title>Le journal · L’Élan des Cimes</title>
+<link rel="icon" href="images/logo-col.svg" type="image/svg+xml">
+<meta name="description" content="Le journal de L’Élan des Cimes : conseils, ateliers, méditations et nouvelles de la praticienne, à Aillon-le-Vieux.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Lato:wght@400;700&display=swap">
 <style>
 /* Le journal · monde Komorebi en registre de lecture : filtres simples, cartes horizontales, publication ouverte en grand */
 :root{
-  color-scheme:dark;
-  --nuit:#12221A; --bois:#1A3125; --mousse:#A9BE8F; --feuille:#6F8C5E;
-  --lumiere:#F2D58A; --lumiere-pale:#FBF1D2; --brume:#E9EFE4; --brume-2:#B9C8B5; --brume-3:#93A592; --crepuscule:#B3A3DA;
-  --filet:rgba(233,239,228,.14); --voile:rgba(233,239,228,.045);
-  --titre:"Shippori Mincho","Iowan Old Style","Palatino Linotype",serif;
-  --texte:"Zen Kaku Gothic New","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  --nuit:#FFFFFF; --bois:#FFFFFF; --mousse:#344D43; --feuille:#879B86;
+  --lumiere:#A8543D; --lumiere-pale:#A8543D; --brume:#303A35; --brume-2:#46514B; --brume-3:#5C6660; --crepuscule:#6E7F6D;
+  --filet:rgba(52,77,67,0.14); --voile:rgba(52,77,67,0.08);
+  --titre:"Cormorant Garamond","Iowan Old Style",serif;
+  --texte:"Lato","Segoe UI",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 html,body{margin:0}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth;scrollbar-color:var(--feuille) var(--nuit)}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-body{min-height:100vh;background:linear-gradient(180deg,#12221A 0%,#183026 35%,#1E3829 70%,#152A1F 100%);background-attachment:fixed;color:var(--brume);font-family:var(--texte);font-size:1.0625rem;line-height:1.75;-webkit-font-smoothing:antialiased;caret-color:var(--lumiere)}
+body{min-height:100vh;background:linear-gradient(180deg,#F7F5EF 0%,#F7F5EF 35%,#F7F5EF 70%,#FFFFFF 100%);background-attachment:fixed;color:var(--brume);font-family:var(--texte);font-size:1.0625rem;line-height:1.75;-webkit-font-smoothing:antialiased;caret-color:var(--lumiere)}
 ::selection{background:var(--lumiere);color:var(--nuit)}
 h1,h2,h3,h4{font-family:var(--titre);font-weight:600;margin:0;line-height:1.2;text-wrap:balance}
 p{margin:0}
@@ -33,14 +34,14 @@ button{font:inherit;color:inherit}
 .wrap{max-width:1180px;margin:0 auto;padding-left:16px;padding-right:16px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 #veil{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .top,main,footer{position:relative;z-index:1}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:11px 22px;border-radius:999px;border:1px solid var(--lumiere);background:var(--lumiere);color:var(--nuit);font:700 .9688rem/1.2 var(--texte);text-decoration:none;cursor:pointer;box-shadow:0 10px 30px -12px rgba(242,213,138,.55);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:11px 22px;border-radius:999px;border:1px solid var(--lumiere);background:var(--lumiere);color:var(--nuit);font:700 .9688rem/1.2 var(--texte);text-decoration:none;cursor:pointer;box-shadow:0 10px 30px -12px rgba(168,84,61,0.300);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 .btn:hover{transform:translateY(-2px)}
 .btn.soft{background:transparent;color:var(--brume);border-color:var(--filet);box-shadow:none}
 .btn.soft:hover{border-color:var(--brume-2)}
 .btn.soft[aria-pressed="true"]{border-color:var(--lumiere);color:var(--lumiere-pale)}
 
 /* En-tête du site */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(18,34,26,.78);backdrop-filter:blur(12px);border-bottom:1px solid var(--filet)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--filet)}
 .top .wrap{display:flex;align-items:center;gap:22px;padding-block:12px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
 .brand svg{width:38px;height:38px;flex:none}
@@ -62,11 +63,11 @@ button{font:inherit;color:inherit}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
 .chip{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:6px 16px;border-radius:999px;border:1px solid var(--filet);background:none;cursor:pointer;font-size:.9375rem;color:var(--brume-2)}
 .chip small{font:600 .8125rem var(--titre);color:var(--brume-3)}
-.chip[aria-pressed="true"]{border-color:var(--lumiere);color:var(--brume);background:rgba(242,213,138,.08)}
+.chip[aria-pressed="true"]{border-color:var(--lumiere);color:var(--brume);background:rgba(168,84,61,0.048)}
 .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;padding-bottom:30px}
 .card{display:grid;grid-template-columns:170px minmax(0,1fr);gap:20px;padding:14px;border-radius:24px;border:1px solid var(--filet);background:var(--voile);align-items:center;text-decoration:none;cursor:pointer;position:relative;transition:border-color .25s,transform .3s cubic-bezier(.2,.8,.2,1)}
 .card:hover{border-color:var(--brume-2);transform:translateY(-2px)}
-.card::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(60% 120% at 20% 50%,rgba(242,213,138,.09),transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(60% 120% at 20% 50%,rgba(168,84,61,0.054),transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none}
 .card:hover::before{opacity:1}
 .card .ph{aspect-ratio:1;border-radius:16px}
 .card .meta{font:600 .875rem var(--titre);color:var(--mousse);font-variant-numeric:tabular-nums}
@@ -77,7 +78,7 @@ button{font:inherit;color:inherit}
 .only{display:inline-block;margin-left:8px;font:400 .75rem var(--texte);padding:2px 10px;border-radius:999px;border:1px solid var(--filet);color:var(--brume-2)}
 @media (max-width:860px){.cards{grid-template-columns:1fr}}
 @media (max-width:480px){.card{grid-template-columns:110px minmax(0,1fr);gap:14px}.card h2{font-size:1.15rem}.card p{display:none}}
-.locked{margin:0 0 40px;padding:18px 22px;border-radius:20px;border:1px dashed rgba(242,213,138,.4);color:var(--brume-2);font-size:.9375rem}
+.locked{margin:0 0 40px;padding:18px 22px;border-radius:20px;border:1px dashed rgba(168,84,61,0.240);color:var(--brume-2);font-size:.9375rem}
 .empty{padding:30px 0;color:var(--brume-2)}
 
 /* Publication ouverte */
@@ -88,7 +89,7 @@ button{font:inherit;color:inherit}
 .post h1{font-size:clamp(2.2rem,5.4vw,3.6rem);margin:8px 0 16px;line-height:1.1}
 .lead{font:500 clamp(1.15rem,2.2vw,1.4rem)/1.6 var(--titre);color:var(--brume)}
 .gallery{margin:30px 0 8px}
-.big{aspect-ratio:16/10;border-radius:28px;box-shadow:0 30px 60px -40px rgba(242,213,138,.35)}
+.big{aspect-ratio:16/10;border-radius:28px;box-shadow:0 30px 60px -40px rgba(168,84,61,0.210)}
 .thumbs{display:flex;gap:10px;margin-top:12px}
 .thumb{width:84px;height:62px;border-radius:12px;border:1px solid var(--filet);cursor:pointer;padding:0}
 .thumb[aria-pressed="true"]{outline:2px solid var(--lumiere);outline-offset:2px}
@@ -113,28 +114,35 @@ button{font:inherit;color:inherit}
 .comments h2 small{font:600 1rem var(--titre);color:var(--brume-3)}
 .clist{list-style:none;margin:0;padding:0}
 .clist li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;padding:16px 0;border-top:1px solid var(--filet)}
-.cav{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:700 .8125rem var(--texte);color:var(--nuit);background:radial-gradient(circle at 40% 35%,var(--lumiere-pale),var(--lumiere) 60%,#C9A85E)}
-.cav.pro{background:radial-gradient(circle at 40% 35%,#D8E4CB,var(--mousse) 60%,#7E9A6A)}
+.cav{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:700 .8125rem var(--texte);color:var(--nuit);background:radial-gradient(circle at 40% 35%,var(--lumiere-pale),var(--lumiere) 60%,#A8543D)}
+.cav.pro{background:radial-gradient(circle at 40% 35%,#DCE3DA,var(--mousse) 60%,#879B86)}
 .clist b{font:600 1rem var(--titre)}
 .clist .role{margin-left:8px;font-size:.75rem;padding:1px 8px;border-radius:999px;border:1px solid var(--filet);color:var(--mousse)}
 .clist time{margin-left:8px;font:600 .8125rem var(--titre);color:var(--brume-3)}
 .clist p{margin-top:4px;color:var(--brume)}
 .cform{display:grid;gap:10px;margin-top:14px;padding:18px;border-radius:20px;background:var(--voile);border:1px solid var(--filet)}
 .cform label{font-size:.9375rem;color:var(--brume-2)}
-.cform textarea{font:400 1rem var(--texte);color:var(--brume);background:rgba(18,34,26,.6);border:1px solid var(--filet);border-radius:14px;padding:12px 14px;min-height:90px;resize:vertical;width:100%}
+.cform textarea{font:400 1rem var(--texte);color:var(--brume);background:rgba(255,255,255,0.92);border:1px solid var(--filet);border-radius:14px;padding:12px 14px;min-height:90px;resize:vertical;width:100%}
 .cform textarea:focus{outline:2px solid var(--lumiere);outline-offset:1px;border-color:transparent}
 .cform .row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
 .cform .who{font-size:.875rem;color:var(--brume-3)}
-.cerr{font-size:.875rem;color:#E07A6A}
-.clogin{margin-top:14px;padding:16px 20px;border-radius:20px;border:1px dashed rgba(242,213,138,.4);color:var(--brume-2)}
+.cerr{font-size:.875rem;color:#A8543D}
+.clogin{margin-top:14px;padding:16px 20px;border-radius:20px;border:1px dashed rgba(168,84,61,0.240);color:var(--brume-2)}
 /* Bandeau d'aperçu */
 body.is-preview .top,body.is-preview footer{display:none}
 body.is-preview .preview-bar{top:12px}
-.preview-bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 70px);z-index:30;margin-top:16px;padding:12px 18px;border-radius:16px;background:#2A2D3F;border:1px solid rgba(179,163,218,.45);color:var(--brume);font-size:.9375rem}
+.preview-bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 70px);z-index:30;margin-top:16px;padding:12px 18px;border-radius:16px;background:#EFEBE1;border:1px solid rgba(110,127,109,.45);color:var(--brume);font-size:.9375rem}
 .preview-bar b{color:var(--crepuscule);font-family:var(--titre)}
-.toast{position:fixed;z-index:80;left:20px;right:20px;margin-inline:auto;width:fit-content;max-width:calc(100% - 40px);bottom:calc(24px + env(safe-area-inset-bottom,0px));padding:12px 20px;border-radius:18px;background:#1E3829;border:1px solid var(--lumiere);font-size:.9375rem;text-align:center;opacity:0;transform:translateY(20px);transition:opacity .3s,transform .3s;pointer-events:none}
+.toast{position:fixed;z-index:80;left:20px;right:20px;margin-inline:auto;width:fit-content;max-width:calc(100% - 40px);bottom:calc(24px + env(safe-area-inset-bottom,0px));padding:12px 20px;border-radius:18px;background:#F7F5EF;border:1px solid var(--lumiere);font-size:.9375rem;text-align:center;opacity:0;transform:translateY(20px);transition:opacity .3s,transform .3s;pointer-events:none}
 .toast.show{opacity:1;transform:none}
 @media (prefers-reduced-motion: reduce){.card,.toast{transition:none}}
+
+/* Charte L’Élan des Cimes */
+#veil{display:none}
+body{background:#F7F5EF!important;color:#303A35}
+h1,h2,h3{color:#344D43}
+.brand img{height:44px;width:auto;display:block}
+.brand .mark{width:46px;height:46px;flex:none}.brand-txt b{display:block;font:600 1.3rem/1 "Cormorant Garamond",serif;color:#344D43;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -150,11 +158,12 @@ body.is-preview .preview-bar{top:12px}
 <canvas id="veil" aria-hidden="true"></canvas>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>L’Élan du Vivant</b><small>MARCHE · ACCOMPAGNEMENT · BAUGES</small></span></a>
+    <a class="brand" href="index.html"><svg class="mark" viewBox="0 0 256 256" aria-hidden="true"><path d="M16 206L88 96C93 88 103 88 108 96L130 130L150 106C155 100 163 100 168 106L240 206Z" fill="var(--logo-1,#2F4A3E)"/><circle cx="130" cy="92" r="16" fill="var(--logo-2,#C77F62)"/><path d="M121 206C121 186 140 176 140 160C140 152 136 146 130 140C134 150 126 156 126 166C126 182 110 190 110 206Z" fill="var(--logo-3,#F7F5EF)"/></svg><span class="brand-txt"><b>L’Élan des Cimes</b></span></a>
     <ul class="sitenav">
       <li><a href="experience.html">L’expérience</a></li>
       <li><a href="stages.html">Les stages</a></li>
       <li><a href="refuge.html">Le Refuge</a></li>
+      <li><a href="seances.html">Séances individuelles</a></li>
       <li><a href="qui-suis-je.html">Qui suis-je ?</a></li>
       <li><a href="blog.html" aria-current="page">Le journal</a></li>
     </ul>
@@ -242,8 +251,8 @@ body.is-preview .preview-bar{top:12px}
   document.addEventListener('click',e=>{if(e.target.closest('[data-back]')){e.preventDefault();location.hash=''}});
   function route(){const h=location.hash.slice(1);
     if(h==='apercu'){document.body.classList.add('is-preview');let d=null;try{d=JSON.parse(localStorage.getItem('elan-journal-draft'))}catch(e){}$('list').hidden=true;$('post').hidden=false;if(d){renderPostObj(d,true);document.title='Aperçu · '+d.title}else{$('post').innerHTML='<p class="empty">Aucun brouillon à prévisualiser.</p>'}return}
-    if(h.indexOf('p-')===0){$('list').hidden=true;$('post').hidden=false;renderPost(h.slice(2));scrollTo(0,0);document.title=($('post').querySelector('h1')||{}).textContent+' · L’Élan du Vivant'}
-    else{$('post').hidden=true;$('list').hidden=false;renderList();document.title='Le journal · L’Élan du Vivant'}}
+    if(h.indexOf('p-')===0){$('list').hidden=true;$('post').hidden=false;renderPost(h.slice(2));scrollTo(0,0);document.title=($('post').querySelector('h1')||{}).textContent+' · L’Élan des Cimes'}
+    else{$('post').hidden=true;$('list').hidden=false;renderList();document.title='Le journal · L’Élan des Cimes'}}
   addEventListener('hashchange',route);
   addEventListener('storage',e=>{if(e.key==='elan-journal'||(e.key==='elan-journal-draft'&&location.hash==='#apercu')){posts=J.load();route()}});
   route();

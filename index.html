@@ -3,90 +3,99 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>L’Élan du Vivant · Marche et accompagnement dans les Bauges</title>
-<meta name="description" content="Stages de développement personnel en petit groupe et accompagnement individuel au cœur du massif des Bauges, à Aillon-le-Vieux. Retrouver son élan, choisir son chemin.">
+<title>L’Élan des Cimes · Marche et accompagnement dans les Bauges</title>
+<meta name="description" content="Stages de développement personnel en petit groupe, accompagnement individuel et séances de coaching, thérapie, soins énergétiques et supervision, à Aillon-le-Vieux dans le massif des Bauges.">
+<link rel="icon" href="images/logo-col.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Lato:wght@400;700&display=swap">
 <link rel="stylesheet" href="elan.css">
+<script>(function(){var p=null;try{p=new URLSearchParams(location.search).get("palette")}catch(e){}if(p===null)p="sousbois";if(p&&p!=="charte")document.documentElement.dataset.palette=p})()</script>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <!-- Emblème : deux crêtes des Bauges, un sentier qui monte, le soleil -->
-  <symbol id="mark" viewBox="0 0 40 40">
-    <circle cx="20" cy="20" r="18" fill="none" stroke="var(--brume-2)" stroke-width="1.2"/>
-    <circle cx="20" cy="20" r="11" fill="rgba(242,213,138,.16)"/>
-    <path d="M6.5 27.5l7.5-9 4.5 4.5 6.5-9 8.5 13.5" fill="none" stroke="var(--mousse)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-    <path d="M14.5 33.5c3-1.5 6-3.4 8.5-7.5" fill="none" stroke="var(--lumiere)" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="1.4 2.4"/>
-    <circle cx="27.5" cy="10.5" r="2.6" fill="var(--lumiere)"/>
-  </symbol>
-</svg>
-<canvas id="veil" aria-hidden="true"></canvas>
 <a class="skip" href="#main">Aller au contenu</a>
 <header class="top" id="top">
   <div class="wrap">
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
     </button>
-    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>L’Élan du Vivant</b><small>MARCHE · ACCOMPAGNEMENT · BAUGES</small></span></a>
+    <a class="brand" href="index.html" aria-label="L’Élan des Cimes, accueil"><svg class="mark" viewBox="0 0 256 256" aria-hidden="true"><path d="M16 206L88 96C93 88 103 88 108 96L130 130L150 106C155 100 163 100 168 106L240 206Z" fill="var(--logo-1,#2F4A3E)"/><circle cx="130" cy="92" r="16" fill="var(--logo-2,#C77F62)"/><path d="M121 206C121 186 140 176 140 160C140 152 136 146 130 140C134 150 126 156 126 166C126 182 110 190 110 206Z" fill="var(--logo-3,#F7F5EF)"/></svg><span class="brand-txt"><b>L’Élan des Cimes</b><small>Retrouver son élan, choisir son chemin.</small></span></a>
     <ul class="menu" id="menu">
-      <li><a href="experience.html">L’expérience</a></li>
       <li><a href="stages.html">Les stages</a></li>
       <li><a href="refuge.html">Le Refuge</a></li>
+      <li><a href="seances.html">Séances individuelles</a></li>
+      <li><a href="experience.html">L’expérience</a></li>
       <li><a href="qui-suis-je.html">Qui suis-je ?</a></li>
       <li><a href="blog.html">Le journal</a></li>
       <li class="m-only"><a href="index.html#contact">Me contacter</a></li>
     </ul>
-    <a class="acct-link" href="espace-client.html"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="7" r="3.5"/><path d="M3.5 17c1-3.3 3.6-5 6.5-5s5.5 1.7 6.5 5" stroke-linecap="round"/></svg><span>Mon espace</span></a>
+    <a class="acct-link" href="espace-client.html"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="7" r="3.5"/><path d="M3.5 17c1-3.3 3.6-5 6.5-5s5.5 1.7 6.5 5" stroke-linecap="round"/></svg><span>Mon espace</span></a>
     <a class="btn" href="index.html#contact">Me contacter</a>
   </div>
 </header>
 <main id="main">
 <section class="hero" id="accueil">
-    <canvas aria-hidden="true"></canvas>
+    <img src="images/accueil-chemin-alpage.jpg" alt="Un chemin d’herbe qui monte à travers l’alpage vers une crête des Bauges, sous un ciel bleu" width="2000" height="1500" fetchpriority="high">
     <div class="wrap">
       <div class="hero-text">
-        <h1>L’Élan du Vivant<span>Retrouver son élan, choisir son chemin.</span></h1>
+        <h1>L’Élan des Cimes<span>Retrouver son élan, choisir son chemin.</span></h1>
         <p class="lead"><b>Et si vous preniez de la hauteur pour avancer autrement ?</b>Au cœur des montagnes des Bauges, en Savoie, je vous invite à vivre une expérience qui associe marche en nature, développement personnel et exploration de soi. Seul ou en petit groupe, pour retrouver vos ressources, clarifier vos aspirations et choisir votre prochain pas.</p>
         <div class="acts">
           <a class="btn" href="stages.html">Découvrir les stages</a>
-          <a class="link" href="refuge.html">Explorer l'accompagnement individuel</a>
+          <a class="link" href="#offres">Toutes mes propositions</a>
         </div>
-        <p class="invite"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11V5.5a1.3 1.3 0 012.6 0V10M9.6 9.5V4.2a1.3 1.3 0 012.6 0V10M12.2 9.6V5.2a1.3 1.3 0 012.6 0V12c0 4-2.3 7-6 7-2.6 0-4-1.4-5.2-3.6L1.8 12.5a1.3 1.3 0 012.2-1.3L7 14.5"/></svg>Approchez la main : la lumière vient à vous.</p>
       </div>
     </div>
   </section>
 
   <section id="hauteur">
     <div class="wrap split">
-      <h2>Prendre de la hauteur, au sens propre comme au figuré</h2>
+      <div style="display:grid;gap:24px">
+        <h2>Prendre de la hauteur, au sens propre comme au figuré</h2>
+        <figure class="figure"><img src="images/lac-du-bourget-vu-d-en-haut.jpg" alt="Le lac du Bourget vu depuis les hauteurs des Bauges" loading="lazy" width="1600" height="1200"><figcaption>Le lac du Bourget, vu depuis les crêtes des Bauges.</figcaption></figure>
+      </div>
       <div class="prose">
         <p>Il arrive des moments où nous avons besoin de ralentir, de faire le point, de retrouver ce qui nous anime ou simplement de regarder notre vie sous un autre angle. Changer de paysage peut alors nous aider à changer de regard.</p>
-        <p>En montagne, nous retrouvons un autre rythme. Nous marchons, nous observons, nous respirons. Un sentier qui bifurque, une montée, un panorama qui s'ouvre... La nature nous offre des images qui peuvent éclairer nos questionnements.</p>
-        <p>Mais L’Élan du Vivant n'est pas simplement une pause au grand air. C'est une invitation à explorer ce qui vous anime, ce qui vous freine et les chemins qui s'offrent à vous. <strong>La marche ouvre de nouvelles perspectives, les ateliers permettent de les approfondir, et les découvertes prennent leur place dans votre vie.</strong></p>
-        <p><a class="link" href="experience.html">Découvrir l'expérience dans les Bauges</a></p>
+        <p>En montagne, nous retrouvons un autre rythme. Nous marchons, nous observons, nous respirons. Un sentier qui bifurque, une montée, un panorama qui s’ouvre... La nature nous offre des images qui peuvent éclairer nos questionnements.</p>
+        <p>Mais L’Élan des Cimes n’est pas simplement une pause au grand air. C’est une invitation à explorer ce qui vous anime, ce qui vous freine et les chemins qui s’offrent à vous. <strong>La marche ouvre de nouvelles perspectives, les ateliers permettent de les approfondir, et les découvertes prennent leur place dans votre vie.</strong></p>
+        <p><a class="link" href="experience.html">Découvrir l’expérience dans les Bauges</a></p>
       </div>
     </div>
   </section>
 
-  <section id="offres">
+  <section id="offres" class="tint">
     <div class="wrap">
       <div class="head">
-        <h2>Deux façons de retrouver votre élan</h2>
-        <p>En petit groupe autour d'une thématique, ou seul, dans un espace confidentiel construit pour vous.</p>
+        <h2>Trois façons de vous accompagner</h2>
+        <p>En petit groupe dans les Bauges, seul le temps d’un séjour, ou en séance individuelle, sur place ou à distance.</p>
       </div>
       <div class="ways">
         <article class="way">
-          <h3>Les stages collectifs</h3>
-          <p class="sub">Trois jours pour explorer une thématique, expérimenter et avancer ensemble.</p>
-          <p>En petits groupes de quatre à six personnes : des marches dans les Bauges, des exercices de coaching, des expériences créatives, des temps de réflexion personnelle et la richesse des échanges.</p>
-          <div class="acts"><a class="btn" href="stages.html">Découvrir les stages collectifs</a></div>
+          <img src="images/alpage-vaches-bauges.jpg" alt="Vaches tarines couchées dans l’alpage, montagnes en arrière-plan" loading="lazy" width="1600" height="1200">
+          <div class="body">
+            <h3>Les stages collectifs</h3>
+            <p class="sub">Trois jours pour explorer une thématique et avancer ensemble.</p>
+            <p>En petits groupes de quatre à six personnes : marches dans les Bauges, exercices de coaching, expériences créatives et richesse des échanges.</p>
+            <div class="acts"><a class="btn" href="stages.html">Voir les stages</a></div>
+          </div>
+        </article>
+        <article class="way warm">
+          <img src="images/balcon-fleuri.jpg" alt="Un balcon de bois fleuri, ouvert sur la montagne" loading="lazy" width="1800" height="1350">
+          <div class="body">
+            <h3>Le Refuge des Possibles</h3>
+            <p class="sub">Un à trois jours rien que pour vous.</p>
+            <p>Un accompagnement individuel, confidentiel et entièrement personnalisé, pour une période difficile, un tournant de vie ou un temps pour soi.</p>
+            <div class="acts"><a class="btn soft" href="refuge.html">Découvrir le Refuge</a></div>
+          </div>
         </article>
         <article class="way">
-          <h3>Le Refuge des Possibles</h3>
-          <p class="sub">Un espace pour déposer ce qui pèse et retrouver la liberté d'avancer.</p>
-          <p>Un accompagnement individuel, confidentiel et entièrement personnalisé, sur un à trois jours. Pour une période difficile, un tournant de vie ou simplement un temps rien que pour vous, à votre rythme.</p>
-          <div class="acts"><a class="btn soft" href="refuge.html">Découvrir Le Refuge des Possibles</a></div>
+          <img src="images/salle-atelier.jpg" alt="La salle d’accompagnement chaleureuse, boiseries, fauteuils et paperboard" loading="lazy" width="1600" height="1200">
+          <div class="body">
+            <h3>Les séances individuelles</h3>
+            <p class="sub">Coaching, thérapie, soins énergétiques, supervision.</p>
+            <p>Des séances ponctuelles ou régulières, à Aillon-le-Vieux ou en visio, pour avancer sur une question précise à votre rythme.</p>
+            <div class="acts"><a class="btn soft" href="seances.html">Voir les séances</a></div>
+          </div>
         </article>
       </div>
     </div>
@@ -96,63 +105,68 @@
     <div class="wrap">
       <div class="head">
         <h2>Cinq stages pour explorer de nouveaux chemins</h2>
-        <p>Trois jours chacun, au cœur du massif des Bauges : la marche le matin, les ateliers l'après-midi. Dates et tarifs sont annoncés au fur et à mesure.</p>
+        <p>Trois jours chacun, au cœur du massif des Bauges : la marche le matin, les ateliers l’après-midi. Dates et tarifs sont annoncés au fur et à mesure.</p>
       </div>
-      <ul class="stages">
-  <li><a href="stage-boussole.html"><h3>Retrouver sa boussole intérieure<small>Faire dialoguer la tête, le cœur, le corps et l'esprit.</small></h3><p>Quand les sollicitations extérieures prennent trop de place, il devient parfois difficile de savoir ce que nous voulons vraiment. Trois jours pour vous recentrer, retrouver vos repères et renouer avec votre liberté de choisir.<span class="go">Découvrir ce stage</span></p><span class="meta"><b>3 jours</b><span>4 à 6 personnes</span></span></a></li>
-  <li><a href="stage-tete-coeur.html"><h3>De la tête au cœur<small>Moins de mental, plus de place pour soi.</small></h3><p>Vous réfléchissez beaucoup, vous analysez, vous anticipez... mais vous avez parfois du mal à écouter ce que vous ressentez. Trois jours pour ralentir, renouer avec vos émotions et vous rapprocher de vos besoins et de vos désirs.<span class="go">Découvrir ce stage</span></p><span class="meta"><b>3 jours</b><span>4 à 6 personnes</span></span></a></li>
-  <li><a href="stage-reve.html"><h3>Du rêve à la réalité<small>Osez donner une chance à vos rêves !</small></h3><p>Vous portez un rêve ou un projet qui vous attire, mais quelque chose vous empêche encore de l'explorer pleinement. Trois jours pour lui redonner de la place, regarder les obstacles autrement et découvrir comment commencer à le rendre possible.<span class="go">Découvrir ce stage</span></p><span class="meta"><b>3 jours</b><span>4 à 6 personnes</span></span></a></li>
-  <li><a href="stage-cap.html"><h3>Garder le cap dans un monde incertain<small>Ne pas attendre que le monde redevienne prévisible pour construire son avenir.</small></h3><p>Le monde change vite. Ces transformations peuvent susciter des questions, des inquiétudes, mais aussi ouvrir de nouvelles possibilités. Trois jours pour prendre du recul, développer vos capacités d'adaptation et agir avec davantage de confiance et de discernement.<span class="go">Découvrir ce stage</span></p><span class="meta"><b>3 jours</b><span>4 à 6 personnes</span></span></a></li>
-  <li><a href="stage-retraite.html"><h3>Préparer le prochain chapitre de vie : la retraite<small>Et si vous preniez le temps d'écrire la suite de votre histoire ?</small></h3><p>La retraite ouvre un nouveau chapitre, riche de possibilités mais aussi de questionnements. Trois jours pour honorer le chemin parcouru, imaginer ce qui vous attend et construire une nouvelle étape de vie qui vous ressemble.<span class="go">Découvrir ce stage</span></p><span class="meta"><b>3 jours</b><span>4 personnes maximum</span><span>900 € TTC</span></span></a></li>
+      <ul class="cards">
+  <li><a href="stage-boussole.html"><img src="images/chemin-vers-les-sommets.jpg" alt="Un chemin de terre qui monte vers les sommets des Bauges" loading="lazy" width="1200" height="900"><span class="body"><h3>Retrouver sa boussole intérieure</h3><span class="hook">Faire dialoguer la tête, le cœur, le corps et l'esprit.</span><span class="meta"><span>3 jours</span><span>4 à 6 personnes</span></span><p>Quand les sollicitations extérieures prennent trop de place, il devient parfois difficile de savoir ce que nous voulons vraiment. Trois jours pour vous recentrer, retrouver vos repères et renouer avec votre liberté de choisir.</p><span class="go">Découvrir ce stage</span></span></a></li>
+  <li><a href="stage-tete-coeur.html"><img src="images/lac-reflet.jpg" alt="Un lac des Bauges où se reflètent les montagnes" loading="lazy" width="1200" height="900"><span class="body"><h3>De la tête au cœur</h3><span class="hook">Moins de mental, plus de place pour soi.</span><span class="meta"><span>3 jours</span><span>4 à 6 personnes</span></span><p>Vous réfléchissez beaucoup, vous analysez, vous anticipez... mais vous avez parfois du mal à écouter ce que vous ressentez. Trois jours pour ralentir, renouer avec vos émotions et vous rapprocher de vos besoins et de vos désirs.</p><span class="go">Découvrir ce stage</span></span></a></li>
+  <li><a href="stage-reve.html"><img src="images/vue-depuis-les-rochers.jpg" alt="Vue immense depuis les rochers, au-dessus des vallées" loading="lazy" width="1200" height="900"><span class="body"><h3>Du rêve à la réalité</h3><span class="hook">Osez donner une chance à vos rêves !</span><span class="meta"><span>3 jours</span><span>4 à 6 personnes</span></span><p>Vous portez un rêve ou un projet qui vous attire, mais quelque chose vous empêche encore de l'explorer pleinement. Trois jours pour lui redonner de la place, regarder les obstacles autrement et découvrir comment commencer à le rendre possible.</p><span class="go">Découvrir ce stage</span></span></a></li>
+  <li><a href="stage-cap.html"><img src="images/montagnes-brume.jpg" alt="Montagnes dans la brume, crêtes à l’horizon" loading="lazy" width="1200" height="900"><span class="body"><h3>Garder le cap dans un monde incertain</h3><span class="hook">Ne pas attendre que le monde redevienne prévisible pour construire son avenir.</span><span class="meta"><span>3 jours</span><span>4 à 6 personnes</span></span><p>Le monde change vite. Ces transformations peuvent susciter des questions, des inquiétudes, mais aussi ouvrir de nouvelles possibilités. Trois jours pour prendre du recul, développer vos capacités d'adaptation et agir avec davantage de confiance et de discernement.</p><span class="go">Découvrir ce stage</span></span></a></li>
+  <li><a href="stage-retraite.html"><img src="images/arbre-seul-alpage.jpg" alt="Un arbre seul sur un alpage paisible, le lac au loin" loading="lazy" width="1200" height="900"><span class="body"><h3>Préparer le prochain chapitre de vie : la retraite</h3><span class="hook">Et si vous preniez le temps d'écrire la suite de votre histoire ?</span><span class="meta"><span>3 jours</span><span>4 personnes maximum</span><span>900 € TTC</span></span><p>La retraite ouvre un nouveau chapitre, riche de possibilités mais aussi de questionnements. Trois jours pour honorer le chemin parcouru, imaginer ce qui vous attend et construire une nouvelle étape de vie qui vous ressemble.</p><span class="go">Découvrir ce stage</span></span></a></li>
 </ul>
+      <p style="margin-top:28px"><a class="link" href="stages.html#partenaires">Voir aussi les stages organisés avec des partenaires</a></p>
     </div>
   </section>
+
+  <figure class="band">
+    <img src="images/plateau-nuages.jpg" alt="Un plateau d’alpage parsemé de rochers, sous de grands nuages" loading="lazy" width="1800" height="1350">
+    <figcaption><div class="wrap"><p>« La nature ne donne pas de réponses toutes faites. Elle nous offre parfois une image qui nous aide à trouver les nôtres. »</p></div></figcaption>
+  </figure>
 
   <section id="approche">
     <div class="wrap">
       <div class="head">
-        <h2>Une autre façon d'explorer et d'apprendre</h2>
+        <h2>Une autre façon d’explorer et d’apprendre</h2>
         <p>Je vous propose de vivre les choses plutôt que de simplement en parler.</p>
       </div>
-      <div class="rows" data-light>
+      <div class="rows">
         <div class="row-i"><h3>Marcher<small>pour mettre les idées en mouvement</small></h3><p>La marche permet de sortir des raisonnements habituels, de prendre du recul et parfois de trouver des réponses inattendues.</p></div>
         <div class="row-i"><h3>Expérimenter<small>pour découvrir autrement</small></h3><p>Coaching, exercices corporels, figurines, écriture, dessin, métaphores, mises en situation : différents outils pour explorer vos questions sous plusieurs angles.</p></div>
-        <div class="row-i"><h3>Partager<small>pour enrichir son regard</small></h3><p>En petit groupe, la confiance s'installe, les échanges gagnent en qualité et d'autres perspectives apparaissent.</p></div>
-        <div class="row-i"><h3>Choisir<small>pour avancer à sa manière</small></h3><p>Il n'y a pas de chemin tout tracé ni de réponse universelle. Mon intention est de vous aider à trouver les ressources et les possibilités qui vous correspondent.</p></div>
+        <div class="row-i"><h3>Partager<small>pour enrichir son regard</small></h3><p>En petit groupe, la confiance s’installe, les échanges gagnent en qualité et d’autres perspectives apparaissent.</p></div>
+        <div class="row-i"><h3>Choisir<small>pour avancer à sa manière</small></h3><p>Il n’y a pas de chemin tout tracé ni de réponse universelle. Mon intention est de vous aider à trouver les ressources et les possibilités qui vous correspondent.</p></div>
       </div>
     </div>
   </section>
 
-  <section id="odile">
+  <section id="odile" class="tint">
     <div class="wrap me">
-      <div class="halo"><canvas aria-hidden="true"></canvas><p>Approchez la main</p></div>
+      <figure class="portrait"><img src="images/odile-portrait.jpg" alt="Odile Bernhardt, souriante, bâtons de marche en main, devant un arbre en montagne" loading="lazy" width="1000" height="1333"></figure>
       <div class="txt">
         <h2>Qui suis-je ?</h2>
         <p class="quote">Accompagner les autres sur leur chemin... et oser suivre le mien.</p>
-        <p>Je m'appelle Odile Bernhardt. Depuis plus de 25 ans, j'accompagne des personnes dans leurs questionnements, leurs changements et leurs projets de vie. J'aime associer la réflexion, les émotions, le corps et la créativité pour ouvrir de nouvelles perspectives.</p>
-        <p>C'est en marchant que je réfléchis et que je conçois mes stages. En m'installant dans les Bauges avec mon mari, j'ai réalisé un rêve : réunir mon métier d'accompagnante et mon amour de la montagne. Ma façon d'accompagner ? Une présence douce, confrontante et rassurante.</p>
-        <p class="quote">Je ne choisis pas le chemin à votre place. Je vous accompagne pour trouver le vôtre.</p>
-        <p class="creds">Coach professionnelle · Formatrice · Praticienne en approches énergétiques · Plus de 25 ans d'accompagnement</p>
-        <div><a class="btn soft" href="qui-suis-je.html">Faire connaissance</a></div>
+        <p>Je m’appelle Odile Bernhardt. Depuis plus de 25 ans, j’accompagne des personnes dans leurs questionnements, leurs changements et leurs projets de vie. J’aime associer la réflexion, les émotions, le corps et la créativité pour ouvrir de nouvelles perspectives.</p>
+        <p>C’est en marchant que je réfléchis et que je conçois mes stages. En m’installant dans les Bauges avec mon mari, j’ai réalisé un rêve : réunir mon métier d’accompagnante et mon amour de la montagne. Ma façon d’accompagner ? Une présence douce, confrontante et rassurante.</p>
+        <p class="creds">Coach professionnelle · Formatrice · Superviseure · Praticienne en approches énergétiques</p>
+        <div class="acts"><a class="btn soft" href="qui-suis-je.html">Faire connaissance</a><a class="link" href="seances.html">Prendre une séance individuelle</a></div>
       </div>
     </div>
   </section>
 
-  <section id="bauges">
+  <section id="bauges" class="tint">
     <div class="wrap split">
       <div class="prose">
         <h2>Les Bauges : un cadre pour se retrouver et se mettre en mouvement</h2>
         <p>Je vous accueille à Aillon-le-Vieux, au cœur du massif des Bauges, en Savoie. Ici, les montagnes, les forêts et les chemins deviennent les partenaires de nos explorations, dans un cadre chaleureux et à taille humaine.</p>
-        <p>Vous n'avez pas besoin d'être un randonneur expérimenté : les parcours sont adaptés à chaque stage et le niveau de marche est précisé avant l'inscription.</p>
-        <p><a class="link" href="experience.html">Découvrir le lieu et l'expérience</a></p>
+        <p>Vous n’avez pas besoin d’être un randonneur expérimenté : les parcours sont adaptés à chaque stage et le niveau de marche est précisé avant l’inscription.</p>
+        <p><a class="link" href="experience.html">Découvrir le lieu et l’expérience</a></p>
       </div>
       <div>
-        <h3 style="margin-bottom:26px">Une journée de stage</h3>
+        <h3 style="margin-bottom:24px">Une journée de stage</h3>
         <ol class="path">
           <li><div><i>LE MATIN</i><b>Marcher, observer, explorer</b><span>Sur les chemins des Bauges, des expériences en lien avec le thème du stage, et des temps de silence.</span></div></li>
           <li><div><i>À MIDI</i><b>Partager un moment convivial</b><span>Une pause autour du déjeuner pour poursuivre librement les conversations.</span></div></li>
-          <li><div><i>L'APRÈS-MIDI</i><b>Approfondir, expérimenter, construire</b><span>En salle, des ateliers pour explorer les questions de la matinée et découvrir de nouvelles ressources.</span></div></li>
-          <li><div><i>EN FIN DE JOURNÉE</i><b>Laisser décanter</b><span>Vous retrouvez votre temps personnel et profitez de l'environnement à votre rythme.</span></div></li>
+          <li><div><i>L’APRÈS-MIDI</i><b>Approfondir, expérimenter, construire</b><span>En salle, des ateliers pour explorer les questions de la matinée et découvrir de nouvelles ressources.</span></div></li>
+          <li><div><i>EN FIN DE JOURNÉE</i><b>Laisser décanter</b><span>Vous retrouvez votre temps personnel et profitez de l’environnement à votre rythme.</span></div></li>
         </ol>
       </div>
     </div>
@@ -166,28 +180,27 @@
         <div><a class="btn soft" href="#contact">Poser ma question</a></div>
       </div>
       <div class="qs">
-        <details open><summary>Faut-il être sportif pour participer ?<span class="plus" aria-hidden="true"></span></summary><p>Non. La marche est un support de développement personnel, pas un défi sportif. Les parcours sont choisis selon le stage, le niveau du groupe et la météo, à une allure qui permet de parler et d'observer. L'objectif n'est pas de gravir un sommet, c'est de prendre de la hauteur sur ce que vous vivez.</p></details>
-        <details><summary>Combien de personnes dans un stage ?<span class="plus" aria-hidden="true"></span></summary><p>Quatre à six participants, et quatre au maximum pour le stage « Préparer sa retraite ». Chacun reste libre de ce qu'il partage, dans un cadre de respect, d'écoute et de confidentialité. Le Refuge des Possibles, lui, est un accompagnement individuel.</p></details>
+        <details open><summary>Faut-il être sportif pour participer ?<span class="plus" aria-hidden="true"></span></summary><p>Non. La marche est un support de développement personnel, pas un défi sportif. Les parcours sont choisis selon le stage, le niveau du groupe et la météo, à une allure qui permet de parler et d’observer. L’objectif n’est pas de gravir un sommet, c’est de prendre de la hauteur sur ce que vous vivez.</p></details>
+        <details><summary>Proposez-vous des séances individuelles ?<span class="plus" aria-hidden="true"></span></summary><p>Oui : coaching, accompagnement thérapeutique, soins énergétiques et supervision, à Aillon-le-Vieux ou en visio. Vous trouverez le détail et un bouton de prise de rendez-vous sur la page <a class="link" href="seances.html">Séances individuelles</a>.</p></details>
+        <details><summary>Combien de personnes dans un stage ?<span class="plus" aria-hidden="true"></span></summary><p>Quatre à six participants, et quatre au maximum pour le stage « Préparer sa retraite ». Chacun reste libre de ce qu’il partage, dans un cadre de respect, d’écoute et de confidentialité.</p></details>
         <details><summary>Quels sont les tarifs et les prochaines dates ?<span class="plus" aria-hidden="true"></span></summary><p>Le stage « Préparer sa retraite » est à 900 € TTC (750 € HT), déjeuners, supports et suivi compris. Les tarifs et les dates des autres stages sont annoncés prochainement. Pour Le Refuge des Possibles, le tarif est communiqué avec votre proposition personnalisée. Écrivez-moi pour être prévenu·e.</p></details>
-        <details><summary>Où dormir pendant le stage ?<span class="plus" aria-hidden="true"></span></summary><p>L'hébergement n'est pas compris. Plusieurs possibilités existent à Aillon-le-Vieux et aux alentours, et je peux vous transmettre une liste.</p></details>
-        <details><summary>Dois-je savoir exactement ce que je veux avant de venir ?<span class="plus" aria-hidden="true"></span></summary><p>Non. Vous venez avec votre histoire, vos questions, vos attentes. Vous n'avez pas besoin de savoir exactement où vous voulez arriver : nous prenons le temps d'explorer le chemin.</p></details>
-        <details><summary>Et les soins énergétiques ?<span class="plus" aria-hidden="true"></span></summary><p>Je suis aussi praticienne en approches énergétiques. Dans Le Refuge des Possibles, je peux vous proposer, si vous le souhaitez, un soin Reiki ou une séance d'harmonisation, comme un temps de détente et de recentrage. Toujours avec votre accord, et sans remplacer un soin médical.</p></details>
-        <details><summary>Est-ce une thérapie ?<span class="plus" aria-hidden="true"></span></summary><p>Non. Les stages et Le Refuge des Possibles sont des accompagnements de développement personnel et de bien-être. Ils ne remplacent pas un suivi médical ou psychothérapeutique lorsque celui-ci est nécessaire.</p></details>
+        <details><summary>Où dormir pendant le stage ?<span class="plus" aria-hidden="true"></span></summary><p>L’hébergement n’est pas compris. Plusieurs possibilités existent à Aillon-le-Vieux et aux alentours, et je peux vous transmettre une liste.</p></details>
+        <details><summary>Est-ce une thérapie ?<span class="plus" aria-hidden="true"></span></summary><p>Les stages et Le Refuge des Possibles sont des accompagnements de développement personnel et de bien-être. Ils ne remplacent pas un suivi médical ou psychothérapeutique lorsque celui-ci est nécessaire.</p></details>
       </div>
     </div>
   </section>
 
-  <section id="contact">
+  <section id="contact" class="tint">
     <div class="wrap contact">
       <div class="intro">
-        <h2>Et si c'était le bon moment pour vous ?</h2>
-        <p>Vous avez peut-être une question qui revient régulièrement, une envie que vous repoussez, un changement que vous aimeriez préparer. Vous n'avez pas besoin de tout savoir avant de commencer : parfois, le premier pas consiste simplement à décider de prendre du temps pour soi.</p>
+        <h2>Et si c’était le bon moment pour vous ?</h2>
+        <p>Vous avez peut-être une question qui revient régulièrement, une envie que vous repoussez, un changement que vous aimeriez préparer. Vous n’avez pas besoin de tout savoir avant de commencer : parfois, le premier pas consiste simplement à décider de prendre du temps pour soi.</p>
         <dl>
-          <div><dt>E-MAIL</dt><dd>bonjour@elanduvivant.fr</dd></div>
+          <div><dt>E-MAIL</dt><dd>bonjour@elandescimes.fr</dd></div>
           <div><dt>TÉLÉPHONE</dt><dd>06 00 00 00 00</dd></div>
           <div><dt>LIEU</dt><dd>Aillon-le-Vieux, massif des Bauges (Savoie)</dd></div>
         </dl>
-        <p class="small">Adresse e-mail et téléphone d'exemple, à remplacer avant la mise en ligne.</p>
+        <p class="small">Adresse e-mail et téléphone d’exemple, à remplacer avant la mise en ligne.</p>
       </div>
       <form id="contactForm" novalidate>
         <div class="pair">
@@ -195,7 +208,7 @@
           <label for="f-email">E-mail<input id="f-email" name="email" type="email" autocomplete="email" required></label>
         </div>
         <label for="f-type">Je vous écris au sujet de
-          <select id="f-type" name="type"><option value="boussole">Le stage « Retrouver sa boussole intérieure »</option><option value="tete-coeur">Le stage « De la tête au cœur »</option><option value="reve">Le stage « Du rêve à la réalité »</option><option value="cap">Le stage « Garder le cap dans un monde incertain »</option><option value="retraite">Le stage « Préparer sa retraite »</option><option value="refuge">Le Refuge des Possibles (accompagnement individuel)</option><option value="question" selected>Faire connaissance ou poser une question</option></select>
+          <select id="f-type" name="type"><option value="boussole">Le stage « Retrouver sa boussole intérieure »</option><option value="tete-coeur">Le stage « De la tête au cœur »</option><option value="reve">Le stage « Du rêve à la réalité »</option><option value="cap">Le stage « Garder le cap dans un monde incertain »</option><option value="retraite">Le stage « Préparer sa retraite »</option><option value="refuge">Le Refuge des Possibles</option><option value="seance-coaching">Une séance : coaching individuel</option><option value="seance-therapie">Une séance : accompagnement thérapeutique</option><option value="seance-soin">Une séance : soins énergétiques</option><option value="seance-supervision">Une séance : supervision individuelle</option><option value="partenaire">Un stage avec un partenaire</option><option value="question" selected>Faire connaissance ou poser une question</option></select>
         </label>
         <label for="f-msg">Votre message<textarea id="f-msg" name="message" placeholder="Ce qui vous amène, vos questions, vos disponibilités..."></textarea></label>
         <div><button class="btn" type="submit">Préparer mon message</button></div>
@@ -203,7 +216,7 @@
         <div class="request" id="request" hidden>
           <p>Votre message est prêt. Envoyez-le avec votre messagerie, ou copiez-le.</p>
           <pre id="requestText"></pre>
-          <div class="acts"><a class="btn" id="mailBtn" href="mailto:bonjour@elanduvivant.fr">Envoyer par e-mail</a><button class="btn soft" type="button" id="copyBtn">Copier le message</button></div>
+          <div class="acts"><a class="btn" id="mailBtn" href="mailto:bonjour@elandescimes.fr">Envoyer par e-mail</a><button class="btn soft" type="button" id="copyBtn">Copier le message</button></div>
         </div>
       </form>
     </div>
@@ -211,9 +224,9 @@
 </main>
 <footer>
   <div class="wrap">
-    <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#mark"/></svg><span><b>L’Élan du Vivant</b><small>MARCHE · ACCOMPAGNEMENT · BAUGES</small></span></a>
-    <nav aria-label="Pied de page"><a href="index.html">Accueil</a><a href="experience.html">L’expérience</a><a href="stages.html">Les stages</a><a href="refuge.html">Le Refuge</a><a href="qui-suis-je.html">Qui suis-je ?</a><a href="blog.html">Le journal</a><a href="index.html#questions">Questions</a><a href="index.html#contact">Contact</a></nav>
-    <p>© 2026 L’Élan du Vivant · Odile Bernhardt · Aillon-le-Vieux, massif des Bauges. Coordonnées, dates et tarifs « à préciser » restent à confirmer.</p>
+    <a class="brand foot-brand" href="index.html" aria-label="L’Élan des Cimes, accueil"><svg class="mark" viewBox="0 0 256 256" aria-hidden="true"><path d="M16 206L88 96C93 88 103 88 108 96L130 130L150 106C155 100 163 100 168 106L240 206Z" fill="var(--logo-1,#2F4A3E)"/><circle cx="130" cy="92" r="16" fill="var(--logo-2,#C77F62)"/><path d="M121 206C121 186 140 176 140 160C140 152 136 146 130 140C134 150 126 156 126 166C126 182 110 190 110 206Z" fill="var(--logo-3,#F7F5EF)"/></svg><span class="brand-txt"><b>L’Élan des Cimes</b><small>Retrouver son élan, choisir son chemin.</small></span></a>
+    <nav aria-label="Pied de page"><a href="index.html">Accueil</a><a href="stages.html">Les stages</a><a href="refuge.html">Le Refuge</a><a href="seances.html">Séances individuelles</a><a href="experience.html">L’expérience</a><a href="qui-suis-je.html">Qui suis-je ?</a><a href="blog.html">Le journal</a><a href="index.html#questions">Questions</a><a href="index.html#contact">Contact</a></nav>
+    <p>© 2026 L’Élan des Cimes · Odile Bernhardt · Aillon-le-Vieux, massif des Bauges. Photographies : Odile Bernhardt. Coordonnées, dates et tarifs « à préciser » restent à confirmer.</p>
   </div>
 </footer>
 <script src="elan.js"></script>

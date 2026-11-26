@@ -1,4 +1,4 @@
-/* L’Élan du Vivant : contenu des stages collectifs et du Refuge des Possibles, repris des fiches de présentation.
+/* L’Élan des Cimes : contenu des stages collectifs et du Refuge des Possibles, repris des fiches de présentation.
    Un objet par offre ; chaque rubrique est facultative et n'apparaît que si elle est remplie. */
 window.OFFRES=(function(){
 const RYTHME=["<b>Le matin</b> : marche en montagne, expériences, questionnements et temps de contemplation.","<b>À midi</b> : une pause déjeuner pour se retrouver et partager.","<b>L'après-midi</b> : ateliers créatifs, exercices de connaissance de soi, expérimentations et échanges."];
@@ -8,7 +8,7 @@ const AUCUNE="Aucune expérience préalable en développement personnel n'est n�
 
 return [
 {
-  id:'boussole',kind:'stage',title:'Retrouver sa boussole intérieure',
+  id:'boussole',photo:'chemin-vers-les-sommets',photoAlt:"Un chemin de terre qui monte vers les sommets des Bauges",photo2:'vallee-mer-de-nuages',photo2Alt:"Vallée des Bauges au-dessus d’une mer de nuages",kind:'stage',title:'Retrouver sa boussole intérieure',
   hook:"Faire dialoguer la tête, le cœur, le corps et l'esprit.",
   lead:"Trois jours pour faire dialoguer la tête, le cœur, le corps et l'esprit, et retrouver votre liberté de choisir.",
   card:"Quand les sollicitations extérieures prennent trop de place, il devient parfois difficile de savoir ce que nous voulons vraiment. Trois jours pour vous recentrer, retrouver vos repères et renouer avec votre liberté de choisir.",
@@ -41,7 +41,7 @@ return [
   closing:{title:'Et si vous retrouviez votre propre direction ?',text:"Accordez-vous trois jours pour prendre de la hauteur, écouter toutes les dimensions de votre être et retrouver ce qui vous guide profondément. Votre boussole intérieure est unique : prenez le temps de la redécouvrir."}
 },
 {
-  id:'tete-coeur',kind:'stage',title:'De la tête au cœur',
+  id:'tete-coeur',photo:'lac-reflet',photoAlt:"Un lac des Bauges où se reflètent les montagnes",photo2:'iris-jardin',photo2Alt:"Iris en fleurs dans un jardin de montagne",kind:'stage',title:'De la tête au cœur',
   hook:'Moins de mental, plus de place pour soi.',
   lead:"Trois jours pour retrouver le contact avec vos émotions, vos envies et vos besoins.",
   card:"Vous réfléchissez beaucoup, vous analysez, vous anticipez... mais vous avez parfois du mal à écouter ce que vous ressentez. Trois jours pour ralentir, renouer avec vos émotions et vous rapprocher de vos besoins et de vos désirs.",
@@ -73,7 +73,7 @@ return [
   closing:{title:'Et si vous donniez enfin une vraie place à ce qui vous fait du bien ?',text:"Trois jours pour sortir du pilotage automatique, retrouver le plaisir de ressentir et renouer avec ce qui vous anime. Moins de mental, plus de place pour vous."}
 },
 {
-  id:'reve',kind:'stage',title:'Du rêve à la réalité',
+  id:'reve',photo:'vue-depuis-les-rochers',photoAlt:"Vue immense depuis les rochers, au-dessus des vallées",photo2:'chemin-bifurcation',photo2Alt:"Un chemin qui file vers la montagne",kind:'stage',title:'Du rêve à la réalité',
   hook:'Osez donner une chance à vos rêves !',
   lead:"Trois jours pour explorer votre rêve, dépasser vos freins et avancer vers une décision éclairée.",
   card:"Vous portez un rêve ou un projet qui vous attire, mais quelque chose vous empêche encore de l'explorer pleinement. Trois jours pour lui redonner de la place, regarder les obstacles autrement et découvrir comment commencer à le rendre possible.",
@@ -107,7 +107,7 @@ return [
   closing:{title:'Et si vous donniez enfin une chance à votre rêve ?',text:"Vous n'avez pas besoin de tout décider aujourd'hui. Vous pouvez simplement choisir de commencer à explorer. Oser explorer, c'est déjà se mettre en mouvement."}
 },
 {
-  id:'cap',kind:'stage',title:'Garder le cap dans un monde incertain',
+  id:'cap',photo:'montagnes-brume',photoAlt:"Montagnes dans la brume, crêtes à l’horizon",photo2:'sentier-foret',photo2Alt:"Un sentier en forêt",kind:'stage',title:'Garder le cap dans un monde incertain',
   hook:'Ne pas attendre que le monde redevienne prévisible pour construire son avenir.',
   lead:"Trois jours pour anticiper les changements, renforcer vos ressources et rester acteur de votre avenir.",
   card:"Le monde change vite. Ces transformations peuvent susciter des questions, des inquiétudes, mais aussi ouvrir de nouvelles possibilités. Trois jours pour prendre du recul, développer vos capacités d'adaptation et agir avec davantage de confiance et de discernement.",
@@ -136,7 +136,7 @@ return [
   closing:{title:"L'avenir est incertain. Vous pouvez vous y préparer.",text:"Vous ne pouvez pas prévoir tous les changements. Mais vous pouvez renforcer vos ressources, élargir vos possibilités et choisir dès aujourd'hui des actions qui vous aideront demain."}
 },
 {
-  id:'retraite',kind:'stage',title:'Préparer le prochain chapitre de vie : la retraite',short:'Préparer sa retraite',
+  id:'retraite',photo:'arbre-seul-alpage',photoAlt:"Un arbre seul sur un alpage paisible, le lac au loin",photo2:'saison-automne',photo2Alt:"Les Bauges en automne",kind:'stage',title:'Préparer le prochain chapitre de vie : la retraite',short:'Préparer sa retraite',
   hook:"Et si vous preniez le temps d'écrire la suite de votre histoire ?",
   lead:"Trois jours pour faire le bilan, accueillir les changements et imaginer une retraite qui vous ressemble.",
   card:"La retraite ouvre un nouveau chapitre, riche de possibilités mais aussi de questionnements. Trois jours pour honorer le chemin parcouru, imaginer ce qui vous attend et construire une nouvelle étape de vie qui vous ressemble.",
@@ -169,7 +169,7 @@ return [
   closing:{title:'La retraite ne marque pas la fin de votre histoire.',text:"Elle ouvre un espace nouveau, avec ses inconnues, ses libertés et ses possibilités. Trois jours pour honorer le chemin parcouru, retrouver l'envie de rêver et choisir comment écrire la suite."}
 },
 {
-  id:'refuge',kind:'refuge',title:'Le Refuge des Possibles',
+  id:'refuge',photo:'balcon-fleuri',photoAlt:"Un balcon fleuri ouvert sur la montagne",photo2:'sentier-automne',photo2Alt:"Un sentier forestier tapissé de feuilles d’automne",kind:'refuge',title:'Le Refuge des Possibles',
   hook:'Un refuge pour se déposer. Des possibles pour repartir.',
   lead:"Un à trois jours d'accompagnement individuel, confidentiel et entièrement personnalisé, au cœur des montagnes des Bauges.",
   card:"Vous traversez une période difficile, vous vous sentez à un tournant ou vous avez besoin d'un temps rien que pour vous ? Un accompagnement individuel, confidentiel et personnalisé, sur un à trois jours.",
@@ -215,3 +215,15 @@ return [
   cta:'Parlons de votre Refuge des Possibles'
 }];
 })();
+
+/* Séances individuelles : textes de départ, durée et tarif à confirmer par Odile */
+window.SEANCES=[
+  {id:'seance-coaching',titre:'Coaching individuel',accroche:'Clarifier une situation, retrouver une direction, passer à l’action.',texte:"Une transition professionnelle, une décision à prendre, un projet qui patine, une relation qui pèse : nous explorons ce qui se joue, vos ressources et les options qui s’offrent à vous, jusqu’aux premiers pas concrets.",pour:'Particuliers, managers, dirigeants, indépendants.',outils:'Coaching, PNL, analyse transactionnelle, approche systémique.'},
+  {id:'seance-therapie',titre:'Accompagnement thérapeutique',accroche:'Déposer ce qui pèse et apaiser ce qui résiste.',texte:"Quand comprendre ne suffit plus : émotions envahissantes, conflits intérieurs, événements difficiles. Nous travaillons avec la parole, le corps, les images et des approches comme l’EFT ou la logosynthèse, à votre rythme.",pour:'Toute personne traversant une période difficile ou un blocage récurrent.',outils:'EFT, logosynthèse, approches corporelles et symboliques, constellations.'},
+  {id:'seance-soin',titre:'Soins énergétiques',accroche:'Un temps de détente profonde et de recentrage.',texte:"Un soin Reiki ou une séance d’harmonisation énergétique, allongé et habillé, pour ralentir, relâcher les tensions et vous accorder un vrai temps de présence à vous-même.",pour:'Stress, fatigue, besoin de calme ou de recentrage.',outils:'Reiki, harmonisation et rééquilibrage énergétique.'},
+  {id:'seance-supervision',titre:'Supervision individuelle',accroche:'Prendre du recul sur sa pratique d’accompagnement.',texte:"Pour les coachs, thérapeutes, formateurs et professionnels de l’accompagnement : analyser une situation, comprendre ce qui se rejoue dans la relation, prendre soin de vous et faire grandir votre posture.",pour:'Coachs, thérapeutes, formateurs, praticiens, managers accompagnants.',outils:'Analyse de pratique, approche systémique, analyse transactionnelle.'}
+];
+/* Stages avec des partenaires : ajouter un objet par stage. Les stages marqués exemple:true ne sont là que pour montrer la mise en page. */
+window.PARTENAIRES=[
+  {exemple:true,titre:'Titre du stage partenaire',partenaire:'Nom du partenaire (sophrologue, artiste, praticien...)',dates:'Dates à annoncer',lieu:'Aillon-le-Vieux ou autre lieu',format:'En salle, sans marche',tarif:'À préciser',texte:"Deux ou trois phrases pour présenter le stage, ce que l’on y vit et ce que l’on en retire. Le partenaire et moi co-animons les journées.",lien:''}
+];
